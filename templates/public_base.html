@@ -1,0 +1,119 @@
+<!doctype html>
+<!-- [if IE ]> <html class="no-js"> <![endif] -->
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- favicon for web browser and smartphones -->
+  <link rel="icon" href="{{ STATIC_URL }}images/favicon.png" type="image/x-png">
+  <link rel="apple-touch-icon" href="{{ STATIC_URL }}images/apple-touch-icon.png">
+
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Homenaje|Molengo' rel='stylesheet' type='text/css'>
+
+  <!-- CSS Section -->
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/colorbox.css">  
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css">  
+
+  {% block stylesheet %}
+  {% endblock stylesheet %}
+
+  {% block extra-style %}{% endblock %}
+
+  <title>{% block title %}Lab | Open Space for IT Entrepreneurs{% endblock %}</title>
+  
+</head>
+
+<body lang="en">
+
+  <div id="container">
+    
+    <div id="header">                                                                     <!-- Header -->
+      <div id="logo">
+        <a href="{% url public_home %}">
+          <img src="{{ STATIC_URL }}images/logo.jpg" class="" alt="" />
+        </a>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="{% url public_blog %}">blog</a></li>
+          <li><a href="{% url public_events "all" %}">events</a></li>
+          <li><a href="{% url public_about %}">about us</a></li>
+        </ul>
+      </div>
+    </div>                                                                                <!-- End Header -->
+    <div style="clear: both;"></div>
+
+    <div id="main">                                                                       <!-- Main -->
+      {% block main-contents %}
+      {% endblock %}
+    </div>  
+
+  </div>
+  <div style="clear: both;"></div>
+
+  <div id="footer">                                                                       <!-- Footer -->
+    <div id="footer_contents">
+
+<div id="likebox">
+<iframe style="float:right" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FkLab%2F252632714822375&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=312581992141260" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:305px; height:110px;" allowTransparency="true"></iframe>
+</div>
+
+      <div id="socialize">
+        <a href="http://www.twitter.com/#!/klabrw"><img src="{{STATIC_URL}}images/twitter_icon.png"/></a>
+        <a href="http://www.facebook.com/pages/kLab/252632714822375"><img src="{{STATIC_URL}}images/facebook_icon.png"/></a>
+        <a href="http://www.flickr.com/photos/klabrw"><img src="{{STATIC_URL}}images/flickr_icon.png"/></a>
+      </div>
+      <div style="clear: both;"></div>
+      <div id="copyright">
+        kLab	© 2012	Copyright. All rights reserved. - 
+        <span class="login">
+          {% if request.user.is_authenticated %}
+          <a href="{% url users.user_logout %}">logout</a> - <a href="{% url members.application_list %}">admin</a>        
+          {% else %}
+          <a href="{% url users.user_login %}">login</a>
+          {% endif %}
+        </span>
+        <span><a href="http://www.nyaruka.com"><img border="0" src="{{STATIC_URL}}images/nyaruka_footer.png" style="float: right;" /></a></span>
+      </div>
+
+    </div>
+  </div>                                                                                  <!-- End Footer -->
+
+
+  <!-- IE craziness! What can u do? -->
+  <!-- [if lt IE 9]><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif] -->
+
+  <!-- JavaScript at the bottom for fast page loading, conditional based on whether we are serving locally -->
+  <script>
+    if (window.location.hostname == "localhost"){
+        document.write(unescape('%3Cscript src="{{ STATIC_URL }}js/libs/jquery-1.7.2.js"%3E%3C/script%3E'));
+    } else {
+        document.write(unescape('%3Cscript src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"%3E%3C/script%3E'));
+    }
+  </script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tweet.js"></script>
+
+  {% block javascript %}
+  {% endblock javascript %}
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.pjax.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+
+  {# media associated with any form we are displaying #}
+  {% if form %}
+  {{ form.media }}
+  {% endif %}
+
+  {% block extra-script %}{% endblock %}
+  {% block script %}{% endblock %}
+  {# endcompress #}
+
+  <!-- End Script -->
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+{% extends base_template %}
+
+{% load smartmin %}
+
+{% block pre-content %}
+<div class="page-header"><h2>{{ title }}</h2></div>
+{% endblock %}
+
+{% block extra-script %}
+
+{# placeholder form for posterizer href's.. href's with a posterize class will be converted to POSTs #}
+<form id="posterizer" method="post">
+  {% csrf_token %}
+</form>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery.url.js"></script>
+
+<script>
+  $("td.clickable").hover(function(){
+    this.style.cursor='pointer'
+  },
+  function(){});
+
+  $("td.clickable").click(function(){
+    document.location = $(this).children("a").attr("href");
+  });
+
+  $("a.posterize").click(function(event){
+    event.preventDefault();
+
+    var href = $(this).attr("href");
+    var url = $.url(href);
+
+    $("#posterizer").attr("action", url.attr("path"));
+
+    for (var key in url.param()){
+      $("#posterizer").append("<input type='hidden' name='" + key + "' value='" + url.param(key) + "'></input>");
+    }
+
+    $("#posterizer").submit();
+  });
+</script>
+
+{% if refresh %}
+<script>
+function refresh(){
+  var url = "{{url_params|safe}}"
+  {% if page_obj %}
+    url += "page={{page_obj.number}}";
+  {% endif %}
+
+  $.pjax({
+    url: url,
+    data: { 'pjax': "true" },
+    container: '#pjax',
+    push: false,
+    replace: false,
+    timeout: 30000,
+    error: function(){}
+  });
+}
+
+$(document).ready(function(){
+    window.setTimeout(refresh, {{ refresh }});
+});
+</script>
+{% endif %}
+
+{% endblock %}
+
+
+

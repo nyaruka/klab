@@ -1,0 +1,57 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+{{block.super}}Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+<div id="events_content">
+
+    <div class="event_small">
+      <a href="{% url public_events "all" %}">All Events</a>
+      <a href="{% url public_events "upcoming" %}">Upcoming Events</a>
+      <a href="{% url public_events "past" %}">Past Events</a>
+    </div>  
+
+    
+    <div class="event_main">
+      <div class="solo_event_image">
+        {% thumbnail event.logo "100x110" crop="center" as im %}
+        <img src="{{im.url}}" />
+        {% endthumbnail %}
+      </div>
+      <div class="event_heading">
+        <table width="100%" cellspacing="" cellpadding="" border="0">
+          <tr>
+            <td colspan="2" class="heading"><a href="{% url solo_event event.id %}">{{event.title|truncatewords:"9"}}</a></td>
+          </tr>
+          <tr>
+            <td class="right">Venue</td>
+            <td class="left">{{event.venue}}</td>            
+          </tr>
+          <tr>
+            <td class="right">Date</td>
+            <td class="left">{{event.date|date:"F dS, Y"}}</td>
+          </tr>
+          <tr>
+            <td class="right">Time</td>
+            <td class="left">{{event.time}} ({{event.duration}} minutes)</td>            
+          </tr>
+        </table>
+
+      </div>
+      <div style="clear: both;"></div>
+
+      <div class="description">
+        {{event.description|safe}}
+      </div>
+
+    </div>
+
+</div>
+
+
+{% endblock main-contents %}

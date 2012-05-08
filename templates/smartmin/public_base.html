@@ -1,0 +1,38 @@
+{% extends "public_base.html" %}
+
+{% block stylesheet %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/smartmin_styles.css">
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/extra_smartmin_styles.css">
+{% endblock %}
+
+{% block main-contents %}
+<div class="container">
+  {% load smartmin %}
+      
+  {% block content-div %}
+  <div class="content">
+    {% block messages %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block {% for tag in message.tags %}alert-{{ tag }}{% endfor %}" data-alert="alert">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <p>{{ message }}.</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endblock messages %}
+
+    {% block pre-content %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block post-content %}
+    {% endblock %}
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}
+

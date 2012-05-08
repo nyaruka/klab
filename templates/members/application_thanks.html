@@ -1,0 +1,60 @@
+{% extends "smartmin/public_base.html" %}
+
+{% load quickblocks thumbnail %}
+
+{% block messages %}
+
+{% if messages %}
+{% for message in messages %}
+{% endfor %}
+{% endif %}
+
+<div class="alert alert-block alert-success" data-alert="alert">
+  <a class="close" data-dismiss="alert" href="#">×</a>
+  {% load_qbs "application_thanks" %}
+  {% for thanks in application_thanks %}
+  <h3>{{ thanks.title }}</h3>
+  <p>{{ thanks.content }}</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block pre-content %}
+<div class="row" style="padding-top: 20px">
+ <div class="span8">
+
+   {% load_qbs "application_headers" %}
+   {% for header in application_headers %}
+   <div class="title">{{ header.title }}</div>
+   <p>
+     {{ header.content }}
+   </p>
+   {% endfor %}
+
+ </div>
+
+ <div class="span4">
+   {% for header in application_headers %}
+   {% if forloop.first %}
+   {% thumbnail header.image "290x400" crop="center" as img %}
+   <img src="{{ img.url }}" width="290px"/>
+   {% endthumbnail %}
+   {% endif %}
+   {% endfor %}
+ </div>
+</div>
+{% endblock %}
+
+{% block content %} {% endblock %}
+
+{% block extra-style %}
+<style>
+div.title {
+  margin-top: 12px;
+  margin-bottom: 3px;
+  padding-bottom: 0px;
+}
+</style>
+{% endblock %}
+

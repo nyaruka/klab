@@ -1,0 +1,121 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+
+{% block javascript %}
+<script type='text/javascript'>
+  jQuery(function($){
+    $(".tweet").tweet({
+      avatar_size: 48,
+      count: 5,
+      refresh_interval: 120,
+      query: "#klabrw OR klabrw",
+      loading_text: "loading tweets..."
+    });
+  });
+
+  jQuery("a.gallery").colorbox({rel:"favorites"});
+
+</script>
+{% endblock %}
+
+{% block main-contents %}
+
+<div id="main-contents">
+  <div id="favorites" class="radius shadow">
+    {% for url, geo, title in images|slice:":5" %}
+    {% thumbnail url geo crop="center" as im %}
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    {% endthumbnail %}
+    {% endfor %}
+  </div>
+
+  <!-- hidden block of remaining images to include in slideshow -->
+  <div style="display:none">
+    {% for url, geo, title in images|slice:"5:" %}
+    {% thumbnail url geo crop="center" as im %}
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    {% endthumbnail %}
+    {% endfor %}
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div id="sides">
+    <div id="main-side">
+      <div id="welcome" class="radius shadow">
+        <p>
+          kLab provides an open space for IT entrepreneurs
+          to collaborate and innovate in Kigali, Rwanda
+        </p>
+        kLab, ICT Park, 6th Floor<br/>
+        Boulevard de l'Umuganda, Kacyiru
+      </div> 
+      <div id="apply">
+        <a href="{% url members.application_create %}"><span class="big button radius shadow">Become a Member</span></a>
+      </div>
+      <div id="posts">
+        {% for post in recent %}
+        <div class="post">
+
+          <div class="post_header">
+            <div class="title">
+              <a href="{% url public_post post.id %}">{{post.title}}</a>
+            </div>
+            <div class="date">
+              {{post.created_on|date:"F dS, Y"}}
+            </div>
+          </div>
+          <div style="clear: both;"></div>
+          
+          <div class="post_body">
+            {{post.body|truncatewords:100}} <a href="{% url public_post post.id %}">more</a>
+          </div>
+
+
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <div id="small-side">
+
+      <div id="upcoming_events">
+        <h3>Upcoming Events</h3>
+        <div id="events_stream">
+        
+          {% for event in upcoming %}
+          <div class="events">
+
+            <div class="event_header">
+              <div class="event_title">
+                <a href="{% url solo_event event.id %}">{{event.title|truncatewords:"3"}}</a>
+              </div>
+              <div class="date">
+                {{event.date|date:"F d, Y"}}
+              </div>
+            </div>
+            <div style="clear: both;"></div>
+          
+            <div class="event_body">
+              {{event.description|truncatewords:"15"|safe}}
+            </div>
+
+          </div>
+
+        {% endfor %}
+        </div>
+      </div>
+
+      <div id="tweets">
+        <h3>#klabrw Tweets</h3>
+        <div class="tweet">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock main-contents %}

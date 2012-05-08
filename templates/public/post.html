@@ -1,0 +1,42 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+{% load markup %}
+
+{% block main-contents %}
+<div id="blog_contents">
+
+  <div id="blog_main">
+    <div class="full_post">
+
+      <div class="post_small">
+        <span class="date">
+          {{post.created_on|date:"F dS,Y"}}
+        </span>
+        <div class="post_photos">
+          {% thumbnail post.photo "250x300" crop="center" as im %}
+          <img src="{{im.url}}" />
+          {% endthumbnail %}
+        </div>
+      </div>
+      <div class="post_main">
+        <div class="post_header">
+          <div class="title">
+            {{post.title}}
+          </div>
+	  {% with post.created_by as author %}
+	  <div class="byline">by {{ author.first_name|capfirst }} {{ author.last_name }}</div>
+	  {% endwith %}
+        </div>
+        <div style="clear: both;"></div>          
+        
+        <div class="post_body">
+          {{post.body|markdown:"nl2br"}}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+{% endblock main-contents %}

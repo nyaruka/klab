@@ -1,0 +1,54 @@
+body {
+    padding-top: 0px;
+    color: #3F3E3C;
+    background-color: #E3E4E4;
+    font-family: Molengo, sans-serif;
+    font-size: 15px;
+}
+
+p {
+    font-size: 15px;
+}
+
+#container {
+    width: 940px;
+}
+
+p {
+    font-family: Molengo, sans-serif;
+}
+
+.content {
+    -webkit-border-radius: 0 0 0px 0px;
+    -moz-border-radius: 0 0 0px 0px;
+    border-radius: 0 0 0px 0px;
+}
+
+.title {
+    font-family: Homenaje, sans-serif;
+    float: none;
+    padding-bottom: 10px;
+}
+
+@media all {
+    .span12 {
+        width: 900px;
+    }
+
+    .span8 {
+        width: 620px;
+    }
+
+    .span4 {
+        width: 300px;
+    }
+
+    [class*="span"] {
+        float: left;
+        margin-left: 20px;
+    }
+
+    .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+        width: auto;
+    }
+}

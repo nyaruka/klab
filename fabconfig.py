@@ -1,0 +1,11 @@
+config = dict(
+   port='8015',
+   friendly_name='kLab',
+   name='klab',
+   user='klab',
+   env='env',
+   settings='settings.py.dev',
+   db='klab',
+   db_user='klab',
+   db_host='localhost',
+   custom_domains='www.klab.rw klab.rw')

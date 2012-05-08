@@ -1,0 +1,43 @@
+from settings_common import *
+import os.path
+
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ('Nyaruka Code', 'code@nyaruka.com'),
+)
+
+# set the mail settings, we send throught gmail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '${gmail_user}'
+DEFAULT_FROM_EMAIL = '${gmail_user}'
+EMAIL_HOST_PASSWORD = '${gmail_password}'
+EMAIL_USE_TLS = True
+#EMAIL_PORT=587
+
+MANAGERS = ADMINS
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '${db}',
+        'USER': '${db_user}',
+        'PASSWORD': '${db_password}',
+        'HOST': '${db_host}',
+        'PORT': '',                      
+        'OPTIONS': {   "init_command": "SET storage_engine=INNODB",
+                       "charset": "utf8", 
+        }
+    }
+}
+
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a trailing slash.
+ADMIN_MEDIA_PREFIX = '/sitestatic/'
+
+INSTALLED_APPS += ('gunicorn',)
+
+# static dir is different for prod
+STATIC_URL = '/sitestatic/'
+
+SENTRY_DSN = 'http://8680e6db98394b5988fce79d12dfa5be:dc0e5c12969541049aa726b4980af986@monitor.nyaruka.com/2'

@@ -1,0 +1,198 @@
+[
+    {
+        "pk": 1, 
+        "model": "django_quickblocks.quickblocktype", 
+        "fields": {
+            "modified_by": 1, 
+            "name": "Friends of kLab", 
+            "is_active": true, 
+            "created_by": 1, 
+            "created_on": "2012-03-25 18:04:14", 
+            "modified_on": "2012-03-25 21:05:22", 
+            "slug": "friends_of_klab", 
+            "description": "These are logos and links for friends of kLab"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "django_quickblocks.quickblocktype", 
+        "fields": {
+            "modified_by": 1, 
+            "name": "Who are we?", 
+            "is_active": true, 
+            "created_by": 1, 
+            "created_on": "2012-03-25 18:34:22", 
+            "modified_on": "2012-03-25 18:34:22", 
+            "slug": "who_are_we", 
+            "description": "A brief description of who we are"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "django_quickblocks.quickblocktype", 
+        "fields": {
+            "modified_by": 1, 
+            "name": "What we do?", 
+            "is_active": true, 
+            "created_by": 1, 
+            "created_on": "2012-03-25 18:44:34", 
+            "modified_on": "2012-03-25 18:44:34", 
+            "slug": "what_we_do", 
+            "description": "A brief description of what we are about"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "django_quickblocks.quickblocktype", 
+        "fields": {
+            "modified_by": 1, 
+            "name": "Physical Address", 
+            "is_active": true, 
+            "created_by": 1, 
+            "created_on": "2012-03-25 19:03:53", 
+            "modified_on": "2012-03-25 19:03:53", 
+            "slug": "physical_address", 
+            "description": "Just the current geographical location"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "django_quickblocks.quickblocktype", 
+        "fields": {
+            "modified_by": 1, 
+            "name": "Application Details", 
+            "is_active": true, 
+            "created_by": 1, 
+            "created_on": "2012-03-25 21:31:53", 
+            "modified_on": "2012-03-25 21:31:53", 
+            "slug": "application_details", 
+            "description": "Small description of the application details"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.", 
+            "modified_by": 1, 
+            "title": "Who are we?", 
+            "image": "", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 2, 
+            "created_on": "2012-03-25 19:05:18", 
+            "link": "", 
+            "modified_on": "2012-03-25 19:05:18", 
+            "priority": 0
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.", 
+            "modified_by": 1, 
+            "title": "What we do", 
+            "image": "", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 3, 
+            "created_on": "2012-03-25 19:17:05", 
+            "link": "", 
+            "modified_on": "2012-03-25 19:17:05", 
+            "priority": 0
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "kLab,<br/>\r\nBoulevard de l' Umuganda<br/>\r\nICT Park, 6th floor<br/>\r\nGasabo, Kigali<br/>\r\nRwanda, East Africa<br/>", 
+            "modified_by": 1, 
+            "title": "Physical Address", 
+            "image": "", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 4, 
+            "created_on": "2012-03-25 19:18:13", 
+            "link": "", 
+            "modified_on": "2012-03-25 19:18:13", 
+            "priority": 0
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "", 
+            "modified_by": 1, 
+            "title": "Rwanda Development Board", 
+            "image": "quickblocks/rdb.png", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 1, 
+            "created_on": "2012-03-25 20:07:27", 
+            "link": "", 
+            "modified_on": "2012-03-25 20:26:11", 
+            "priority": 1
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "", 
+            "modified_by": 1, 
+            "title": "Jica", 
+            "image": "quickblocks/jica.png", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 1, 
+            "created_on": "2012-03-25 20:24:42", 
+            "link": "", 
+            "modified_on": "2012-03-25 21:10:26", 
+            "priority": 2
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "", 
+            "modified_by": 1, 
+            "title": "Nyaruka", 
+            "image": "quickblocks/nyaruka.png", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 1, 
+            "created_on": "2012-03-25 20:25:42", 
+            "link": "http://www.nyaruka.com", 
+            "modified_on": "2012-03-25 21:13:52", 
+            "priority": 3
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "django_quickblocks.quickblock", 
+        "fields": {
+            "content": "Are you interested in becoming a member of kLab? <br/>\r\nGive us your contact details and we will notify you once memebership is open.", 
+            "modified_by": 1, 
+            "title": "Application Details", 
+            "image": "", 
+            "tags": "", 
+            "is_active": true, 
+            "created_by": 1, 
+            "quickblock_type": 5, 
+            "created_on": "2012-03-25 21:34:53", 
+            "link": "", 
+            "modified_on": "2012-03-25 21:34:53", 
+            "priority": 0
+        }
+    }
+]

@@ -1,0 +1,72 @@
+{% extends "public_base.html" %}
+
+{% load quickblocks %}
+
+{% block title %}
+{{block.super}} | Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+{% load_qbs "who_are_we" %}
+{% load_qbs "what_we_do" %}
+{% load_qbs "physical_address" %}
+{% load_qbs "friends_of_klab" %}
+
+{% load markup %}
+
+<div id="all_about_us">
+
+  {% for text in who_are_we %}
+  <div class="about_group">
+    <div class="questions">
+      <span>{{text.title}}</span>
+    </div>
+    <div class="about_details">
+      {{text.content|markdown:"nl2br"}}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+  {% endfor %}
+
+  {% for text in what_we_do %}
+  <div class="about_group">
+    <div class="questions">
+      <span>{{text.title}}</span>
+    </div>
+    <div class="about_details">
+      {{text.content|markdown:"nl2br"}}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+  {% endfor %}
+
+  {% for address in physical_address %}
+  <div class="about_group">
+    <div class="questions">
+      <span>{{address.title}}</span>
+    </div>
+    <div class="about_details">
+      {{address.content|markdown:"nl2br"}}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+  {% endfor %}
+
+  <div class="about_group">
+    <div class="questions">
+      {% with friends_of_klab|first as friend %}
+      <span>{{friend.quickblock_type.name}}</span>
+      {% endwith %}
+    </div>
+    <div class="about_details">
+      {% for logo in friends_of_klab %}
+      <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+      {% endfor %}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+
+</div>
+
+{% endblock main-contents %}

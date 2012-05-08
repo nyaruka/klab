@@ -1,0 +1,45 @@
+{% extends "public_base.html" %}
+
+{% load quickblocks %}
+
+{% block title %}
+{{block.super}}Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+{% load_qbs "application_details" %}
+
+
+<div id="apply">
+
+  <div class="apply_group">
+    <div class="apply_intro">
+      <span>Application Details</span>
+    </div>
+    <div class="apply_details">
+      {% for detail in application_details %}
+      {{detail.content|safe}}
+      {% endfor %}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+
+  <div class="apply_group">
+    <div class="apply_intro">
+      <span>Application Form</span>
+    </div>
+    <div class="apply_details">
+      <form action="{% url public_apply %}" method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+
+
+</div>
+
+{% endblock main-contents %}
