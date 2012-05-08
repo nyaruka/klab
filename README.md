@@ -13,30 +13,30 @@ Thanks!
 These instructions are for Unix/OS X, you will have to modify these a bit to get going on Windows.  Consult your favorite Windows Python guru for details.
 
 1. Check out the repository:
-   
-    % git clone git://github.com/nyaruka/klab.git
-
+```
+  % git clone git://github.com/nyaruka/klab.git
+```
 2. Create a virtual environment and active it:
-  
-    % virtualenv env
-    % source env/bin/activate
-
+```  
+  % virtualenv env
+  % source env/bin/activate
+```
 3. Initialize it with all the required libraries:
-   
-    % pip install -r pip-requires.txt
-
+```   
+  % pip install -r pip-requires.txt
+```
 4. Symlink your dev settings file:
-
-    % cd klab
-    % ln -s settings.py.dev settings.py
-
+```
+  % cd klab
+  % ln -s settings.py.dev settings.py
+```
 5. Initialize our database:
-
-    % python manage.py syncdb
-    % python manage.py migrate
-
+```
+  % python manage.py syncdb
+  % python manage.py migrate
+```
 6. Start the server:
-
-    % python manage.py runserver
-
+```
+  % python manage.py runserver
+```
 You should now be able to load and interact with the kLab website at: http://localhost:8000/
