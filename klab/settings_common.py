@@ -178,7 +178,6 @@ INSTALLED_APPS = (
     'django.contrib.markup',
 
     # error logging
-    'sentry',
     'raven.contrib.django',
 
     # necessary apps
@@ -189,7 +188,6 @@ INSTALLED_APPS = (
     'compressor',
     'sorl.thumbnail',
     'pagination',
-    'reversion',
     'django_quickblocks',
 
     # project's apps

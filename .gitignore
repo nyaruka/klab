@@ -18,4 +18,6 @@ klab/build
 config/gen
 config/settings.py
 src
+coverage-report/
+klab/.coverage
 
