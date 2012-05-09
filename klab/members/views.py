@@ -4,7 +4,7 @@ from django.conf import settings
 
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
-    actions = ('create', 'read', 'update', 'list', 'thanks')
+    actions = ('create', 'read', 'update', 'list', 'thanks', 'csv')
     permissions = True
 
     class Read(SmartReadView):
@@ -23,6 +23,22 @@ class ApplicationCRUDL(SmartCRUDL):
         def get_frequency(self, obj):
             return obj.get_frequency_display()
 
+    class Csv(SmartCsvView):
+        fields = ('created_on', 'name', 'email', 'professional_status', 'applying_for', 'frequency', 'city', 'country', 'goals', 'education', 'experience')
+
+        def derive_queryset(self, **kwargs):
+            queryset = super(ApplicationCRUDL.Csv, self).derive_queryset(**kwargs)
+            return queryset.filter(is_active=True)
+
+        def get_professional_status(self, obj):
+            return obj.get_professional_status_display()
+
+        def get_applying_for(self, obj):
+            return obj.get_applying_for_display()
+
+        def get_frequency(self, obj):
+            return obj.get_frequency_display()
+        
     class List(SmartListView):
         fields = ('name', 'email', 'applying_for', 'city', 'country', 'created_on')
         search_fields = ('first_name__icontains', 'last_name__icontains')
