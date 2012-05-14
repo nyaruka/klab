@@ -21,3 +21,11 @@ class Post(SmartModel):
             if photo.get('id') == self.image_id:
                 return flickr.get_url(photo,"b")
 
+    def teaser(self):
+        words = self.body.split(" ")
+
+        if len(words) < 75:
+            return self.body
+        else:
+            return " ".join(words[:75]) + " ..."
+

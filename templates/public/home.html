@@ -1,5 +1,6 @@
 {% extends "public_base.html" %}
 
+{% load markup %}
 {% load thumbnail %}
 
 {% block javascript %}
@@ -69,7 +70,7 @@
           <div style="clear: both;"></div>
           
           <div class="post_body">
-            {{post.body|truncatewords:100}} <a href="{% url public_post post.id %}">more</a>
+            {{post.teaser|markdown:"nl2br"}} <a href="{% url public_post post.id %}">more</a>
           </div>
 
 
