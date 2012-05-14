@@ -6,12 +6,15 @@ django-guardian==1.0.4
 django-nose==1.0
 django-pagination==1.0.7
 -e git+https://github.com/nyaruka/django-quickblocks.git#egg=django-quickblocks
-django-reversion==1.5.1
+django-reversion>=1.6
 flickrapi==1.4.2
+coverage==3.5.1
+django-debug-toolbar
 -e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-dev
 sorl-thumbnail==11.12
 gunicorn
 pytz
 Markdown
 sentry
+nose
 

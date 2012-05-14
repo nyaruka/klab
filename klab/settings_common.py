@@ -107,6 +107,7 @@ PERMISSIONS = {
         'update', # can update an object
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
+  'members.application': ('csv',),
 }
 
 # assigns the permissions that each group should have, here creating an Administrator group with
@@ -120,8 +121,8 @@ GROUP_PERMISSIONS = {
     "Editors": ('events.event.*', 
                 'blog.post.*', 
                 'django_quickblocks.quickblock.*', 
-                'members.application_list', 
-                'members.application_read'),
+                'members.application_list', 'members.application_read', 'members.application_csv',
+                ),
 }
 
 #-----------------------------------------------------------------------------------
@@ -178,7 +179,6 @@ INSTALLED_APPS = (
     'django.contrib.markup',
 
     # error logging
-    'sentry',
     'raven.contrib.django',
 
     # necessary apps
@@ -189,7 +189,6 @@ INSTALLED_APPS = (
     'compressor',
     'sorl.thumbnail',
     'pagination',
-    'reversion',
     'django_quickblocks',
 
     # project's apps
