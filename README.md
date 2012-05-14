@@ -6,7 +6,7 @@ Although Nyaruka originally created the website we look forward to having contri
 
 Before embarking on major changes please file a new Issue with your planned enhancement so we can discuss whether it is appropriate.
 
-Thanks!
+Thanks.
 
 ## Getting Started
 
