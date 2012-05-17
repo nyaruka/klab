@@ -24,8 +24,8 @@ class Post(SmartModel):
     def teaser(self):
         words = self.body.split(" ")
 
-        if len(words) < 75:
+        if len(words) < 100:
             return self.body
         else:
-            return " ".join(words[:75]) + " ..."
+            return " ".join(words[:100]) + " ..."
 
