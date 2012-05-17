@@ -20,6 +20,31 @@
 </script>
 {% endblock %}
 
+{% block inbody-script %}
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+      channelUrl : '//www.klab.rw/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+  // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+{% endblock %}
+
 {% block main-contents %}
 
 <div id="main-contents">
@@ -68,9 +93,10 @@
             </div>
           </div>
           <div style="clear: both;"></div>
-          
+
           <div class="post_body">
-            {{post.teaser|markdown:"nl2br"}} <a href="{% url public_post post.id %}">more</a>
+            {{post.teaser|markdown:"nl2br"}} <a href="{% url public_post post.id %}">Read more</a>
+            <span style="float:right;"><fb:comments-count href="http://www.klab.rw{% url public_post post.id %}"/></fb:comments-count> comment(s) </span>
           </div>
 
 
