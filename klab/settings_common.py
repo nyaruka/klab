@@ -43,6 +43,8 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+DATE_FORMAT = "d-m-Y"
+DATETIME_FORMAT = "d-m-Y H:i"
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
