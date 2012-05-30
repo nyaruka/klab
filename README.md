@@ -16,6 +16,7 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
 
 ```
   % git clone git://github.com/nyaruka/klab.git
+  % cd klab
 ```
 
 #### 2. Create a virtual environment and active it:
