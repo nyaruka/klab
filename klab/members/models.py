@@ -1,5 +1,9 @@
 from smartmin.models import SmartModel
 from django.db import models
+from django.contrib.auth.models import User
+from tempfile import mktemp
+import os
+from django.core.files import File
 
 class Application(SmartModel):
     """
@@ -45,3 +49,40 @@ class Application(SmartModel):
 
     def __unicode__(self):
         return "%s %s" % (self.first_name, self.last_name)
+
+
+
+class Member(SmartModel):
+    
+    application = models.ForeignKey(Application)
+
+    user = models.ForeignKey(User)
+
+    first_name = models.CharField(max_length=64, help_text="Your first (given) name")
+    last_name = models.CharField(max_length=64, help_text="Your last (family) name")
+    phone = models.CharField(max_length=12, help_text="Your phone number (including country code) - eg: 250788123456")
+    email = models.EmailField(max_length=75, help_text="Your email address")
+    picture = models.ImageField(upload_to="members", help_text="A close-up photo of yourself")
+    country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")
+    city = models.CharField(max_length=18, help_text="The city you live in - eg: Kigali")
+    neighborhood = models.CharField(max_length=26, help_text="The neighborhood you live in - eg: Nyamirambo")
+    education = models.TextField(max_length=1024, help_text="Your education, including any degrees or certifications earned (1024 character limit).")
+    experience = models.TextField(max_length=1024, help_text="Briefly describe your experience, projects you have worked on, and companies you have worked for. "
+                                  "Please include the URLs of any projects you worked on and how you contributed (1024 character limit).")
+
+    def update_member_picture(self):
+        pic = self.application.picture
+        if pic:
+            tmp_name = mktemp()
+            tmp_file = open(tmp_name, 'wb')
+            tmp_file.write(str(pic.read))
+            tmp_file.close()
+
+            tmp_file = open(tmp_name, 'r')
+            self.picture.save('%s.jpg' % self.application, File(tmp_file), save=True)
+            self.save()
+
+            os.unlink(tmp_name)
+
+    def __unicode__(self):
+        return "%s %s" % (self.application.first_name, self.application.last_name)

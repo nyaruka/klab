@@ -99,6 +99,14 @@ MIDDLEWARE_CLASSES = (
     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
 )
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
 #-----------------------------------------------------------------------------------
 # Permission Configuration
 #-----------------------------------------------------------------------------------
@@ -125,6 +133,8 @@ GROUP_PERMISSIONS = {
                 'django_quickblocks.quickblock.*', 
                 'members.application_list', 'members.application_read', 'members.application_csv',
                 ),
+
+    "Members": ('members.member_read',),
 }
 
 #-----------------------------------------------------------------------------------
@@ -132,7 +142,7 @@ GROUP_PERMISSIONS = {
 #-----------------------------------------------------------------------------------
 LOGIN_URL = "/users/login/"
 LOGOUT_URL = "/users/logout/"
-LOGIN_REDIRECT_URL = "/members/application/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 #-----------------------------------------------------------------------------------
