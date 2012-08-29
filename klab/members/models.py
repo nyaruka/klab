@@ -33,7 +33,7 @@ class Application(SmartModel):
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
     phone = models.CharField(max_length=12, help_text="Your phone number (including country code) - eg: 250788123456")
     email = models.EmailField(max_length=75, help_text="Your email address")
-    picture = models.ImageField(upload_to="members", help_text="A close-up photo of yourself")
+    picture = models.ImageField(upload_to="members/application", help_text="A close-up photo of yourself")
     country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")
     city = models.CharField(max_length=18, help_text="The city you live in - eg: Kigali")
     neighborhood = models.CharField(max_length=26, help_text="The neighborhood you live in - eg: Nyamirambo")
@@ -62,7 +62,7 @@ class Member(SmartModel):
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
     phone = models.CharField(max_length=12, help_text="Your phone number (including country code) - eg: 250788123456")
     email = models.EmailField(max_length=75, help_text="Your email address")
-    picture = models.ImageField(upload_to="members", help_text="A close-up photo of yourself")
+    picture = models.ImageField(upload_to="members/member/", help_text="A close-up photo of yourself")
     country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")
     city = models.CharField(max_length=18, help_text="The city you live in - eg: Kigali")
     neighborhood = models.CharField(max_length=26, help_text="The neighborhood you live in - eg: Nyamirambo")
@@ -72,10 +72,11 @@ class Member(SmartModel):
 
     def update_member_picture(self):
         pic = self.application.picture
+
         if pic:
             tmp_name = mktemp()
             tmp_file = open(tmp_name, 'wb')
-            tmp_file.write(str(pic.read))
+            tmp_file.write(str(pic.file.read()))
             tmp_file.close()
 
             tmp_file = open(tmp_name, 'r')
