@@ -207,7 +207,8 @@ INSTALLED_APPS = (
     'blog',
     'events',
     'public',
-    'members'
+    'members',
+    'projects',
 )
 
 # A sample logging configuration. The only tangible logging

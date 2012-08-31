@@ -2,6 +2,8 @@ from .models import *
 from smartmin.views import *
 from django.conf import settings
 from django.contrib.auth.models import User, Group
+from projects.models import *
+
 
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
@@ -10,7 +12,7 @@ class ApplicationCRUDL(SmartCRUDL):
 
     class Read(SmartReadView):
         fields = ('professional_status', 'applying_for', 'frequency',
-                  'goals', 'education', 'experience', 'approve')
+                  'goals', 'education', 'experience', 'approve','email')
 
         def get_approve(self, obj):
             return '<a class="btn posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
@@ -111,6 +113,19 @@ class MemberCRUDL(SmartCRUDL):
     actions = ('create','read', 'update', 'list','new')
     permissions = True
 
+    class List(SmartListView):
+        fields = ('name','email','phone','country','city',)
+        field_config = { 'email': dict(label="Email / User") }
+        
+
+        def derive_queryset(self, **kwargs):
+            queryset = super(MemberCRUDL.List, self).derive_queryset(**kwargs)
+            return queryset.filter(is_active=True)
+
+        def get_name(self, obj):
+            return "%s %s" % (obj.first_name, obj.last_name)
+
+
     class New(SmartCreateView):
         fields = ('application',)
         success_url = 'id@members.member_read'
@@ -139,10 +154,12 @@ class MemberCRUDL(SmartCRUDL):
             user.save()
 
             obj.user = user
+
+            
             return obj
 
         def post_save(self, obj):
             obj = super(MemberCRUDL.New, self).post_save(obj)
             obj.update_member_picture()
-
+            
             return obj

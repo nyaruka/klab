@@ -54,9 +54,9 @@ class Application(SmartModel):
 
 class Member(SmartModel):
     
-    application = models.ForeignKey(Application)
+    application = models.ForeignKey(Application, help_text="The initial Application of the member")
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, help_text="The user account associated with this member")
 
     first_name = models.CharField(max_length=64, help_text="Your first (given) name")
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
@@ -86,4 +86,4 @@ class Member(SmartModel):
             os.unlink(tmp_name)
 
     def __unicode__(self):
-        return "%s %s" % (self.application.first_name, self.application.last_name)
+        return "%s_%s" % (self.first_name, self.last_name)

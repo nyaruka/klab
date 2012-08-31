@@ -62,6 +62,10 @@
 	  {% if perms.members.member_list %}
           <li><a href="{% url members.member_list %}">Members</a></li>
           {% endif %}
+
+	  {% if perms.projects.project_list %}
+          <li><a href="{% url projects.project_list %}">Projects</a></li>
+          {% endif %}
 	 
 
           {% if perms.auth.user_list %}

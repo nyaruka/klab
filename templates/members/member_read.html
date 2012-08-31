@@ -1,0 +1,65 @@
+{% extends "smartmin/read.html" %}
+
+{% load smartmin %}
+{% load thumbnail %}
+
+{% block content %}
+{% block pjax %}
+
+<div id="pjax" id="read-view">
+  {% if perms.members.member_update %}
+  <div class="row">
+    <div class="span12 buttons">
+      <a class="btn btn-primary pull-right" href="{% url members.member_update object.id %}">edit</a>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="span2">
+      {% thumbnail object.picture "120x170" crop="center" as img %}
+      <img src="{{ img.url }}" />
+      {% endthumbnail %}
+      <br/>      <br/>
+    </div>
+    <div class="span10">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="read-label" width="100px" >Name</td>
+            <td class="read-value">{{ object }}</td>
+          </tr>
+          <tr>
+            <td class="read-label">Phone</td>
+            <td class="read-value">{{ object.phone }}</td>
+          </tr>
+          <tr>
+            <td class="read-label">Email</td>
+            <td class="read-value"><a href="mailto:{{ object.email }}">{{ object.email }}</a></td>
+          </tr>
+          <tr>
+            <td class="read-label">Location</td>
+            <td class="read-value">{{ object.neighborhood }}, {{ object.city }} in {{ object.country }}</td>
+          </tr>
+         
+	   <tr>
+            <td class="read-label">Education</td>
+            <td class="read-value">{{ object.education }}</td>
+          </tr>
+
+	   <tr>
+            <td class="read-label">Experience</td>
+            <td class="read-value">{{ object.experience }}</td>
+          </tr>
+
+	   
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+</div>
+
+{% endblock %}
+{% endblock %}
