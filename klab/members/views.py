@@ -3,7 +3,8 @@ from smartmin.views import *
 from django.conf import settings
 from django.contrib.auth.models import User, Group
 from projects.models import *
-
+import random
+import string
 
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
@@ -12,7 +13,7 @@ class ApplicationCRUDL(SmartCRUDL):
 
     class Read(SmartReadView):
         fields = ('professional_status', 'applying_for', 'frequency',
-                  'goals', 'education', 'experience', 'approve','email')
+                  'goals', 'education', 'experience', 'approve')
 
         def get_approve(self, obj):
             return '<a class="btn posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
@@ -110,8 +111,39 @@ class ApplicationCRUDL(SmartCRUDL):
 
 class MemberCRUDL(SmartCRUDL):
     model = Member
-    actions = ('create','read', 'update', 'list','new')
+    actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate')
     permissions = True
+
+    class Activate(SmartUpdateView):
+        fields =('password',)
+        permission = None
+        
+        def get_object(self, queryset=None):
+            token = self.request.get('token')
+            return Member.objects.get(token=token)
+        
+        def pre_save(self, obj):
+            token = self.request.get('token')
+            obj = super(MemberCRUDL.Activate, self).pre_save(obj)
+            obj.user.set_password.cleaned_data['password']
+
+            return obj
+
+        def post_save(self, obj):
+            obj = super(MemberCRUDL.Activate, self).post_save(obj)
+            return obj
+
+    class Myprofile(SmartUpdateView):
+
+        fields = ('first_name','last_name','phone','email','picture','country','city','neighborhood','education','experience')
+        def has_permission(self, request, *args, **kwargs):
+            
+            super(MemberCRUDL.Myprofile,self).has_permission(request, *args, **kwargs)
+            return True
+
+        def get_object(self, queryset=None):
+            return Member.objects.get(user=self.request.user)
+
 
     class List(SmartListView):
         fields = ('name','email','phone','country','city',)
@@ -143,9 +175,15 @@ class MemberCRUDL(SmartCRUDL):
             obj.neighborhood = userapp.neighborhood
             obj.education = userapp.education
             obj.experience = userapp.experience
-            
-            user = User.objects.create(username=obj.application.email,)
-            user.set_password('125')
+            obj.token = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+
+            user = User.objects.create(username=obj.application.email,email=obj.application.email)
+            import pdb;pdb.set_trace()
+
+
+
+
+            user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account http:/klab.rw/members/activate?token=%s" % obj.token,from_email="info@klab.rw")
             group = Group.objects.get(name='Members')
             user.groups.add(group)
             user.first_name = userapp.first_name
@@ -161,5 +199,7 @@ class MemberCRUDL(SmartCRUDL):
         def post_save(self, obj):
             obj = super(MemberCRUDL.New, self).post_save(obj)
             obj.update_member_picture()
+            project = Project.objects.create(owner=obj,description="gh",created_by=obj.user, modified_by= obj.user)
             
+            project.save()
             return obj

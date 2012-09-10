@@ -107,6 +107,20 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
+
+#-----------------------------------------------------------------------------------
+# Email Backend
+#-----------------------------------------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'website@klab.rw'
+DEFAULT_FROM_EMAIL = 'website@klab.rw'
+EMAIL_HOST_PASSWORD = 'klabglue'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+
+
+
 #-----------------------------------------------------------------------------------
 # Permission Configuration
 #-----------------------------------------------------------------------------------
@@ -117,7 +131,8 @@ PERMISSIONS = {
         'update', # can update an object
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
-  'members.application': ('csv',),
+  'members.application': ('csv', ),
+  'members.member' : ('myprofile',),
 }
 
 # assigns the permissions that each group should have, here creating an Administrator group with
@@ -134,7 +149,9 @@ GROUP_PERMISSIONS = {
                 'members.application_list', 'members.application_read', 'members.application_csv',
                 ),
 
-    "Members": ('members.member_read',),
+    "Members": ('members.member_read',
+                'members.member_myprofile',
+                'projects.project.*'),
 }
 
 #-----------------------------------------------------------------------------------

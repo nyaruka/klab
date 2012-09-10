@@ -5,6 +5,7 @@ from tempfile import mktemp
 import os
 from django.core.files import File
 
+
 class Application(SmartModel):
     """
     The application model
@@ -69,6 +70,9 @@ class Member(SmartModel):
     education = models.TextField(max_length=1024, help_text="Your education, including any degrees or certifications earned (1024 character limit).")
     experience = models.TextField(max_length=1024, help_text="Briefly describe your experience, projects you have worked on, and companies you have worked for. "
                                   "Please include the URLs of any projects you worked on and how you contributed (1024 character limit).")
+    projects = models.ManyToManyField("projects.Project")
+    
+    token = models.CharField(max_length=32, unique=True, help_text="token used to activate account")
 
     def update_member_picture(self):
         pic = self.application.picture

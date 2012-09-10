@@ -4,6 +4,7 @@ from datetime import datetime
 from models import *
 from blog.models import Post
 from events.models import Event
+from projects.models import Project
 
 from django import forms
 from django.conf import settings
@@ -63,7 +64,14 @@ def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     
     context = dict(post=post)
-    return render_to_response('public/post.html', context, context_instance=RequestContext(request))    
+    return render_to_response('public/post.html', context, context_instance=RequestContext(request))  
+
+def projects(request):
+    projects = Project.objects.filter(is_active=True).order_by('-created_on')
+
+    context = dict(projects=projects)
+    return render_to_response('public/projects.html', context, context_instance=RequestContext(request))
+
 
 def events(request, period):
 
