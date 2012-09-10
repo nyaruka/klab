@@ -1,6 +1,7 @@
 {% extends "public_base.html" %}
 
 {% load quickblocks %}
+{% load thumbnail %}
 
 {% block title %}
 {{block.super}} | Open Space for IT Enterpreneurs
@@ -12,6 +13,7 @@
 {% load_qbs "what_we_do" %}
 {% load_qbs "physical_address" %}
 {% load_qbs "friends_of_klab" %}
+{% load_qbs "founding_members" %}
 
 {% load markup %}
 
@@ -62,6 +64,44 @@
     <div class="about_details">
       {% for logo in friends_of_klab %}
       <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+      {% endfor %}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+
+  <div class="about_group">
+    <div class="questions">
+      {% with founding_members|first as founder %}
+      <span>{{founder.quickblock_type.name}}</span>
+      {% endwith %}
+    </div>
+    <div class="about_details">
+      {% for person in founding_members %}
+      
+	<table>
+	  <tr>
+	    <td valign="top" >
+	      {% thumbnail person.image "100x120" crop="center" as im %}
+	      <img  src="{{im.url}}" />
+	      {% endthumbnail %}
+	    </td>
+	    <td style="padding-left:10px">
+	      <table>
+		<tr>
+		<b>{{person.title}}</b>
+		</tr>
+	      
+	      
+		<tr>
+		  <p style="text-align:justify;">{{person.content}}</p>
+		</tr>
+	      </table>
+	    </td>
+	  </tr>
+	  
+	</table>
+	<hr noshade="noshade" size="1px" "></hr>
+     <br/>
       {% endfor %}
     </div>
   </div>  
