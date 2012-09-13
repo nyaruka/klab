@@ -55,20 +55,7 @@
   <div style="clear: both;"></div>
   {% endfor %}
 
-  <div class="about_group">
-    <div class="questions">
-      {% with friends_of_klab|first as friend %}
-      <span>{{friend.quickblock_type.name}}</span>
-      {% endwith %}
-    </div>
-    <div class="about_details">
-      {% for logo in friends_of_klab %}
-      <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
-      {% endfor %}
-    </div>
-  </div>  
-  <div style="clear: both;"></div>
-
+  
   <div class="about_group">
     <div class="questions">
       {% with founding_members|first as founder %}
@@ -106,6 +93,21 @@
     </div>
   </div>  
   <div style="clear: both;"></div>
+
+  <div class="about_group">
+    <div class="questions">
+      {% with friends_of_klab|first as friend %}
+      <span>{{friend.quickblock_type.name}}</span>
+      {% endwith %}
+    </div>
+    <div class="about_details">
+      {% for logo in friends_of_klab %}
+      <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+      {% endfor %}
+    </div>
+  </div>  
+  <div style="clear: both;"></div>
+
 
 </div>
 
