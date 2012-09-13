@@ -178,7 +178,7 @@ class MemberCRUDL(SmartCRUDL):
             obj.token = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 
             user = User.objects.create(username=obj.application.email,email=obj.application.email)
-            import pdb;pdb.set_trace()
+            
 
 
 
