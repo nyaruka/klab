@@ -115,15 +115,20 @@ class MemberCRUDL(SmartCRUDL):
     permissions = True
 
     class Activate(SmartUpdateView):
-        fields =('password',)
+        
         permission = None
         
         def get_object(self, queryset=None):
-            token = self.request.get('token')
+            token = self.kwargs.get('token')
             return Member.objects.get(token=token)
+
+        def get_password(self):
+            return self.user.password
+            
         
         def pre_save(self, obj):
             token = self.request.get('token')
+            
             obj = super(MemberCRUDL.Activate, self).pre_save(obj)
             obj.user.set_password.cleaned_data['password']
 
@@ -183,7 +188,7 @@ class MemberCRUDL(SmartCRUDL):
 
 
 
-            user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account http:/klab.rw/members/activate?token=%s" % obj.token,from_email="info@klab.rw")
+            user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account http://klab.rw/members/member/activate/%s/" % obj.token,"website@klab.rw")
             group = Group.objects.get(name='Members')
             user.groups.add(group)
             user.first_name = userapp.first_name

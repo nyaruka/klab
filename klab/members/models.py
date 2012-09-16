@@ -89,5 +89,8 @@ class Member(SmartModel):
 
             os.unlink(tmp_name)
 
+    def get_password(self):
+        return user.password
+
     def __unicode__(self):
         return "%s_%s" % (self.first_name, self.last_name)

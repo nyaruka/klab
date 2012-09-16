@@ -113,13 +113,11 @@ PASSWORD_HASHERS = (
 #-----------------------------------------------------------------------------------
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'website@klab.rw'
-DEFAULT_FROM_EMAIL = 'website@klab.rw'
 EMAIL_HOST_PASSWORD = 'klabglue'
-EMAIL_PORT = 465
 EMAIL_USE_TLS = True
-
-
+DEFAULT_FROM_EMAIL = 'website@klab.rw'
 
 #-----------------------------------------------------------------------------------
 # Permission Configuration
