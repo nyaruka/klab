@@ -5,7 +5,28 @@ from django.contrib.auth.models import User, Group
 from projects.models import *
 import random
 import string
+from django import forms
 
+
+class MemberForm(forms.ModelForm):
+    new_password = forms.CharField(label="New Password", widget=forms.PasswordInput)
+    def save(self, commit=True):
+
+        
+        member = super(MemberForm, self).save(commit)
+        new_pass = self.cleaned_data['new_password']
+        if new_pass:
+            
+            member.user.set_password(new_pass)
+            member.user.save()
+            if(commit):
+                member.save()
+        return member
+
+    class Meta:
+        model = Member
+        fields = ('is_active','application','user','first_name','last_name','phone','email','picture','country','city','neighborhood','education','experience','projects','token')
+            
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
     actions = ('create', 'read', 'update', 'list', 'thanks', 'csv')
@@ -109,34 +130,26 @@ class ApplicationCRUDL(SmartCRUDL):
 
 
 
+
+
 class MemberCRUDL(SmartCRUDL):
     model = Member
     actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate')
     permissions = True
 
     class Activate(SmartUpdateView):
-        
+        form_class = MemberForm
+        fields = ('new_password',)
         permission = None
-        
+        success_message = "Password saved"
         def get_object(self, queryset=None):
             token = self.kwargs.get('token')
             return Member.objects.get(token=token)
 
-        def get_password(self):
-            return self.user.password
-            
         
-        def pre_save(self, obj):
-            token = self.request.get('token')
             
-            obj = super(MemberCRUDL.Activate, self).pre_save(obj)
-            obj.user.set_password.cleaned_data['password']
+       
 
-            return obj
-
-        def post_save(self, obj):
-            obj = super(MemberCRUDL.Activate, self).post_save(obj)
-            return obj
 
     class Myprofile(SmartUpdateView):
 
@@ -194,6 +207,7 @@ class MemberCRUDL(SmartCRUDL):
             user.first_name = userapp.first_name
             user.last_name = userapp.last_name
             user.email = userapp.email
+            user.set_unusable_password()
             user.save()
 
             obj.user = user
