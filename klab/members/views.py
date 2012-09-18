@@ -13,7 +13,7 @@ class MemberForm(forms.ModelForm):
 
     project_title = forms.CharField(max_length=48,label="Project Title", help_text="This is the tile of the project you'll be doing at kLab")
 
-    project_description = forms.CharField(max_length=2048,label='Project Description', help_text='This is the project description to be published on the kLab website')
+    project_description = forms.CharField(max_length=2048,label='Project Description', help_text='This is the project description to be published on the kLab website', widget=forms.widgets.Textarea())
 
     def save(self, commit=True):
 
