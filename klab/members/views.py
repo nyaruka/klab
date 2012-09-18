@@ -10,10 +10,21 @@ from django import forms
 
 class MemberForm(forms.ModelForm):
     new_password = forms.CharField(label="New Password", widget=forms.PasswordInput)
+
+    project_title = forms.CharField(max_length=48,label="Project Title", help_text="This is the tile of the project you'll be doing at kLab")
+
+    project_description = forms.CharField(max_length=2048,label='Project Description', help_text='This is the project description to be published on the kLab website')
+
     def save(self, commit=True):
 
         
         member = super(MemberForm, self).save(commit)
+
+        project = Project.objects.create(owner=member,created_by=member.user, modified_by= member.user)
+        project.title=self.cleaned_data['project_title']
+        project.description=self.cleaned_data['project_description']
+        project.save()
+
         new_pass = self.cleaned_data['new_password']
         if new_pass:
             
@@ -139,7 +150,7 @@ class MemberCRUDL(SmartCRUDL):
 
     class Activate(SmartUpdateView):
         form_class = MemberForm
-        fields = ('new_password',)
+        fields = ('new_password','project_title','project_description')
         permission = None
         success_message = "Password saved"
         def get_object(self, queryset=None):
@@ -218,7 +229,5 @@ class MemberCRUDL(SmartCRUDL):
         def post_save(self, obj):
             obj = super(MemberCRUDL.New, self).post_save(obj)
             obj.update_member_picture()
-            project = Project.objects.create(owner=obj,description="gh",created_by=obj.user, modified_by= obj.user)
             
-            project.save()
             return obj
