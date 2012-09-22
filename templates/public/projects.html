@@ -23,7 +23,7 @@
         </tr>
         <tr>
           <td  width="10%">Owner</td>
-          <td class="left">{{project.owner.first_name}} {{project.owner.last_name}} </td>            
+          <td class="left"><a href="{% url public_profile  project.owner.id %}">{{project.owner.first_name}} {{project.owner.last_name}} </a></td>            
         </tr>
         <tr>
 	  <td colspan="2" width="100%">

@@ -172,7 +172,10 @@ class MemberCRUDL(SmartCRUDL):
 
         def get_object(self, queryset=None):
             return Member.objects.get(user=self.request.user)
-
+    class Read(SmartReadView):
+        fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood','education','education','experience','projects','token')
+        def get_membership_type(self, obj):
+            return obj.application.get_applying_for_display()
 
     class List(SmartListView):
         fields = ('name','email','phone','country','city',)
@@ -186,7 +189,9 @@ class MemberCRUDL(SmartCRUDL):
         def get_name(self, obj):
             return "%s %s" % (obj.first_name, obj.last_name)
 
-
+        def get_membership_type(self, obj):
+            return obj.application.get_applying_for_display()
+        
     class New(SmartCreateView):
         fields = ('application',)
         success_url = 'id@members.member_read'
@@ -198,6 +203,7 @@ class MemberCRUDL(SmartCRUDL):
             obj.last_name = userapp.last_name
             obj.phone = userapp.phone
             obj.email = userapp.email
+            obj.membership_type = userapp.applying_for
             obj.picture = userapp.picture
             obj.country = userapp.country
             obj.city = userapp.city
@@ -223,11 +229,11 @@ class MemberCRUDL(SmartCRUDL):
 
             obj.user = user
 
-            
+            obj.save()
             return obj
 
         def post_save(self, obj):
             obj = super(MemberCRUDL.New, self).post_save(obj)
             obj.update_member_picture()
-            
+            obj.save()
             return obj

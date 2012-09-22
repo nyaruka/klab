@@ -5,6 +5,7 @@ from models import *
 from blog.models import Post
 from events.models import Event
 from projects.models import Project
+from members.models import Member
 
 from django import forms
 from django.conf import settings
@@ -72,6 +73,18 @@ def projects(request):
     context = dict(projects=projects)
     return render_to_response('public/projects.html', context, context_instance=RequestContext(request))
 
+def members(request):
+    members = Member.objects.filter(is_active=True).order_by('membership_type')
+    tenants = Member.objects.filter(is_active=True,membership_type="G")
+    mentors = Member.objects.filter(is_active=True,membership_type="B")
+    context = dict(members=members,tenants=tenants,mentors=mentors)
+    return render_to_response('public/members.html', context, context_instance=RequestContext(request))
+
+def member(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    
+    context = dict(member=member)
+    return render_to_response('public/member.html', context, context_instance=RequestContext(request))
 
 def events(request, period):
 

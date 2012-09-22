@@ -54,6 +54,12 @@ class Application(SmartModel):
 
 
 class Member(SmartModel):
+
+    MEMBERSHIP_TYPES = (
+        ('G', "Green - kLab Tenant"),
+        ('B', "Blue - kLab Mentor")
+    )
+     
     
     application = models.ForeignKey(Application, help_text="The initial Application of the member")
 
@@ -62,6 +68,7 @@ class Member(SmartModel):
     first_name = models.CharField(max_length=64, help_text="Your first (given) name")
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
     phone = models.CharField(max_length=12, help_text="Your phone number (including country code) - eg: 250788123456")
+    membership_type = models.CharField(max_length=1, choices=MEMBERSHIP_TYPES, help_text="The type of membership")
     email = models.EmailField(max_length=75, help_text="Your email address")
     picture = models.ImageField(upload_to="members/member/", help_text="A close-up photo of yourself")
     country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")

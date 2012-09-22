@@ -44,6 +44,7 @@
 	  {% if request.user.is_authenticated %}
           <li><a href="{% url members.member_myprofile 0 %}">profile</a></li>
 	  {% endif %}
+	  <li><a href="{% url public_members %}">members</a></li>
 	  <li><a href="{% url public_projects %}">projects</a></li>
           <li><a href="{% url public_blog %}">blog</a></li>
           <li><a href="{% url public_events "all" %}">events</a></li>
