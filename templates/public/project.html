@@ -1,7 +1,6 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
-{% load pagination_tags %}
 
 {% block title %}
 {{block.super}}Open Space for IT Enterpreneurs
@@ -16,13 +15,10 @@
       
     </div>  
 
-  {% autopaginate projects 10 %}
-  {% for project in projects %}
-  <div class="full_events">
     
     <div class="event_main">
-      <div class="event_image">
-        {% if not project.logo %}
+      <div class="solo_event_image">
+	{% if not project.logo %}
 	<img width="100" height="100" src="{{ STATIC_URL }}images/apple-touch-icon.png" />
 	{% else %}
         {% thumbnail project.logo "100x110" crop="center" as im %}
@@ -30,33 +26,38 @@
         {% endthumbnail %}
 	{% endif %}
       </div>
-      <div class="event_details">
+      <div class="event_heading">
         <table width="100%" cellspacing="" cellpadding="" border="0">
           <tr>
             <td colspan="2" class="heading"><a href="{% url solo_project project.id %}">{{project.title|truncatewords:"9"}}</a></td>
           </tr>
           <tr>
             <td class="right">Owner</td>
-	    <td class="left"><a href="{% url public_profile  project.owner.id %}">{{project.owner.first_name}} {{project.owner.last_name}} </a></td>
-                        
+            
+            <td class="left"><a href="{% url public_profile  project.owner.id %}">{{project.owner.first_name}} {{project.owner.last_name}} </a></td>
           </tr>
           <tr>
-            <td class="right">Description</td>
-            <td class="left"> {{project.description|truncatewords:"20"}}</td>
-          
+            <td class="right">Location</td>
+	    <td class="left">{{project.owner.neighborhood}}, {{project.owner.city}} in {{project.owner.country}}</td>
+            
+          </tr>
+          <tr>
+	    <td class="right">Membership</td>
+            <td class="left">{{project.owner.get_membership_type_display}}</td>            
+            
+          </tr>
         </table>
+
       </div>
+      <div style="clear: both;"></div>
+
+      <div class="description">
+        {{project.description|safe}}
+      </div>
+
     </div>
-    
-  </div>
-  <div style="clear: both;"></div>          
-  {% endfor %}
 
 </div>
 
-
-<div class="paginate">
-  {% paginate %}
-</div>
 
 {% endblock main-contents %}

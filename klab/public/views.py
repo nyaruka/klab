@@ -67,23 +67,36 @@ def post(request, post_id):
     context = dict(post=post)
     return render_to_response('public/post.html', context, context_instance=RequestContext(request))  
 
-def projects(request):
+def projects(request, project_type):
+
     projects = Project.objects.filter(is_active=True).order_by('-created_on')
 
     context = dict(projects=projects)
     return render_to_response('public/projects.html', context, context_instance=RequestContext(request))
 
-def members(request):
-    members = Member.objects.filter(is_active=True).order_by('membership_type')
-    tenants = Member.objects.filter(is_active=True,membership_type="G")
-    mentors = Member.objects.filter(is_active=True,membership_type="B")
-    context = dict(members=members,tenants=tenants,mentors=mentors)
+def project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    context = dict(project=project)
+    return render_to_response('public/project.html', context, context_instance=RequestContext(request))
+    
+def members(request, member_type):
+
+    if member_type == "mentors":
+        members = Member.objects.filter(is_active=True,membership_type="B")
+    elif member_type == "tenants":
+        members = Member.objects.filter(is_active=True,membership_type="G")
+    else:
+        members = Member.objects.filter(is_active=True).order_by('membership_type')
+   
+    context = dict(members=members)
     return render_to_response('public/members.html', context, context_instance=RequestContext(request))
 
 def member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
     
-    context = dict(member=member)
+    
+    context = dict(member=member,project=project)
     return render_to_response('public/member.html', context, context_instance=RequestContext(request))
 
 def events(request, period):

@@ -15,15 +15,18 @@ class MemberForm(forms.ModelForm):
 
     project_description = forms.CharField(max_length=2048,label='Project Description', help_text='This is the project description to be published on the kLab website', widget=forms.widgets.Textarea())
 
+   
     def save(self, commit=True):
 
         
         member = super(MemberForm, self).save(commit)
+        if member.membership_type == 'G':
+            project = Project.objects.create(owner=member,created_by=member.user, modified_by= member.user)
+            project.title=self.cleaned_data['project_title']
+            project.description=self.cleaned_data['project_description']
+            project.save()
 
-        project = Project.objects.create(owner=member,created_by=member.user, modified_by= member.user)
-        project.title=self.cleaned_data['project_title']
-        project.description=self.cleaned_data['project_description']
-        project.save()
+            member.projects.add(project)
 
         new_pass = self.cleaned_data['new_password']
         if new_pass:
@@ -150,9 +153,17 @@ class MemberCRUDL(SmartCRUDL):
 
     class Activate(SmartUpdateView):
         form_class = MemberForm
-        fields = ('new_password','project_title','project_description')
+        
         permission = None
         success_message = "Password saved"
+
+        def derive_fields(self):
+            if self.object.membership_type == 'B':
+                return ('new_password')
+            else:
+                return ('new_password','project_title','project_description')
+
+
         def get_object(self, queryset=None):
             token = self.kwargs.get('token')
             return Member.objects.get(token=token)

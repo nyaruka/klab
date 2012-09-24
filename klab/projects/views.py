@@ -10,7 +10,7 @@ class ProjectCRUDL(SmartCRUDL):
     permissions = True
 
     class Read(SmartReadView):
-        fields = ('title', 'owner', 'description',)
+        fields = ('title', 'owner', 'description','logo')
 
         def get_title(self, obj):
             return str(obj)
