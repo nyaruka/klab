@@ -4,13 +4,15 @@ from datetime import datetime
 from models import *
 from blog.models import Post
 from events.models import Event
+from projects.models import Project
+from members.models import Member
 
 from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.contrib.auth.models import User
 
 class EmailForm(forms.Form):
@@ -50,20 +52,55 @@ def home(request):
     upcoming = Event.objects.filter(date__gte=datetime.today())[:5]
 
     context = dict(images = images, recent=recent, upcoming=upcoming )
-    return render_to_response('public/home.html', context, context_instance=RequestContext(request))
+    return render(request, 'public/home.html', context)
 
 def blog(request):
     # get all blog posts in descending order
     posts = Post.objects.filter(is_active=True).order_by('-created_on')
 
     context = dict(posts=posts)
-    return render_to_response('public/blog.html', context, context_instance=RequestContext(request))
+    return render(request, 'public/blog.html', context)
 
 def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     
     context = dict(post=post)
-    return render_to_response('public/post.html', context, context_instance=RequestContext(request))    
+    return render(request, 'public/post.html', context)
+
+def projects(request, project_type):
+    if project_type == 'all':
+        projects = Project.objects.filter(is_active=True).order_by('-created_on')
+    else:
+
+        projects = Project.objects.filter(is_active=True).order_by('-created_on')
+
+    context = dict(projects=projects)
+    return render(request, 'public/projects.html', context)
+
+def project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    context = dict(project=project)
+    return render(request, 'public/project.html', context)
+    
+def members(request, member_type):
+
+    if member_type == "mentors":
+        members = Member.objects.filter(is_active=True,membership_type="B")
+    elif member_type == "tenants":
+        members = Member.objects.filter(is_active=True,membership_type="G")
+    else:
+        members = Member.objects.filter(is_active=True).order_by('membership_type')
+   
+    context = dict(members=members)
+    return render(request, 'public/members.html', context)
+
+def member(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    
+    
+    context = dict(member=member,project=project)
+    return render(request, 'public/member.html', context)
 
 def events(request, period):
 
@@ -75,15 +112,15 @@ def events(request, period):
         events = Event.objects.all().order_by('-date')
 
     context = dict(events=events)
-    return render_to_response('public/events.html', context, context_instance=RequestContext(request))
+    return render(request, 'public/events.html', context)
 
 def event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
 
     context = dict(event=event)
-    return render_to_response('public/event.html', context, context_instance=RequestContext(request))
+    return render(request, 'public/event.html', context)
 
 def aboutus(request):
     #
     context = {}
-    return render_to_response('public/abouts.html', context, context_instance=RequestContext(request))
+    return render(request, 'public/abouts.html', context)

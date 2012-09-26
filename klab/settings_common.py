@@ -99,6 +99,26 @@ MIDDLEWARE_CLASSES = (
     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
 )
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
+
+#-----------------------------------------------------------------------------------
+# Email Backend
+#-----------------------------------------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'Put your gmail account here'
+EMAIL_HOST_PASSWORD = 'Put your gmail password here'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'website@klab.rw'
+
 #-----------------------------------------------------------------------------------
 # Permission Configuration
 #-----------------------------------------------------------------------------------
@@ -109,7 +129,8 @@ PERMISSIONS = {
         'update', # can update an object
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
-  'members.application': ('csv',),
+  'members.application': ('csv', ),
+  'members.member' : ('myprofile',),
 }
 
 # assigns the permissions that each group should have, here creating an Administrator group with
@@ -125,6 +146,10 @@ GROUP_PERMISSIONS = {
                 'django_quickblocks.quickblock.*', 
                 'members.application_list', 'members.application_read', 'members.application_csv',
                 ),
+
+    "Members": ('members.member_read',
+                'members.member_myprofile',
+                'projects.project.*'),
 }
 
 #-----------------------------------------------------------------------------------
@@ -132,7 +157,7 @@ GROUP_PERMISSIONS = {
 #-----------------------------------------------------------------------------------
 LOGIN_URL = "/users/login/"
 LOGOUT_URL = "/users/logout/"
-LOGIN_REDIRECT_URL = "/members/application/"
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 #-----------------------------------------------------------------------------------
@@ -197,7 +222,8 @@ INSTALLED_APPS = (
     'blog',
     'events',
     'public',
-    'members'
+    'members',
+    'projects',
 )
 
 # A sample logging configuration. The only tangible logging

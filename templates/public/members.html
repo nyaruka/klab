@@ -1,0 +1,62 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+{% load pagination_tags %}
+
+{% block title %}
+{{block.super}}Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+<div id="events_content">
+
+    <div class="event_small">
+      <a href="{% url public_members "all" %}">All Members</a>
+      <a href="{% url public_members "mentors" %}">Mentors</a>
+      <a href="{% url public_members "tenants" %}">Tenants</a>
+    </div>  
+
+  {% autopaginate members 10 %}
+  {% for member in members %}
+  <div class="full_events">
+    
+    <div class="event_main">
+      <div class="event_image">
+        {% thumbnail member.picture "100x110" crop="center" as im %}
+        <img src="{{im.url}}" />
+        {% endthumbnail %}
+      </div>
+      <div class="event_details">
+        <table width="100%" cellspacing="" cellpadding="" border="0">
+          <tr>
+            <td colspan="2" class="heading"><a href="{% url public_profile member.id %}">{{member.first_name}} {{member.last_name}} </a></td>
+          </tr>
+          <tr>
+            <td class="right">Location</td>
+            <td class="left">{{member.neighborhood}}, {{member.city}} in {{member.country}}</td>            
+          </tr>
+          <tr>
+            <td class="right">Member Since</td>
+            <td class="left">{{member.created_on|date:"F dS, Y"}}</td>
+          </tr>
+          <tr>
+            <td class="right">Membership Type</td>
+            <td class="left">{{ member.get_membership_type_display }}</td>            
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+  </div>
+  <div style="clear: both;"></div>          
+  {% endfor %}
+
+</div>
+
+
+<div class="paginate">
+  {% paginate %}
+</div>
+
+{% endblock main-contents %}

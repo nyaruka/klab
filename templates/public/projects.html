@@ -1,0 +1,62 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+{% load pagination_tags %}
+
+{% block title %}
+{{block.super}}Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+<div id="events_content">
+
+    <div class="event_small">
+      <a href="{% url public_projects "all" %}">All Projects</a>
+      
+    </div>  
+
+  {% autopaginate projects 10 %}
+  {% for project in projects %}
+  <div class="full_events">
+    
+    <div class="event_main">
+      <div class="event_image">
+        {% if not project.logo %}
+	<img width="100" height="100" src="{{ STATIC_URL }}images/apple-touch-icon.png" />
+	{% else %}
+        {% thumbnail project.logo "100x110" crop="center" as im %}
+        <img src="{{im.url}}" />
+        {% endthumbnail %}
+	{% endif %}
+      </div>
+      <div class="event_details">
+        <table width="100%" cellspacing="" cellpadding="" border="0">
+          <tr>
+            <td colspan="2" class="heading"><a href="{% url solo_project project.id %}">{{project.title|truncatewords:"9"}}</a></td>
+          </tr>
+          <tr>
+            <td class="right">Owner</td>
+	    <td class="left"><a href="{% url public_profile  project.owner.id %}">{{project.owner.first_name}} {{project.owner.last_name}} </a></td>
+                        
+          </tr>
+          <tr>
+            <td class="right">Description</td>
+            <td class="left"> {{project.description|truncatewords:"20"}}</td>
+          
+        </table>
+      </div>
+    </div>
+    
+  </div>
+  <div style="clear: both;"></div>          
+  {% endfor %}
+
+</div>
+
+
+<div class="paginate">
+  {% paginate %}
+</div>
+
+{% endblock main-contents %}

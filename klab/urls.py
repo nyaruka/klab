@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^blog/', include('blog.urls')),
     url(r'^events/', include('events.urls')),
     url(r'^members/', include('members.urls')),
+    url(r'^projects/', include('projects.urls')),
     url(r'^content/', include('django_quickblocks.urls')),
     url(r'^users/', include('smartmin.users.urls')),
     url(r'^admin/', include(admin.site.urls))
