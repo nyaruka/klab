@@ -140,17 +140,17 @@ GROUP_PERMISSIONS = {
                       'events.event.*', 
                       'blog.post.*', 
                       'django_quickblocks.quickblock.*', 'django_quickblocks.quickblocktype.*', 
-                      'members.application.*', 'members.member.*'),
+                      'members.application.*', 'members.member.*', 'projects.project.*', ),
     "Editors": ('events.event.*', 
                 'blog.post.*', 
                 'django_quickblocks.quickblock.*', 
                 'members.application_list', 'members.application_read', 'members.application_csv',
-                'members.member.*'
+                'members.member.*', 'projects.project.*',
                 ),
 
     "Members": ('members.member_read',
                 'members.member_myprofile',
-                'projects.project.*'),
+                'projects.project_create', 'projects.project_list', 'projects.project_read'),
 }
 
 #-----------------------------------------------------------------------------------
