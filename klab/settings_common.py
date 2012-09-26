@@ -130,7 +130,7 @@ PERMISSIONS = {
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
   'members.application': ('csv', ),
-  'members.member' : ('myprofile',),
+  'members.member' : ('myprofile', 'new'),
 }
 
 # assigns the permissions that each group should have, here creating an Administrator group with
@@ -140,16 +140,17 @@ GROUP_PERMISSIONS = {
                       'events.event.*', 
                       'blog.post.*', 
                       'django_quickblocks.quickblock.*', 'django_quickblocks.quickblocktype.*', 
-                      'members.application.*'),
+                      'members.application.*', 'members.member.*', 'projects.project.*', ),
     "Editors": ('events.event.*', 
                 'blog.post.*', 
                 'django_quickblocks.quickblock.*', 
                 'members.application_list', 'members.application_read', 'members.application_csv',
+                'members.member.*', 'projects.project.*',
                 ),
 
     "Members": ('members.member_read',
                 'members.member_myprofile',
-                'projects.project.*'),
+                'projects.project_create', 'projects.project_list', 'projects.project_read'),
 }
 
 #-----------------------------------------------------------------------------------

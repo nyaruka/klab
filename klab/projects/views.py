@@ -9,6 +9,14 @@ class ProjectCRUDL(SmartCRUDL):
     actions = ('create', 'read', 'update', 'list',)
     permissions = True
 
+    class Create(SmartCreateView):
+        fields = ('title', 'description', 'logo')
+
+        def pre_save(self, obj):
+            obj = super(ProjectCRUDL.Create, self).pre_save(obj)
+            obj.owner = self.request.user
+            return obj
+
     class Read(SmartReadView):
         fields = ('title', 'owner', 'description','logo')
 
