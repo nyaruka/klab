@@ -20,4 +20,4 @@ config/settings.py
 src
 coverage-report/
 klab/.coverage
-
+klab/settings.py.protected

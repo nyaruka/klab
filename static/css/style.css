@@ -957,7 +957,7 @@ h3 {
     width: 100px;
     height: 100px;
     margin-right: 10px;
-    background-color: #444;
+    
 }
 
 .solo_event_image {
@@ -965,7 +965,7 @@ h3 {
     width: 100px;
     height: 110px;
     margin-right: 10px;
-    background-color: #444;
+    
 }
 
 .event_details {
@@ -1000,7 +1000,7 @@ h3 {
 }
 
 .right {
-    width: 70px;
+    width: 100px;
     color: #9b9996; 
     font-family: Homenaje, sans-serif;    
 }
@@ -1156,3 +1156,4 @@ h3 {
     color: #888;
     text-decoration: underline;
 }
+

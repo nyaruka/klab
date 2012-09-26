@@ -1,0 +1,77 @@
+{% extends "public_base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}
+{{block.super}}Open Space for IT Enterpreneurs
+{% endblock title %}
+
+{% block main-contents %}
+
+ <div id="events_content">
+
+    <div class="event_small">
+      <a href="{% url public_members "all" %}">All Members</a>
+      <a href="{% url public_members "mentors" %}">Mentors</a>
+      <a href="{% url public_members "tenants" %}">Tenants</a>
+    </div> 
+
+    
+    <div class="event_main">
+      <div class="solo_event_image">
+        {% thumbnail member.picture "100x110" crop="center" as im %}
+        <img src="{{im.url}}" />
+        {% endthumbnail %}
+      </div>
+      <div class="event_heading">
+        <table width="100%" cellspacing="" cellpadding="" border="0">
+          <tr>
+            <td colspan="2" class="heading"><a href="{% url public_profile member.id %}"></a>{{member.first_name}} {{member.last_name}}</td>
+          </tr>
+          <tr>
+            <td class="right">Location</td>
+            <td class="left">{{member.neighborhood}}, {{member.city}} in {{member.country}}</td>            
+          </tr>
+          <tr>
+            <td class="right">Member Since</td>
+            <td class="left">{{member.created_on|date:"F dS, Y"}}</td>
+          </tr>
+          <tr>
+            <td class="right">Membership</td>
+            <td class="left">{{member.get_membership_type_display|slice:":11"}}</td>            
+          </tr>
+	  
+        </table>
+
+      </div>
+      <div style="clear: both;"></div>
+
+      <div class="description">
+        
+	<table>
+	<tbody>
+	  <tr>
+            <td ><b>Education</b></td>
+	    </tr>
+	  
+	  <tr>
+          <td style="padding:10px">{{member.education}}</td>
+          </tr>
+	  
+	  <tr>
+            <td ><b>Experience</b></td>
+	    </tr>
+	  
+	  <tr>
+            <td style="padding:10px">{{member.experience}}</td>
+          </tr>
+	</tbody>
+      </table>
+      </div>
+
+    </div>
+
+</div>
+
+
+{% endblock main-contents %}
