@@ -53,7 +53,12 @@ class ApplicationCRUDL(SmartCRUDL):
                   'goals', 'education', 'experience', 'approve')
 
         def get_approve(self, obj):
-            return '<a class="btn posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
+            member = Member.objects.filter(pk=obj.id)
+            if member:
+                return '<a class="btn btn-large btn-success" href=""> Approved <i class="icon-ok icon-white"></i></a>'
+            else:
+                 
+                return '<a class="btn btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
 
 
         def get_name(self, obj):
