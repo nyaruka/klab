@@ -21,7 +21,11 @@
       <fieldset>
         {% for field in form %}
         <div class="clearfix {% if field.error %}error{% endif %}">
+	  {% if field.name == "username" %}
+          <label for="username">Email</label>
+	  {% else %}
           <label for="{{ field.name }}">{{ field.label }}</label>
+	  {% endif %}
           <div class="input">{{ field }}</div>
           {% if field.error %}
           <span class="help-inline">{{ field.error }}</span>
