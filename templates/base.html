@@ -63,8 +63,8 @@
           <li><a href="{% url members.member_list %}">Members</a></li>
           {% endif %}
 
-	  {% if perms.projects.project_list %}
-          <li><a href="{% url projects.project_list %}">Projects</a></li>
+	  {% if perms.projects.project_shortlist %}
+          <li><a href="{% url projects.project_shortlist %}">Projects</a></li>
           {% endif %}
 	 
 

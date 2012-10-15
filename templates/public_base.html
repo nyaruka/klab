@@ -47,7 +47,7 @@
 	  {% endif %}
 	  <li><a href="{% url public_members "all" %}">members</a></li>
 	  <li><a href="{% url public_projects "all" %}">projects</a></li>
-	  <li><a href="https://groups.google.com/forum/?hl=en&fromgroups=#!forum/klabrw">contact</a></li>
+	  <li><a href="{% url public_contact %}">contact</a></li>
           <li><a href="{% url public_blog %}">blog</a></li>
           <li><a href="{% url public_events "all" %}">events</a></li>
           <li><a href="{% url public_about %}">about us</a></li>

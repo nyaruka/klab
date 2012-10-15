@@ -131,6 +131,7 @@ PERMISSIONS = {
         'list'),  # can view a list of the objects
   'members.application': ('csv', ),
   'members.member' : ('myprofile', 'new'),
+  'projects.project' : ('shortlist',),
 }
 
 # assigns the permissions that each group should have, here creating an Administrator group with
@@ -150,7 +151,7 @@ GROUP_PERMISSIONS = {
 
     "Members": ('members.member_read',
                 'members.member_myprofile',
-                'projects.project_create', 'projects.project_list', 'projects.project_read'),
+                'projects.project_create', 'projects.project_shortlist', 'projects.project_read'),
 }
 
 #-----------------------------------------------------------------------------------
