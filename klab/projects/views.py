@@ -6,7 +6,7 @@ from members.models import *
 
 class ProjectCRUDL(SmartCRUDL):
     model = Project
-    actions = ('create', 'read', 'update', 'list',)
+    actions = ('create', 'read', 'update', 'list','shortlist')
     permissions = True
 
     class Create(SmartCreateView):
@@ -30,4 +30,8 @@ class ProjectCRUDL(SmartCRUDL):
         fields = ('title', 'owner', 'description')
 
 
-   
+    class Shortlist(SmartListView):
+        fields = ('title', 'owner', 'description')
+
+        def derive_queryset(self):
+            return Project.objects.filter(owner=request.user)
