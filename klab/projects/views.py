@@ -34,4 +34,4 @@ class ProjectCRUDL(SmartCRUDL):
         fields = ('title', 'owner', 'description')
 
         def derive_queryset(self):
-            return Project.objects.filter(owner=request.user)
+            return Project.objects.filter(owner=self.request.user)
