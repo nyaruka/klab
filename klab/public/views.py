@@ -142,7 +142,7 @@ def contact(request):
             message = form.cleaned_data['message']
             recipients = ['info@klab.rw']
             title = 'kLab Contact us message from %s' % name
-            send_mail( title, message + '\n \nFrom ' + name + '\nReply to ' + email, recipients)
+            send_mail( title, message + '\n \nFrom ' + name + '\nReply to ' + email,email, recipients)
             return render_to_response('public/contact_success.html',context_instance=RequestContext(request))
     else:
         form = ContactForm()
