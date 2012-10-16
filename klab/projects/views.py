@@ -32,7 +32,8 @@ class ProjectCRUDL(SmartCRUDL):
 
     class Shortlist(SmartListView):
         fields = ('title', 'owner', 'description')
-
+        add_button = True
         def derive_queryset(self):
             member = Member.objects.get(user=self.request.user)
             return Project.objects.filter(owner=member)
+
