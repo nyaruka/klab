@@ -1157,3 +1157,22 @@ h3 {
     text-decoration: underline;
 }
 
+.send_button {
+    color: #FFFFFF;
+    font-size: 26px;
+    font-family: 'Homenaje', sans-serif;
+    padding: 6px 20px;
+    border:0;
+}
+
+.contact input {
+    width:400px;
+    padding:5px;
+    margin-top:3px;
+}
+
+.contact textarea {
+    width:400px;
+    padding:5px;
+    margin-top:3px;
+}

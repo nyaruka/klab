@@ -1,0 +1,51 @@
+{% extends "public_base.html" %}
+
+
+{% block main-contents %} 
+<div id="blog_contents">
+
+  <div id="blog_main">
+    <div class="full_post">
+
+      <div class="post_main">
+        <div class="post_header">
+          <div class="title">
+            Contact
+          </div>
+	  
+	  
+        </div>
+        <div style="clear: both;"></div>          
+        
+        <div class="post_body">
+          <form action="" method="post">{% csrf_token %}
+	    {% for field in form %}
+            <div class="contact">
+              
+	      {% if field.errors %}
+	      
+		{% for error in field.errors %}
+		<div>{{ field.label_tag }}*  </div> <div>{{ field }} <span><strong>{{ error|escape }}</strong></span></div></br>
+		{% endfor %}
+	      {% else %}
+	      <div>{{ field.label_tag }}*  </div> <div>{{ field }}</div></br>
+	      {% endif %}
+              
+            </div>
+	    {% endfor %}
+	    <p><input class="send_button button radius shadow" type="submit" value="Send" /></p>
+	  </form>
+
+        </div>
+
+        
+        
+      </div>
+
+
+
+    </div>
+  </div>
+
+</div>
+{% endblock main-contents %}

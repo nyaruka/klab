@@ -14,11 +14,19 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 class EmailForm(forms.Form):
     firstname = forms.CharField(max_length=64)
     lastname = forms.CharField(max_length=64)
     email = forms.EmailField()
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=64)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.widgets.Textarea())
+
+     
 
 def home(request):
 
@@ -124,3 +132,18 @@ def aboutus(request):
     #
     context = {}
     return render(request, 'public/abouts.html', context)
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            recipients = ['info@klab.rw']
+            title = 'kLab Contact us message from %s' % name
+            send_mail( title, message + '\n \nFrom ' + name + '\nReply to ' + email, recipients)
+            return render_to_response('public/contact_success.html',context_instance=RequestContext(request))
+    else:
+        form = ContactForm()
+    return render(request,'public/contact.html',{'form':form,})

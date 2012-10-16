@@ -1,6 +1,7 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
+{% load markup %}
 
 {% block title %}
 {{block.super}}Open Space for IT Enterpreneurs
@@ -55,7 +56,7 @@
 	    </tr>
 	  
 	  <tr>
-          <td style="padding:10px">{{member.education}}</td>
+          <td style="padding:10px">{{member.education|markdown:"nl2br"}}</td>
           </tr>
 	  
 	  <tr>
@@ -63,7 +64,7 @@
 	    </tr>
 	  
 	  <tr>
-            <td style="padding:10px">{{member.experience}}</td>
+            <td style="padding:10px">{{member.experience|markdown:"nl2br"}}</td>
           </tr>
 	</tbody>
       </table>

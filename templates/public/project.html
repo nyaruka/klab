@@ -1,6 +1,7 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
+{% load markup %}
 
 {% block title %}
 {{block.super}}Open Space for IT Enterpreneurs
@@ -52,7 +53,7 @@
       <div style="clear: both;"></div>
 
       <div class="description">
-        {{project.description|safe}}
+        {{project.description|markdown:"nl2br"}}
       </div>
 
     </div>
