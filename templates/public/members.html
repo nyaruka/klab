@@ -15,6 +15,11 @@
       <a href="{% url public_members "all" %}">All Members</a>
       <a href="{% url public_members "mentors" %}">Mentors</a>
       <a href="{% url public_members "tenants" %}">Tenants</a>
+      <form class="search_form" method="get">
+      <input type="text" name="search" value="members search..." onfocus="if
+(this.value==this.defaultValue) this.value='';">
+      <input type="submit" value="Search">
+      </form>
     </div>  
 
   {% autopaginate members 10 %}
@@ -44,6 +49,7 @@
             <td class="right">Membership Type</td>
             <td class="left">{{ member.get_membership_type_display }}</td>            
           </tr>
+	  
         </table>
       </div>
     </div>

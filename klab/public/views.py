@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.db.models import Q
 
 class EmailForm(forms.Form):
     firstname = forms.CharField(max_length=64)
@@ -81,6 +82,9 @@ def projects(request, project_type):
     else:
 
         projects = Project.objects.filter(is_active=True).order_by('-created_on')
+    search = request.REQUEST.get("search",None)
+    if search:
+        projects = projects.filter(Q(title__icontains=search) |  Q(description__icontains=search))
 
     context = dict(projects=projects)
     return render(request, 'public/projects.html', context)
@@ -99,6 +103,12 @@ def members(request, member_type):
         members = Member.objects.filter(is_active=True,membership_type="G")
     else:
         members = Member.objects.filter(is_active=True).order_by('membership_type')
+        
+    search = request.REQUEST.get("search",None)
+    if search:
+        members = members.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search))
+
+    
    
     context = dict(members=members)
     return render(request, 'public/members.html', context)
