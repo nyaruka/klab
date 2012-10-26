@@ -16,7 +16,7 @@
       <a href="{% url public_members "mentors" %}">Mentors</a>
       <a href="{% url public_members "tenants" %}">Tenants</a>
       <form class="search_form" method="get">
-      <input type="text" name="search" value="members search..." onfocus="if
+      <input type="text" name="search" value="{{member_type}} search..." onfocus="if
 (this.value==this.defaultValue) this.value='';">
       <input type="submit" value="Search">
       </form>
