@@ -85,16 +85,12 @@ def projects(request, project_type):
         
     search = request.REQUEST.get("search",None)
     if search:
-        search_tokens = search.strip().split()
+        tokens = search.strip().split()
         start_set = projects
-        output = []
-        projects = []
-        for token in search_tokens:
-            
-            output = output + list(start_set.filter(Q(owner__last_name__icontains=token) | Q(owner__first_name__icontains=token) | Q(title__icontains=token) |  Q(description__icontains=token)))
-        for elt in output:
-            if elt not in projects:
-                projects = projects + [elt]
+        query = Q(pk__lt=0)
+        for token in tokens:
+            query = query | Q(owner__last_name__icontains=token) | Q(owner__first_name__icontains=token) | Q(title__icontains=token) |  Q(description__icontains=token)
+        projects = start_set.filter(query)
 
     context = dict(projects=projects)
     return render(request, 'public/projects.html', context)
@@ -116,18 +112,13 @@ def members(request, member_type):
         
     search = request.REQUEST.get("search",None)
     if search:
-        search_tokens = search.strip().split()
+        tokens = search.strip().split()
         start_set = members
-        output = []
-        members = []
-        for token in search_tokens:
-            
-            output = output + list(start_set.filter(Q(first_name__icontains=token) | Q(last_name__icontains=token)))
-        for elt in output:
-            if elt not in members:
-                members = members + [elt]
-    
-   
+        query = Q(pk__lt=0)
+        for token in tokens:
+            query = query | Q(first_name__icontains=token) | Q(last_name__icontains=token)
+        members = start_set.filter(query)
+
     context = dict(members=members,member_type=member_type)
     return render(request, 'public/members.html', context)
 
