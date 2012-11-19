@@ -32,7 +32,7 @@
   {% endblock %}
 
   <div id="container">
-    
+    {% load smartmin %}
     <div id="header">                                                                     <!-- Header -->
       <div id="logo">
         <a href="{% url public_home %}">
@@ -42,7 +42,7 @@
       <div id="menu">
         <ul>
 	  
-	  {% if request.user.is_authenticated %}
+	  {% if perms.members.member_myprofile %}
           <li><a href="{% url members.member_myprofile 0 %}">profile</a></li>
 	  {% endif %}
 	  <li><a href="{% url public_members "all" %}">members</a></li>
