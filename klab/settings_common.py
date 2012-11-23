@@ -233,6 +233,9 @@ INSTALLED_APPS = (
     'pagination',
     'django_quickblocks',
 
+    # smartmin users app
+    'smartmin.users',
+
     # project's apps
     'blog',
     'events',
