@@ -6,6 +6,7 @@ from blog.models import Post
 from events.models import Event
 from projects.models import Project
 from members.models import Member
+from opportunities.models import Opportunity
 
 from django import forms
 from django.conf import settings
@@ -146,6 +147,32 @@ def event(request, event_id):
 
     context = dict(event=event)
     return render(request, 'public/event.html', context)
+
+def opportunities(request, status):
+
+    if status == "ending":
+        opportunities = Opportunity.objects.filter(deadline__gte=datetime.today())
+        group = "Ending Soon"
+    elif status == "expired":
+        opportunities = Opportunity.objects.filter(deadline__lt=datetime.today())
+        group = "Expired"
+    else:
+        opportunities = Opportunity.objects.all().order_by('-created_on')
+        group = "Last posted"
+
+    search = request.REQUEST.get("search",None)
+    if search:
+        tokens = search.strip().split()
+        start_set = opportunities
+        query = Q(pk__lt=0)
+        for token in tokens:
+            query = query | Q(title__icontains=token) | Q(link__icontains=token)
+        opportunities = start_set.filter(query)
+
+
+    context = dict(opportunities=opportunities, group=group)
+    return render(request, 'public/opportunities.html', context)
+
 
 def aboutus(request):
     #

@@ -1199,3 +1199,123 @@ h3 {
     -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
 
 }
+
+/*
+  Opportunity contents
+*/
+
+#opportunities_content {
+    min-height: 500px;
+    position: relative;
+}
+ 
+.opportunity_small {
+    float: left;
+    width: 250px;
+    margin-right: 50px;
+    font-family: Homenaje, sans-serif;
+}
+
+.opportunity_small a {
+    color: #088eec;
+    display: block;
+    margin: 5px 0px;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #FFFFFF;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);    
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.opportunity_main {
+    float: right;
+    width: 700px;
+    margin-bottom: 30px;
+}
+
+}
+
+.solo_opportunity_image {
+    float: left;
+    width: 100px;
+    height: 110px;
+    margin-right: 10px;
+    
+}
+
+.opportunity_details {
+    float: right;
+    width:690px;
+}
+
+.opportunity_heading {
+    float: right;
+    width:580px;
+    background: #FFFFFF url('../images/welcome_bg.jpg') no-repeat right bottom;
+    padding: 5px;
+  
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);    
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.oppheading {
+    font-size: 30px;
+    font-family: Homenaje, sans-serif;
+    padding-bottom: 1px;
+}
+
+.oppheading a {
+    color: #088eec;
+    text-decoration: none;
+}
+
+.top {
+    width: 100px;
+    color: #9b9996; 
+    font-family: Homenaje, sans-serif;
+    padding: 5px 0px;
+}
+
+.bottom {
+    font-size: 20px;
+    font-family: Homenaje, sans-serif;
+    color:#4f4f4f;
+}
+
+.bottom a{
+
+    text-decoration: none;
+    color: #088eec;
+    font-size: 20px;
+}
+
+.description {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.well {
+  min-height: 20px;
+  margin-bottom: 20px;
+  background-color: #e1e1e1;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}

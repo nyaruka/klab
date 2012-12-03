@@ -148,6 +148,7 @@ GROUP_PERMISSIONS = {
                       'members.member_delete',
                       'members.member_list',
                       'members.member_new',
+                      'opportunities.opportunity.*',
                       ),
     "Editors": ('events.event.*', 
                 'blog.post.*', 
@@ -242,6 +243,7 @@ INSTALLED_APPS = (
     'public',
     'members',
     'projects',
+    'opportunities',
 )
 
 # A sample logging configuration. The only tangible logging

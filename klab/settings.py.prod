@@ -8,6 +8,8 @@ ADMINS = (
     ('Nyaruka Code', 'code@nyaruka.com'),
 )
 
+HOSTNAME = "klab.rw"
+
 # set the mail settings, we send throught gmail
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = '${gmail_user}'
