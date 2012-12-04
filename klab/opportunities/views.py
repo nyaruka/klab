@@ -9,7 +9,7 @@ class OpportunityCRUDL(SmartCRUDL):
         fields = ('title', 'link', 'deadline', 'created_by')
 
     class Update(SmartUpdateView):
-        fields = ('title', 'description', 'remaining_days', 'link')
+        fields = ('is_active', 'title', 'description', 'remaining_days', 'link')
 
     
     class Create(SmartCreateView):

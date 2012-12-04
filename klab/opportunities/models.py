@@ -23,8 +23,11 @@ class Opportunity(SmartModel):
 
 @receiver(pre_save, sender=Opportunity)
 def pre_save_opportunity(sender, instance, **kwargs):
-    if instance.link[:8] != 'http://':
+    if instance.link.strip() == "":
+        instance.link = None
+    elif instance.link[:8] != 'http://' and instance.link.strip() != "":
         instance.link = 'http://' + instance.link
+    
 
     instance.link = instance.link
     

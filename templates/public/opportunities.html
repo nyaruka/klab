@@ -37,7 +37,7 @@
 	  <tr>
             <td class="top right">Posted by</td>
             <td class="bottom left"> 
-	      {% with post.created_by as author %}
+	      {% with opportunity.created_by as author %}
 	      {{ author.first_name|capfirst }} {{ author.last_name }}
 	      {% endwith %}
 	    </td>	 
@@ -58,12 +58,14 @@
 	    <td colspan="2" class="bottom">No deadline.</td>
 	    {% endif %}
 	  </tr>
+	  {% if opportunity.link != None %}
           <tr>
             <td class="top">For more info visit</td>
 	  </tr>
           <tr>
             <td colspan="2" class="bottom"><a href="{{opportunity.link}}">{{opportunity.link}}</a></td>
           </tr>
+	  {% endif %}
         </table>
       </div>
     </div>
