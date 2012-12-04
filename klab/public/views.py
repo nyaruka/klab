@@ -151,13 +151,13 @@ def event(request, event_id):
 def opportunities(request, status):
 
     if status == "ending":
-        opportunities = Opportunity.objects.filter(deadline__gte=datetime.today())
+        opportunities = Opportunity.objects.filter(is_active=True, deadline__gte=datetime.today())
         group = "Ending Soon"
     elif status == "expired":
-        opportunities = Opportunity.objects.filter(deadline__lt=datetime.today())
+        opportunities = Opportunity.objects.filter(is_active=True, deadline__lt=datetime.today())
         group = "Expired"
     else:
-        opportunities = Opportunity.objects.all().order_by('-created_on')
+        opportunities = Opportunity.objects.filter(is_active=True).order_by('-created_on')
         group = "Last posted"
 
     search = request.REQUEST.get("search",None)
