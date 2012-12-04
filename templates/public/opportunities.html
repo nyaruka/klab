@@ -1,6 +1,7 @@
 {% extends "public_base.html" %}
 
 {% load pagination_tags %}
+{% load markup %}
 
 {% block title %}
 {{block.super}}Open Space for IT Enterpreneurs
@@ -45,7 +46,7 @@
             <td clospan="2" class="top">Description</td>
 	  </tr>
           <tr>
-            <td colspan="2"  class="bottom">{{opportunity.description}}</td>            
+            <td colspan="2"  class="bottom">{{opportunity.description|markdown:"nl2br"}}</td>            
           </tr>
           <tr>
             <td  colspan="2" class="top">Deadline</td>
