@@ -10,7 +10,7 @@
 {% block main-contents %}
 
 <div id="events_content">
-
+  <div class="pull-left">
     <div class="event_small">
       <a href="{% url public_members "all" %}">All Members</a>
       <a href="{% url public_members "mentors" %}">Mentors</a>
@@ -23,7 +23,8 @@
       <input type="submit" value="Search">
       </form>
     </div>  
-
+  </div>
+  <div class="pull-right">
   {% autopaginate members 10 %}
   {% for member in members %}
   <div class="full_events">
@@ -59,7 +60,7 @@
   </div>
   <div style="clear: both;"></div>          
   {% endfor %}
-
+  </div>
 </div>
 
 

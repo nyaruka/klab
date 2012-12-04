@@ -1319,3 +1319,13 @@ h3 {
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
+
+.pull-left {
+    float: left;
+    width: 250px;
+}
+
+.pull-right {
+    float: right;
+    widht: 700px;
+}

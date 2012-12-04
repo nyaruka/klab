@@ -161,6 +161,7 @@ GROUP_PERMISSIONS = {
                 'members.member_delete',
                 'members.member_list',
                 'members.member_new',
+                'opportunities.opportunity.*',
                 ),
 
     "Members": ('members.member_read',

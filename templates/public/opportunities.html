@@ -9,7 +9,7 @@
 {% block main-contents %}
 
 <div id="opportunities_content">
-
+  <div class="pull-left">
     <div class="opportunity_small">
       <a href="{% url public_opportunities "new" %}">Newly Posted</a>
       <a href="{% url public_opportunities "ending" %}">Ending Soon</a>
@@ -21,7 +21,8 @@
       </form>
 
     </div>  
-
+  </div>
+  <div class="pull-right">
   {% autopaginate opportunities 10 %}
   {% for opportunity in opportunities %}
   <div class="full_opportunities">
@@ -69,7 +70,7 @@
   </div>
   <div style="clear: both;"></div>          
   {% endfor %}
-
+  </div>
 </div>
 
 
