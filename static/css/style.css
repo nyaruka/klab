@@ -1329,3 +1329,7 @@ h3 {
     float: right;
     widht: 700px;
 }
+
+.opportunity_details .post_body {
+    font-size: 16px;
+}
