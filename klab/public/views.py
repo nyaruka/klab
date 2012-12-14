@@ -153,12 +153,12 @@ def opportunities(request, status):
     if status == "ending":
         opportunities = Opportunity.objects.filter(is_active=True, deadline__gte=datetime.today())
         group = "Ending Soon"
-    elif status == "expired":
+    elif status == "archived":
         opportunities = Opportunity.objects.filter(is_active=True, deadline__lt=datetime.today())
-        group = "Expired"
+        group = "Archived"
     else:
         opportunities = Opportunity.objects.filter(is_active=True).order_by('-created_on')
-        group = "Last posted"
+        group = "Newly posted"
 
     search = request.REQUEST.get("search",None)
     if search:
