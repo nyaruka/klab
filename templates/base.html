@@ -69,7 +69,7 @@
 	  
 	  {% if perms.projecs.project_list %}
 	  <li><a href="{% url projects.project_list %}">Projects</a></li>
-	  {% eilf perms.projects.project_shortlist %}
+	  {% elif perms.projects.project_shortlist %}
           <li><a href="{% url projects.project_shortlist %}">Projects</a></li>
           {% endif %}
 	 
