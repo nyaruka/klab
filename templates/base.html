@@ -66,8 +66,10 @@
 	  {% if perms.opportunities.opportunity_list %}
           <li><a href="{% url opportunities.opportunity_list %}">Opportunities</a></li>
           {% endif %}
-
-	  {% if perms.projects.project_shortlist %}
+	  
+	  {% if perms.projecs.project_list %}
+	  <li><a href="{% url projects.project_list %}">Projects</a></li>
+	  {% eilf perms.projects.project_shortlist %}
           <li><a href="{% url projects.project_shortlist %}">Projects</a></li>
           {% endif %}
 	 
