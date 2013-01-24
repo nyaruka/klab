@@ -7,6 +7,46 @@
 {{block.super}} | Open Space for IT Enterpreneurs
 {% endblock title %}
 
+{% block extra-style %}
+
+
+<style>
+  
+.modal-toggle {
+  font-size: 20px; 
+  font-family: Homenaje, 
+  sans-serif; 
+  color:#088eec; 
+  text-decoration:none;
+  }
+
+.modal-own {
+  width:auto; 
+  background-color: #e3e4e4;
+}
+
+.modal-photo {
+  width: 150px; 
+  float: left;
+}
+
+.modal-words {
+  width: 650px; 
+  float: right
+}
+
+.modal-content {
+ font-size: 15px;
+}
+
+.modal-title {
+  font-size: 25px; 
+  padding: 10px 0px;
+}
+
+</style>  
+{% endblock extra-style %}
+
 {% block main-contents %}
 
 {% load_qbs "who_are_we" %}
@@ -63,52 +103,81 @@
       {% endwith %}
     </div>
     <div class="about_details">
-      {% for person in founding_members %}
-      
-	<table>
-	  <tr>
-	    <td valign="top" >
-	      {% thumbnail person.image "100x120" crop="center" as im %}
-	      <img  src="{{im.url}}" />
-	      {% endthumbnail %}
-	    </td>
-	    <td style="padding-left:10px">
-	      <table>
-		<tr>
-		<b>{{person.title}}</b>
-		</tr>
-	      
-	      
-		<tr>
-		  <p style="text-align:justify;">{{person.content}}</p>
-		</tr>
-	      </table>
-	    </td>
-	  </tr>
+      <table>
+	<tbody>
 	  
-	</table>
-	<hr noshade="noshade" size="1px" ></hr>
-     <br/>
-      {% endfor %}
+	  {% for person in founding_members %}
+          {% if forloop.counter0|divisibleby:"4" %}
+          <tr>
+	  {% endif %}  
+	  <td>
+	    <a data-toggle="modal" href="#myModal" role="button" class="modal-toggle">
+	      <div style="padding:5px">
+		{% thumbnail person.image "120x140" crop="center" as im %}
+		<img  src="{{im.url}}" />
+		{% endthumbnail %}
+	      </div>
+	      <div style="padding-left: 5px;">
+		{{person.title}}
+	      </div>
+	    </a>
+	    
+	    <div id="myModal" class="modal hide fade modal-own" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-body">
+
+		<div class="modal-photo">
+		  {% thumbnail person.image "120x140" crop="center" as im %}
+		  <img  src="{{im.url}}" />
+		  {% endthumbnail %}
+		</div>
+		
+		<div class="modal-words">
+		  <div class="modal-title">
+		    {{ person.title }}
+		  </div>
+		  <div class="modal-content">
+		    {{ person.content }}
+		  </div>
+		</div>
+
+	      </div>
+	    </div>
+	    	   
+	  </td>
+	  
+	  {% if forloop.counter|divisibleby:"4" %}
+	  </tr>
+	  {% endif %}
+	  
+	{% endfor %}
+	</tbody>
+      </table>
+      
     </div>
+  </div>
+</div>  
+<div style="clear: both;"></div>
+
+<div class="about_group">
+  <div class="questions">
+    {% with friends_of_klab|first as friend %}
+    <span>{{friend.quickblock_type.name}}</span>
+    {% endwith %}
+    </div>
+  <div class="about_details">
+    {% for logo in friends_of_klab %}
+    <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+    {% endfor %}
+  </div>
   </div>  
   <div style="clear: both;"></div>
-
-  <div class="about_group">
-    <div class="questions">
-      {% with friends_of_klab|first as friend %}
-      <span>{{friend.quickblock_type.name}}</span>
-      {% endwith %}
-    </div>
-    <div class="about_details">
-      {% for logo in friends_of_klab %}
-      <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
-      {% endfor %}
-    </div>
-  </div>  
-  <div style="clear: both;"></div>
-
-
+  
+  
 </div>
 
 {% endblock main-contents %}
+
+{% block javascript %}
+<script type="text/javascript" src="{{STATIC_URL}}/js/bootstrap.min.js"></script>
+
+{% endblock javascript %}
