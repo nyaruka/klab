@@ -1,0 +1,54 @@
+# import our default settings
+from settings_common import *
+
+DEBUG = True
+TEMPLATE_DEBUG = True
+
+# these guys will get email from sentry
+ADMINS = (
+   ('Nyaruka Ops', 'ops@nyaruka.com'),
+)
+
+MANAGERS = ADMINS
+
+# add gunicorn
+INSTALLED_APPS = ('django_nose',) + INSTALLED_APPS
+
+# static dir is different for prod
+#STATIC_URL = '/sitestatic/'
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'klab',
+        'USER': 'klab',
+        'PASSWORD': 'klab',
+        'HOST': 'localhost',
+        'PORT': '', 
+        'OPTIONS': {
+               "init_command": "SET storage_engine=INNODB",
+        }  
+    }
+}
+
+# no debug toolbar in prod
+MIDDLEWARE_CLASSES = (
+#    'sentry.client.middleware.SentryResponseErrorIdMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'reversion.middleware.RevisionMiddleware',
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'smartmin.middleware.AjaxRedirect',
+    'smartmin.middleware.ProfileMiddleware',
+)
+

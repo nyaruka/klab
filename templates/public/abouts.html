@@ -23,6 +23,7 @@
 .modal-own {
   width:auto; 
   background-color: #e3e4e4;
+  padding: 0 10px 10px 10px;
 }
 
 .modal-photo {
@@ -42,6 +43,10 @@
 .modal-title {
   font-size: 25px; 
   padding: 10px 0px;
+}
+
+.modal-cell {
+  padding: 7px 30px;
 }
 
 </style>  
@@ -107,13 +112,13 @@
 	<tbody>
 	  
 	  {% for person in founding_members %}
-          {% if forloop.counter0|divisibleby:"4" %}
+          {% if forloop.counter0|divisibleby:"3" %}
           <tr>
 	  {% endif %}  
-	  <td>
-	    <a data-toggle="modal" href="#myModal" role="button" class="modal-toggle">
+	  <td class="modal-cell">
+	    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
 	      <div style="padding:5px">
-		{% thumbnail person.image "120x140" crop="center" as im %}
+		{% thumbnail person.image "150x150" crop="center" as im %}
 		<img  src="{{im.url}}" />
 		{% endthumbnail %}
 	      </div>
@@ -122,7 +127,7 @@
 	      </div>
 	    </a>
 	    
-	    <div id="myModal" class="modal hide fade modal-own" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div id="myModal-{{person.pk}}" class="modal hide fade modal-own" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	      <div class="modal-body">
 
 		<div class="modal-photo">
@@ -145,7 +150,7 @@
 	    	   
 	  </td>
 	  
-	  {% if forloop.counter|divisibleby:"4" %}
+	  {% if forloop.counter|divisibleby:"3" %}
 	  </tr>
 	  {% endif %}
 	  
