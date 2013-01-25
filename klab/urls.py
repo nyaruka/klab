@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_notify.urls import get_pattern as get_notify_pattern
 
 from django.contrib import admin
 admin.autodiscover()
@@ -14,7 +16,9 @@ urlpatterns = patterns('',
     url(r'^projects/', include('projects.urls')),
     url(r'^content/', include('django_quickblocks.urls')),
     url(r'^users/', include('smartmin.users.urls')),
-    url(r'^admin/', include(admin.site.urls))
+    url(r'^admin/', include(admin.site.urls)),
+    (r'^notify/', get_notify_pattern()),
+    (r'^wiki/', get_wiki_pattern())
 )
 
 # does this environment for development

@@ -86,6 +86,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.core.context_processors.static',
    'django.contrib.messages.context_processors.messages',
    'django.core.context_processors.request',
+   'sekizai.context_processors.sekizai',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -221,6 +222,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.markup',
+    'django.contrib.humanize',
 
     # error logging
     'raven.contrib.django',
@@ -234,6 +236,14 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'pagination',
     'django_quickblocks',
+    'django_notify',
+    'mptt',
+    'sekizai',
+
+    'wiki',
+    'wiki.plugins.attachments',
+    'wiki.plugins.notifications',
+    'wiki.plugins.images',
 
     # smartmin users app
     'smartmin.users',

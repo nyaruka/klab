@@ -510,7 +510,7 @@ table {
    ========================================================================== */
 
 html {
-    background-color: #FFFFFF;
+
 }
 
 body {
@@ -558,7 +558,7 @@ h3 {
 #menu ul li a {
     color: #9b9996;
     text-decoration: none;
-    padding: 5px 25px;
+    padding: 5px 20px;
     border-radius: 3px;
 }
 

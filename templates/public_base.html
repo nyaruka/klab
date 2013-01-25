@@ -1,3 +1,4 @@
+{% load sekizai_tags i18n %}
 <!doctype html>
 <!-- [if IE ]> <html class="no-js"> <![endif] -->
 <head>
@@ -18,8 +19,19 @@
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/colorbox.css">  
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css">  
 
+  <!-- JavaScript at the bottom for fast page loading, conditional based on whether we are serving locally -->
+  <script>
+    if (window.location.hostname == "localhost"){
+        document.write(unescape('%3Cscript src="{{ STATIC_URL }}js/libs/jquery-1.8.3.js"%3E%3C/script%3E'));
+    } else {
+        document.write(unescape('%3Cscript src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"%3E%3C/script%3E'));
+    }
+  </script>
+
   {% block stylesheet %}
   {% endblock stylesheet %}
+
+  {% render_block "css" %}
 
   {% block extra-style %}{% endblock %}
 
@@ -43,6 +55,7 @@
       <div id="menu">
         <ul>
 	  
+          <li><a href="/wiki/">wiki</a></li>
 	  {% if perms.members.member_myprofile %}
           <li><a href="{% url members.member_myprofile 0 %}">profile</a></li>
 	  {% endif %}
@@ -104,15 +117,6 @@
   <!-- IE craziness! What can u do? -->
   <!-- [if lt IE 9]><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif] -->
 
-  <!-- JavaScript at the bottom for fast page loading, conditional based on whether we are serving locally -->
-  <script>
-    if (window.location.hostname == "localhost"){
-        document.write(unescape('%3Cscript src="{{ STATIC_URL }}js/libs/jquery-1.9.0.js"%3E%3C/script%3E'));
-    } else {
-        document.write(unescape('%3Cscript src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"%3E%3C/script%3E'));
-    }
-  </script>
-
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tweet.js"></script>
 
@@ -120,7 +124,6 @@
   {% endblock javascript %}
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.pjax.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
   <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 
   {# media associated with any form we are displaying #}
@@ -132,6 +135,8 @@
   {% block script %}{% endblock %}
   {# endcompress #}
 
+
+  {% render_block "js" %}
   <!-- End Script -->
 </body>
 
