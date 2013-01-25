@@ -12,7 +12,13 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # add gunicorn
-INSTALLED_APPS = ('django_nose',) + INSTALLED_APPS
+
+INSTALLED_APPS = INSTALLED_APPS + ('django_nose', 'debug_toolbar')
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 # static dir is different for prod
 #STATIC_URL = '/sitestatic/'
@@ -47,9 +53,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'reversion.middleware.RevisionMiddleware',
-#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'smartmin.middleware.AjaxRedirect',
     'smartmin.middleware.ProfileMiddleware',
 )
-
