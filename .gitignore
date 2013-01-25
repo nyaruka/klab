@@ -4,6 +4,7 @@ deploy
 *.pyc
 #*#
 .DS_Store
+db/
 env
 \#*
 \.#*
