@@ -57,7 +57,12 @@
       <div class="description">
         {{project.description|markdown:"nl2br"}}
       </div>
-
+      {% if request.user and request.user == project.created_by %}
+      <div>
+	<a class="btn btn-primary" href="{% url projects.project_update project.id %}">Update your project</a>
+      </div>
+      {% endif %}
+      
     </div>
 
 </div>

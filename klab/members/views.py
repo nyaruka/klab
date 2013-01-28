@@ -8,6 +8,36 @@ import string
 from django import forms
 
 
+class MemberPermsMixin(object):
+    """
+    Facilitate to give a user the permission on the objects he created
+    """
+    def get_user(self):
+        return self.request.user
+
+    def get_object_created_by(self):
+        return self.object.created_by
+    
+    def has_permission(self, request, *args, **kwargs):
+        """
+        Figures out if the current user has permissions for this view.
+        """
+        self.kwargs = kwargs
+        self.args = args
+        self.request = request
+        self.object = self.get_object()
+        
+        has_perm = request.user.has_perm(self.permission)
+        
+        if self.get_user().is_superuser:
+            return True
+
+        if has_perm:
+            return self.get_user().id == self.get_object_created_by().id
+
+        return False
+
+
 class MemberForm(forms.ModelForm):
     new_password = forms.CharField(label="New Password", widget=forms.PasswordInput)
 
@@ -169,6 +199,11 @@ class MemberCRUDL(SmartCRUDL):
                 return ('new_password','project_title','project_description')
 
 
+        def get_context_data(self, **kwargs):
+            context = super(MemberCRUDL.Activate, self).get_context_data(**kwargs)
+            context['base_template'] = 'smartmin/public_base.html'
+            return context
+
         def get_object(self, queryset=None):
             token = self.kwargs.get('token')
             return Member.objects.get(token=token)
@@ -181,8 +216,16 @@ class MemberCRUDL(SmartCRUDL):
             super(MemberCRUDL.Myprofile,self).has_permission(request, *args, **kwargs)
             return True
 
+
+        def get_context_data(self, **kwargs):
+            context = super(MemberCRUDL.Myprofile, self).get_context_data(**kwargs)
+            context['base_template'] = 'smartmin/public_base.html'
+            return context
+
         def get_object(self, queryset=None):
             return Member.objects.get(user=self.request.user)
+
+
     class Read(SmartReadView):
         fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood','education','education','experience','projects','token')
         def get_membership_type(self, obj):

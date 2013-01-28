@@ -167,7 +167,7 @@ GROUP_PERMISSIONS = {
 
     "Members": ('members.member_read',
                 'members.member_myprofile',
-                'projects.project_create', 'projects.project_shortlist', 'projects.project_read'),
+                'projects.project_create', 'projects.project_update', 'projects.project_shortlist', 'projects.project_read'),
 }
 
 #-----------------------------------------------------------------------------------
