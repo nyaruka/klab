@@ -234,7 +234,7 @@ class MemberCRUDL(SmartCRUDL):
     class List(SmartListView):
         fields = ('name','email','phone','country','city',)
         field_config = { 'email': dict(label="Email / User") }
-        
+        search_fields = ('first_name__icontains', 'last_name__icontains')
 
         def derive_queryset(self, **kwargs):
             queryset = super(MemberCRUDL.List, self).derive_queryset(**kwargs)
