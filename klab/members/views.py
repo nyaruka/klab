@@ -83,7 +83,7 @@ class ApplicationCRUDL(SmartCRUDL):
                   'goals', 'education', 'experience', 'approve')
 
         def get_approve(self, obj):
-            member = Member.objects.filter(pk=obj.id)
+            member = Member.objects.filter(application=obj)
             if member:
                 return '<a class="btn btn-large btn-success disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
             else:
