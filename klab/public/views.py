@@ -59,7 +59,7 @@ def home(request):
     recent = Post.objects.filter(is_active=True).order_by('-created_on')[:5]
 
     # get upcoming events
-    upcoming = Event.objects.filter(date__gte=datetime.today())[:5]
+    upcoming = Event.objects.filter(is_active=True, date__gte=datetime.today())[:5]
 
     context = dict(images = images, recent=recent, upcoming=upcoming )
     return render(request, 'public/home.html', context)
@@ -133,11 +133,11 @@ def member(request, member_id):
 def events(request, period):
 
     if period == "upcoming":
-        events = Event.objects.filter(date__gte=datetime.today())
+        events = Event.objects.filter(is_active=True, date__gte=datetime.today())
     elif period == "past":
-        events = Event.objects.filter(date__lte=datetime.today())
+        events = Event.objects.filter(is_active=True, date__lte=datetime.today())
     else:
-        events = Event.objects.all().order_by('-date')
+        events = Event.objects.filter(is_active=True).order_by('-date')
 
     context = dict(events=events)
     return render(request, 'public/events.html', context)
