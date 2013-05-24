@@ -13,6 +13,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from django.core.cache import get_cache
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -32,17 +33,27 @@ class ContactForm(forms.Form):
 
 def home(request):
 
-    # from flickr photos get one tagged "main"(should have only one)
-    main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
+    cache = get_cache('default')
 
-    # from flickr get all photo elements tagged "favorite"
-    favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", sort="date-posted-desc")
-    
+    if not cache.get('flickr_main'):
+        # from flickr photos get one tagged "main"(should have only one)
+        main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
+        cache.set('flickr_main', list(iter(main)), 3600)
+
+    main = cache.get('flickr_main')
+
+    if not cache.get('flickr_favorites'):
+        # from flickr get all photo elements tagged "favorite"
+        favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", sort="date-posted-desc")
+        cache.set('flickr_favorites', list(iter(favorites)), 3600)
+
+    favorites = cache.get('flickr_favorites')
+
     images = []
     sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
 
     try:
-        main_photo = list(iter(main))[0]
+        main_photo = main[0]
         images.append((flickr.get_url(main_photo, 'b'), sizes[0], main_photo.get('title')))
 
         # create an image file from every favorite

@@ -1,3 +1,4 @@
+from django.core.cache import get_cache
 from django.db import models
 from django.conf import settings
 from smartmin.models import SmartModel
@@ -38,9 +39,18 @@ class Event(SmartModel):
 
     def photos(self):
         if self.photo_tag:
+        
             # try to get flickr photos with a given tag
             try:
-                return flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag)
+                cache = get_cache('default')
+        
+                if not cache.get('flickr_event_photos'):
+                    event_photos = flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag) 
+                    cache.set('flickr_event_photos', list(iter(event_photos)), 3600)
+
+                event_photos = cache.get('flickr_event_photos')
+
+                return event_photos
             except:
                 # otherwise give back nothing
                 return None

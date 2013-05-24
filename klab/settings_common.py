@@ -29,6 +29,8 @@ DATABASES = {
 # system time zone.
 TIME_ZONE = 'Africa/Kigali'
 
+USE_TZ=True
+
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
@@ -256,6 +258,18 @@ INSTALLED_APPS = (
     'projects',
     'opportunities',
 )
+
+# cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'django-cache'
+    }
+}
+
+
+
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

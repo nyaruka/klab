@@ -30,7 +30,7 @@
       <span>Application Form</span>
     </div>
     <div class="apply_details">
-      <form action="{% url public_apply %}" method="post">
+      <form action="{% url 'public_apply' %}" method="post">
         {% csrf_token %}
         {{ form.as_ul }}
         <input type="submit" value="Submit" />

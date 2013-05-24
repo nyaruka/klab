@@ -2,6 +2,7 @@ import flickr
 
 from django.db import models
 from smartmin.models import SmartModel
+from django.core.cache import get_cache
 
 class Post(SmartModel):
     """
@@ -17,7 +18,14 @@ class Post(SmartModel):
         return self.title
 
     def photo(self):
-        for photo in flickr.api.walk(user_id=flickr.user_id, tags="blog"):
+        cache = get_cache('default')
+        if not cache.get("flickr_blog"):
+            blog_photos = flickr.api.walk(user_id=flickr.user_id, tags="blog")
+            cache.set('flickr_blog', list(iter(blog_photos)), 3600)
+            
+        blog_photos = cache.get('flickr_blog')
+
+        for photo in blog_photos:
             if photo.get('id') == self.image_id:
                 return flickr.get_url(photo,"b")
 

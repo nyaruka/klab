@@ -12,10 +12,10 @@
  <div id="events_content">
 
     <div class="event_small">
-      <a href="{% url public_members "all" %}">All Members</a>
-      <a href="{% url public_members "mentors" %}">Mentors</a>
-      <a href="{% url public_members "tenants" %}">Tenants</a>
-      <a href="{% url public_projects "all" %}">All Projects</a>
+      <a href="{% url 'public_members' "all" %}">All Members</a>
+      <a href="{% url 'public_members' "mentors" %}">Mentors</a>
+      <a href="{% url 'public_members' "tenants" %}">Tenants</a>
+      <a href="{% url 'public_projects' "all" %}">All Projects</a>
     </div> 
 
     
@@ -28,7 +28,7 @@
       <div class="event_heading">
         <table width="100%" cellspacing="" cellpadding="" border="0">
           <tr>
-            <td colspan="2" class="heading"><a href="{% url public_profile member.id %}"></a>{{member.first_name}} {{member.last_name}}</td>
+            <td colspan="2" class="heading"><a href="{% url 'public_profile' member.id %}"></a>{{member.first_name}} {{member.last_name}}</td>
           </tr>
           <tr>
             <td class="right">Location</td>

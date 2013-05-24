@@ -44,33 +44,33 @@
 
         <ul class="nav">
           {% if perms.blog.post_list %}
-          <li><a href="{% url blog.post_list %}">Posts</a></li>
+          <li><a href="{% url 'blog.post_list' %}">Posts</a></li>
           {% endif %}
 
           {% if perms.events.event_list %}
-          <li><a href="{% url events.event_list %}">Events</a></li>
+          <li><a href="{% url 'events.event_list' %}">Events</a></li>
           {% endif %}
 
           {% if perms.django_quickblocks.quickblock_list %}
-          <li><a href="{% url django_quickblocks.quickblock_list %}">Content</a></li>
+          <li><a href="{% url 'django_quickblocks.quickblock_list' %}">Content</a></li>
           {% endif %}
 
           {% if perms.members.application_list %}
-          <li><a href="{% url members.application_list %}">Membership Applications</a></li>
+          <li><a href="{% url 'members.application_list' %}">Membership Applications</a></li>
           {% endif %}
 
 	  {% if perms.members.member_list %}
-          <li><a href="{% url members.member_list %}">Members</a></li>
+          <li><a href="{% url 'members.member_list' %}">Members</a></li>
           {% endif %}
 
 	  {% if perms.opportunities.opportunity_list %}
-          <li><a href="{% url opportunities.opportunity_list %}">Opportunities</a></li>
+          <li><a href="{% url 'opportunities.opportunity_list' %}">Opportunities</a></li>
           {% endif %}
 	  
 	  {% if perms.projects.project_list %}
-	  <li><a href="{% url projects.project_list %}">Projects</a></li>
+	  <li><a href="{% url 'projects.project_list' %}">Projects</a></li>
 	  {% elif perms.projects.project_shortlist %}
-          <li><a href="{% url projects.project_shortlist %}">Projects</a></li>
+          <li><a href="{% url 'projects.project_shortlist' %}">Projects</a></li>
           {% endif %}
 	 
 
@@ -82,7 +82,7 @@
               <li><a href="/users/user/">Users</a></li>
               {% endif %}
               {% if perms.django_quickblocks.quickblocktype_list %}
-              <li><a href="{% url django_quickblocks.quickblocktype_list %}">Content Types</a></li>
+              <li><a href="{% url 'django_quickblocks.quickblocktype_list' %}">Content Types</a></li>
               {% endif %}
             </ul>
           </li>
@@ -92,9 +92,9 @@
         <ul class="nav pull-right">
           {% block login %}
           {% if request.user and request.user.is_authenticated %}
-          <li class="pull-right"><a href="{% url users.user_logout %}?go=/">{{ request.user.username }} | logout</a></li>
+          <li class="pull-right"><a href="{% url 'users.user_logout' %}?go=/">{{ request.user.username }} | logout</a></li>
           {% else %}
-          <li class="pull-right"><a href="{% url users.user_login %}">Login</a></li>
+          <li class="pull-right"><a href="{% url 'users.user_login' %}">Login</a></li>
           {% endif %}
           {% endblock %}
         </ul>

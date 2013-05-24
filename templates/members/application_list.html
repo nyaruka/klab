@@ -17,7 +17,7 @@
     {% block table-buttons %}
     <div class="pull-right">
     {% if perms.members.application_csv %}
-    <a class="btn" href="{% url members.application_csv %}">Export</a>
+    <a class="btn" href="{% url 'members.application_csv' %}">Export</a>
     {% endif %}
 
     {% if view.add_button %}

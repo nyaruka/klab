@@ -10,7 +10,7 @@
   {% if perms.members.application_update %}
   <div class="row">
     <div class="span12 buttons">
-      <a class="btn btn-primary pull-right" href="{% url members.application_update object.id %}">edit</a>
+      <a class="btn btn-primary pull-right" href="{% url 'members.application_update' object.id %}">edit</a>
     </div>
   </div>
   {% endif %}

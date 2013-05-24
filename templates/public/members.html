@@ -12,10 +12,10 @@
 <div id="events_content">
   <div class="pull-left">
     <div class="event_small">
-      <a href="{% url public_members "all" %}">All Members</a>
-      <a href="{% url public_members "mentors" %}">Mentors</a>
-      <a href="{% url public_members "tenants" %}">Tenants</a>
-      <a href="{% url public_projects "all" %}">All Projects</a>
+      <a href="{% url 'public_members' "all" %}">All Members</a>
+      <a href="{% url 'public_members' "mentors" %}">Mentors</a>
+      <a href="{% url 'public_members' "tenants" %}">Tenants</a>
+      <a href="{% url 'public_projects' "all" %}">All Projects</a>
 
       <form class="search_form" method="get">
       <input type="text" name="search" value="{{member_type}} search..." onfocus="if
@@ -38,7 +38,7 @@
       <div class="event_details">
         <table width="100%" cellspacing="" cellpadding="" border="0">
           <tr>
-            <td colspan="2" class="heading"><a href="{% url public_profile member.id %}">{{member.first_name}} {{member.last_name}} </a></td>
+            <td colspan="2" class="heading"><a href="{% url 'public_profile' member.id %}">{{member.first_name}} {{member.last_name}} </a></td>
           </tr>
           <tr>
             <td class="right">Location</td>

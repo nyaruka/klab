@@ -1,5 +1,6 @@
 from django.db import models
 from smartmin.models import SmartModel
+from django.utils import timezone
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 
@@ -33,7 +34,7 @@ def pre_save_opportunity(sender, instance, **kwargs):
     
     if instance.remaining_days > 0:
         if not instance.created_on:
-            instance.created_on = datetime.now()
+            instance.created_on = timezone.now()
         deadline = instance.created_on + timedelta(days=instance.remaining_days)
         instance.deadline = deadline.date()
     else:

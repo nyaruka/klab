@@ -78,7 +78,7 @@
         Boulevard de l'Umuganda, Kacyiru
       </div> 
       <div id="apply">
-        <a href="{% url members.application_create %}"><span class="big button radius shadow">Become a Member</span></a>
+        <a href="{% url 'members.application_create' %}"><span class="big button radius shadow">Become a Member</span></a>
       </div>
       <div id="posts">
         {% for post in recent %}
@@ -86,7 +86,7 @@
 
           <div class="post_header">
             <div class="title">
-              <a href="{% url public_post post.id %}">{{post.title}}</a>
+              <a href="{% url 'public_post' post.id %}">{{post.title}}</a>
             </div>
             <div class="date">
               {{post.created_on|date:"F dS, Y"}}
@@ -95,8 +95,8 @@
           <div style="clear: both;"></div>
 
           <div class="post_body">
-            {{post.teaser|markdown:"nl2br"}} <a href="{% url public_post post.id %}">Read more</a>
-            <span style="float:right;"><fb:comments-count href="http://www.klab.rw{% url public_post post.id %}"/></fb:comments-count> comment(s) </span>
+            {{post.teaser|markdown:"nl2br"}} <a href="{% url 'public_post' post.id %}">Read more</a>
+            <span style="float:right;"><fb:comments-count href="http://www.klab.rw{% url 'public_post' post.id %}"/></fb:comments-count> comment(s) </span>
           </div>
 
 
@@ -116,7 +116,7 @@
 
             <div class="event_header">
               <div class="event_title">
-                <a href="{% url solo_event event.id %}">{{event.title|truncatewords:"3"}}</a>
+                <a href="{% url 'solo_event' event.id %}">{{event.title|truncatewords:"3"}}</a>
               </div>
               <div class="date">
                 {{event.date|date:"F d, Y"}}

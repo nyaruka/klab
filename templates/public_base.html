@@ -48,7 +48,7 @@
     {% load smartmin %}
     <div id="header">                                                                     <!-- Header -->
       <div id="logo">
-        <a href="{% url public_home %}">
+        <a href="{% url 'public_home' %}">
           <img src="{{ STATIC_URL }}images/logo.jpg" class="" alt="" />
         </a>
       </div>
@@ -57,20 +57,20 @@
 	  
           <li><a href="/wiki/">wiki</a></li>
 	  {% if perms.members.member_myprofile %}
-          <li><a href="{% url members.member_myprofile 0 %}">profile</a></li>
+          <li><a href="{% url 'members.member_myprofile' 0 %}">profile</a></li>
 	  {% endif %}
-	  <li><a href="{% url public_members "all" %}">members</a></li>
-	  <li><a href="{% url public_opportunities "new" %}">opportunities</a></li>
-	  <li><a href="{% url public_contact %}">contact</a></li>
-          <li><a href="{% url public_blog %}">blog</a></li>
-          <li><a href="{% url public_events "all" %}">events</a></li>
-          <li><a href="{% url public_about %}">about us</a></li>
+	  <li><a href="{% url 'public_members' "all" %}">members</a></li>
+	  <li><a href="{% url 'public_opportunities' "new" %}">opportunities</a></li>
+	  <li><a href="{% url 'public_contact' %}">contact</a></li>
+          <li><a href="{% url 'public_blog' %}">blog</a></li>
+          <li><a href="{% url 'public_events' "all" %}">events</a></li>
+          <li><a href="{% url 'public_about' %}">about us</a></li>
 	  
 	  {% if request.user.is_authenticated %}
-	  <li><a href="{% url users.user_logout %}">logout</a></li>
+	  <li><a href="{% url 'users.user_logout' %}">logout</a></li>
 	               
           {% else %}
-          <li><a href="{% url users.user_login %}">login</a></li>
+          <li><a href="{% url 'users.user_login' %}">login</a></li>
           {% endif %}
         </ul>
       </div>
@@ -103,7 +103,7 @@
         kLab	© 2012	Copyright. All rights reserved.  
         <span class="login">
           {% if perms.members.application_list %}
-          <a href="{% url members.application_list %}">Admin</a>        
+          <a href="{% url 'members.application_list' %}">Admin</a>        
           
           {% endif %}
         </span>
