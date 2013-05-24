@@ -17,13 +17,18 @@ class Post(SmartModel):
     def __unicode__(self):
         return self.title
 
+    def get_cache_key(self):
+        return 'flickr_blog_photos_%d' % self.pk
+
     def photo(self):
         cache = get_cache('default')
-        if not cache.get("flickr_blog"):
+        key = self.get_cache_key()
+        
+        if not cache.get(key):
             blog_photos = flickr.api.walk(user_id=flickr.user_id, tags="blog")
-            cache.set('flickr_blog', list(iter(blog_photos)), 3600)
+            cache.set(key, list(iter(blog_photos)), 3600)
             
-        blog_photos = cache.get('flickr_blog')
+        blog_photos = cache.get(key)
 
         for photo in blog_photos:
             if photo.get('id') == self.image_id:

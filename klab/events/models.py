@@ -37,60 +37,24 @@ class Event(SmartModel):
     def __unicode__(self):
         return self.title
 
+    def get_cache_key(self):
+        return 'flickr_event_photos_%d' % self.pk
+
     def photos(self):
         if self.photo_tag:
         
             # try to get flickr photos with a given tag
             try:
                 cache = get_cache('default')
-        
-                if not cache.get('flickr_event_photos'):
-                    event_photos = flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag) 
-                    cache.set('flickr_event_photos', list(iter(event_photos)), 3600)
+                key = self.get_cache_key()
 
-                event_photos = cache.get('flickr_event_photos')
+                if not cache.get(key):
+                    event_photos = flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag) 
+                    cache.set(key, list(iter(event_photos)), 3600)
+
+                event_photos = cache.get(key)
 
                 return event_photos
             except:
                 # otherwise give back nothing
                 return None
-
-    # def datespan(self, startdate, enddate, delta):
-    #     while startdate < enddate:
-    #         yield startdate
-    #         startdate += delta
-
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         super(Event, self).save(*args, **kwargs)
-
-    #         # get weeks between now unt the end of event
-    #         weeks = self.datespan(self.date, self.end_date, timedelta(days=7))
-
-    #         # all event days of the week
-    #         start_dates = []
-
-    #         # store event day of the week
-    #         event_dow = self.date.weekday()
-
-    #         if self.recurrence_type == 'W':
-    #             # got through days of the week
-    #             for i in range(1,8):
-    #                 # if dow is in a week from now
-    #                 if self.dow & (2**i) != 0:
-    #                     # then store days until the next events
-    #                     days_until = (7 - event_dow + i - 1) % 7
-    #                     start_dates.append(self.date + timedelta(days=days_until))
-                    
-    #             # create event for every week until the end date
-    #             for i, week in enumerate(weeks):
-    #                 # create event for this dates
-    #                 if i != 0:
-    #                     Event.objects.create(parent=self, date=week, title=self.title,
-    #                                          description=self.description, flickr_tag=self.flickr_tag, end_date=self.end_date,
-    #                                          created_by=self.created_by, modified_by=self.modified_by)
-
-
-    #     else:
-    #        super(Event, self).save(*args, **kwargs)
-            
