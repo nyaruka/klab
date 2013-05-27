@@ -7,7 +7,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-ALLOWED_HOSTS = ['.nyaruka.com', 'klab.rw']
+ALLOWED_HOSTS = ['.nyaruka.com', '.klab.rw']
 
 MANAGERS = ADMINS
 
