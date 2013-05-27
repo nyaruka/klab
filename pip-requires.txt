@@ -17,4 +17,4 @@ Markdown
 sentry
 nose
 wiki
-
+mysql-python

@@ -34,7 +34,7 @@ class ContactForm(forms.Form):
 def home(request):
 
     cache = get_cache('default')
-
+    
     if not cache.get('flickr_main'):
         # from flickr photos get one tagged "main"(should have only one)
         main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
