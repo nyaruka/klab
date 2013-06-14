@@ -4,16 +4,10 @@
 {% load thumbnail %}
 
 {% block javascript %}
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
 <script type='text/javascript'>
-  jQuery(function($){
-    $(".tweet").tweet({
-      avatar_size: 48,
-      count: 5,
-      refresh_interval: 120,
-      query: "#klabrw OR klabrw",
-      loading_text: "loading tweets..."
-    });
-  });
 
   jQuery("a.gallery").colorbox({rel:"favorites"});
 
@@ -133,12 +127,10 @@
         {% endfor %}
         </div>
       </div>
-
-      <div id="tweets">
-        <h3>#klabrw Tweets</h3>
-        <div class="tweet">
-        </div>
-      </div>
+        <h3><a href="https://twitter.com/search/?q=%40klabrw+OR+from%3Aklabrw">#klabrw Tweets</a>        <a class="pull-right" href="http://www.twitter.com/" title="Twitter"><img src="{{STATIC_URL}}images/twitter-bird.png"/></a>
+	  </h3>
+	
+	<a class="twitter-timeline" href="https://twitter.com/search?q=%40klabrw+OR+from%3Aklabrw" data-widget-id="345542166468235265" data-chrome="noborders nofooter noheader transparent" data-tweet-limit="7">Tweets about "@klabrw OR from:klabrw"</a>
 
     </div>
   </div>
