@@ -42,6 +42,7 @@
 {% block main-contents %}
 
 <div id="main-contents">
+  {% if images %}
   <div id="favorites" class="radius shadow">
     {% for url, geo, title in images|slice:":5" %}
     {% thumbnail url geo crop="center" as im %}
@@ -58,7 +59,11 @@
     {% endthumbnail %}
     {% endfor %}
   </div>
-
+  {% else %}
+  <div id="no-flickr">
+    <img src="{{ STATIC_URL }}images/no-flickr.jpg"/>
+  </div>
+  {% endif %}
   <div style="clear: both;"></div>
 
   <div id="sides">

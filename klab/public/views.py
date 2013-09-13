@@ -33,26 +33,27 @@ class ContactForm(forms.Form):
 
 def home(request):
 
-    cache = get_cache('default')
-    
-    if not cache.get('flickr_main'):
-        # from flickr photos get one tagged "main"(should have only one)
-        main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
-        cache.set('flickr_main', list(iter(main)), 3600)
-
-    main = cache.get('flickr_main')
-
-    if not cache.get('flickr_favorites'):
-        # from flickr get all photo elements tagged "favorite"
-        favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", sort="date-posted-desc")
-        cache.set('flickr_favorites', list(iter(favorites)), 3600)
-
-    favorites = cache.get('flickr_favorites')
-
-    images = []
-    sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
-
     try:
+        cache = get_cache('default')
+    
+        if not cache.get('flickr_main'):
+            # from flickr photos get one tagged "main"(should have only one)
+            main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
+            cache.set('flickr_main', list(iter(main)), 3600)
+
+        main = cache.get('flickr_main')
+
+        if not cache.get('flickr_favorites'):
+            # from flickr get all photo elements tagged "favorite"
+            favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", sort="date-posted-desc")
+            cache.set('flickr_favorites', list(iter(favorites)), 3600)
+
+        favorites = cache.get('flickr_favorites')
+
+        images = []
+        sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
+
+        
         main_photo = main[0]
         images.append((flickr.get_url(main_photo, 'b'), sizes[0], main_photo.get('title')))
 
@@ -61,10 +62,7 @@ def home(request):
             if main_photo.get('id') != favorite.get('id'):
                 images.append((flickr.get_url(favorite, 'b'), sizes[i % len(sizes)], favorite.get('title')))
     except:
-        # create an image file from every favorite
-        for i,favorite in enumerate(favorites):        
-                images.append((flickr.get_url(favorite, 'b'), sizes[i % len(sizes)], favorite.get('title')))
-
+        images = []
 
     # get recent blog posts
     recent = Post.objects.filter(is_active=True).order_by('-created_on')[:5]
