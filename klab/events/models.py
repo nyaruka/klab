@@ -34,6 +34,17 @@ class Event(SmartModel):
     photo_tag = models.CharField(max_length=64, null=True, blank=True)
     end_date = models.DateField(help_text="Last date of recurrence", null=True, blank=True)
   
+    def get_duration(self):
+        if self.duration <= 120:
+            return "%d minutes" % self.duration
+        elif self.duration <= 1440:
+            hours = self.duration / 60
+            return "%d hours" % hours
+        else:
+            days = self.duration / 1440
+            return "%d days" % days
+
+
     def __unicode__(self):
         return self.title
 
