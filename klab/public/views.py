@@ -61,7 +61,9 @@ def home(request):
         for i,favorite in enumerate(favorites):  
             if main_photo.get('id') != favorite.get('id'):
                 images.append((flickr.get_url(favorite, 'b'), sizes[i % len(sizes)], favorite.get('title')))
-    except:
+    except Exception as e:
+        import traceback
+        traceback.print_exc(e)
         images = []
 
     # get recent blog posts
