@@ -16,5 +16,5 @@ class PostCRUDL(SmartCRUDL):
         def post_save(self, obj, *args, **kwargs):
             obj = super(PostCRUDL.Update, self).post_save(obj, *args, **kwargs)
             cache = get_cache('default')            
-            cache.delete(obj.get_key())
+            cache.delete(obj.get_cache_key())
             return obj
