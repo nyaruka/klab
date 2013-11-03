@@ -22,3 +22,17 @@ class EventCRUDL(SmartCRUDL):
             cache.delete(obj.get_cache_key())
             return obj
             
+
+class VideoCRUDL(SmartCRUDL):
+    model = Video
+    actions = ('create', 'update', 'list')
+    permissions = True
+
+    class Create(SmartCreateView):
+        fields = ('name', 'summary', 'description', 'youtube_id')
+
+    class Update(SmartUpdateView):
+        fields = ('is_active', 'name', 'summary', 'description', 'youtube_id')
+
+    class List(SmartListView):
+        fields = ('name', 'summary')

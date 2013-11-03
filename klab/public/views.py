@@ -3,7 +3,7 @@ from datetime import datetime
 
 from models import *
 from blog.models import Post
-from events.models import Event
+from events.models import Event, Video
 from projects.models import Project
 from members.models import Member
 from opportunities.models import Opportunity
@@ -72,7 +72,9 @@ def home(request):
     # get upcoming events
     upcoming = Event.objects.filter(is_active=True, date__gte=datetime.today())[:5]
 
-    context = dict(images = images, recent=recent, upcoming=upcoming )
+    videos = Video.objects.filter(is_active=True)[:3]
+
+    context = dict(images = images, recent=recent, upcoming=upcoming, videos=videos)
     return render(request, 'public/home.html', context)
 
 def blog(request):

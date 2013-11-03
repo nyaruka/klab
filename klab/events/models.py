@@ -69,3 +69,10 @@ class Event(SmartModel):
             except:
                 # otherwise give back nothing
                 return None
+
+class Video(SmartModel):
+    name = models.CharField(help_text="The name of the video", max_length=255)
+    summary = models.TextField(help_text="A short blurb about the video")
+    description = models.TextField(help_text="The full description for the video")
+    youtube_id = models.CharField(max_length=255, help_text="The id youtube uses for this video")
+
