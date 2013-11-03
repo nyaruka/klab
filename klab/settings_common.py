@@ -144,6 +144,7 @@ PERMISSIONS = {
 GROUP_PERMISSIONS = {
     "Administrator": ('auth.user.*', 
                       'events.event.*', 
+                      'events.video.*',
                       'blog.post.*', 
                       'django_quickblocks.quickblock.*', 'django_quickblocks.quickblocktype.*', 
                       'members.application.*', 'projects.project.*',
@@ -156,6 +157,7 @@ GROUP_PERMISSIONS = {
                       'opportunities.opportunity.*',
                       ),
     "Editors": ('events.event.*', 
+                'events.video.*',
                 'blog.post.*', 
                 'django_quickblocks.quickblock.*', 
                 'members.application_list', 'members.application_read', 'members.application_csv',

@@ -51,6 +51,10 @@
           <li><a href="{% url 'events.event_list' %}">Events</a></li>
           {% endif %}
 
+	  {% if perms.events.video_list %}
+          <li><a href="{% url 'events.video_list' %}">Videos</a></li>
+          {% endif %}
+
           {% if perms.django_quickblocks.quickblock_list %}
           <li><a href="{% url 'django_quickblocks.quickblock_list' %}">Content</a></li>
           {% endif %}
