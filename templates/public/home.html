@@ -38,97 +38,34 @@
    }(document));
 </script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-45396196-1', 'klab.rw');
-  ga('send', 'pageview');
-
-</script>
-
 {% endblock %}
 
 {% block main-contents %}
 
 <div id="main-contents">
 
-<!-- BODY-->
-<div style="display:block;width:100%;min-height:100%;">
+  {% if images %}
+  <div id="favorites" class="radius shadow">
+    {% for url, geo, title in images|slice:":5" %}
+    {% thumbnail url geo crop="center" as im %}
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    {% endthumbnail %}
+    {% endfor %}
+  </div>
 
-
-    <div class="wrapper radius shadow">
-
-        <div class="banner"><img src="{{STATIC_URL}}images/banner.jpg" height="79" border="0"/></div>
-
-        <div class="box_player radius shadow">
-          <span class="title_1">LIVE STREAM PLAYER</span>
-          <span class="contents_1">
-	    <script id="14063_c_32184" width="480" height="360" src="//static.www.dacast.com/backend/js/dacast_player.js"  class="dacast-video"></script>
-	  </span>
-        </div> 
-
-        <div class="box_twitter radius shadow">
-            <span class="title_2">
-	      <a href="https://twitter.com/search?q=%23agrihack+OR+%23ict4ag13+exclude%3Aretweets">#ict4ag Tweets</a>
-	      <a class="pull-right" href="http://www.twitter.com/" title="Twitter">
-		<img src="{{STATIC_URL}}images/twitter-bird.png"/>
-	    </a>
-	    </span>
-            <span class="contents_2">
-	      <a class="twitter-timeline" height="360" href="https://twitter.com/search?q=%23agrihack+OR+%23ict4ag13+exclude%3Aretweets" data-widget-id="396987784436539392" data-chrome="noborders nofooter noheader transparent">Tweets about "#agrihack OR #ict4ag13 exclude:retweets"</a>
-	    </span>
-        </div>
-
-        <div class="box_vods radius shadow">
-            <span class="title_3">VIDEOS</span>
-            <span class="contents_3">
-	      {% for video in videos %}
-	      <div class="video" style="border-bottom:2px solid #c0c0c0; margin:3px;" >
-		<a href="http://www.youtube.com/watch?v={{video.youtube_id}}">
-		  <img width="115px" align="left" src="http://img.youtube.com/vi/{{video.youtube_id}}/0.jpg" style="margin:4px;" />
-		  {{video.summary|truncatewords:"7"}}
-		</a>
-
-	      </div>
-
-	      {% endfor %}
-	      <div style="flaot:right; margin:3px">
-		<a href="http://www.youtube.com/channel/UCYbgm6lp4iJEtM1lBA5hAxw" >More Videos</a>
-	      </div>
-	    </span>
-        </div>
-    </div>
-
-
-</div>
-<!-- END BODY-->
-
-
-  <!-- {% if images %} -->
-  <!-- <div id="favorites" class="radius shadow"> -->
-  <!--   {% for url, geo, title in images|slice:":5" %} -->
-  <!--   {% thumbnail url geo crop="center" as im %} -->
-  <!--   <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a> -->
-  <!--   {% endthumbnail %} -->
-  <!--   {% endfor %} -->
-  <!-- </div> -->
-
-  <!-- <\!-- hidden block of remaining images to include in slideshow -\-> -->
-  <!-- <div style="display:none"> -->
-  <!--   {% for url, geo, title in images|slice:"5:" %} -->
-  <!--   {% thumbnail url geo crop="center" as im %} -->
-  <!--   <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a> -->
-  <!--   {% endthumbnail %} -->
-  <!--   {% endfor %} -->
-  <!-- </div> -->
-  <!-- {% else %} -->
-  <!-- <div id="no-flickr"> -->
-  <!--   <img src="{{ STATIC_URL }}images/no-flickr.jpg"/> -->
-  <!-- </div> -->
-  <!-- {% endif %} -->
+  <!-- hidden block of remaining images to include in slideshow -->
+  <div style="display:none">
+    {% for url, geo, title in images|slice:"5:" %}
+    {% thumbnail url geo crop="center" as im %}
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    {% endthumbnail %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <div id="no-flickr">
+    <img src="{{ STATIC_URL }}images/no-flickr.jpg"/>
+  </div>
+  {% endif %}
   <div style="clear: both;"></div>
 
   <div id="sides">
@@ -209,37 +146,3 @@
 </div>
 
 {% endblock main-contents %}
-
-{% block extra-style %}
-
-<style>
-
-.wrapper{display:block;width:1002px;height:480px;background-color:rgba(255,255,255,1);margin-left:auto;margin-right:auto;border:0px solid green;}
-.banner{display:block;float:left;width:1002px;height:80px;margin:0px;padding-left:8px;border:0px solid red;}
-.box_player{display:block;float:left;width:480px;height:385px;margin:8px;margin-top:0px;border:0px solid red;overflow:hidden;}
-.box_twitter{display:block;float:left;width:235px;height:385px;margin:8px;margin-top:0px;bborder:0px solid red;overflow:hidden;}
-.box_vods{display:block;float:left;width:235px;height:385px;margin:8px;margin-top:0px;bmargin-right:0px;border:0px solid red;overflow:hidden;}
-
-.title_1{display:block;width:100%;background-color:#a2a2a2;padding:4px;font-family:Homenaje;font-size:16px;color:#FFF;}
-.contents_1{display:block;height:360px;background-color:#000;padding:0px;font-family:Homenaje;font-size:16px;font-weight:normal;color:#000;}
-
-.title_2{display:block;width:100%;background-color:#a6a6a6;padding:4px;font-family:Homenaje;font-size:16px;color:#FFF;}
-.title_2 a, .title_2 a:hover{color:#fff;text-decoration:none;}
-.title_2 a img {vertical-align: inherit; margin-right:10px;}
-.contents_2{display:block;height:360px;background-color:#fff;padding:3px;font-family:Homenaje;font-size:16px;font-weight:normal;color:#000;}
-
-.title_3{display:block;width:100%;background-color:#a6a6a6;padding:4px;font-family:Homenaje;font-size:16px;color:#FFF;}
-.contents_3{display:block;height:360px;background-color:#fff;padding:3px;font-family:Homenaje;font-size:16px;font-weight:normal;color:#000;}
-.contents_3 .video { min-height:100px;}
-
-.radius{border-radius: 3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
-
-.shadow {
-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
--webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
--moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
-}
-
-</style>
-
-{% endblock %}
