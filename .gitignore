@@ -8,7 +8,6 @@ db/
 env
 \#*
 \.#*
-env
 media
 build
 klab/build
