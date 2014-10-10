@@ -1,6 +1,6 @@
 {% extends "smartmin/create.html" %}
 
-{% load quickblocks markup thumbnail %}
+{% load quickblocks thumbnail %}
 
 {% block pre-content %}
 <div class="row" style="padding-top: 20px">
@@ -10,7 +10,7 @@
    {% for header in application_headers %}
    <div class="title">{{ header.title }}</div>
    <p>
-     {{ header.content|markdown:"nl2br" }}
+     {{ header.content|safe }}
    </p>
    {% endfor %}
  </div>

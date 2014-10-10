@@ -58,7 +58,6 @@ v{% extends "public_base.html" %}
 {% load_qbs "friends_of_klab" %}
 {% load_qbs "founding_members" %}
 
-{% load markup %}
 
 <div id="all_about_us">
 
@@ -68,7 +67,7 @@ v{% extends "public_base.html" %}
       <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|markdown:"nl2br"}}
+      {{text.content|safe}}
     </div>
   </div>  
   <div style="clear: both;"></div>
@@ -80,7 +79,7 @@ v{% extends "public_base.html" %}
       <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|markdown:"nl2br"}}
+      {{text.content|safe}}
     </div>
   </div>  
   <div style="clear: both;"></div>
@@ -92,7 +91,7 @@ v{% extends "public_base.html" %}
       <span>{{address.title}}</span>
     </div>
     <div class="about_details">
-      {{address.content|markdown:"nl2br"}}
+      {{address.content|safe}}
     </div>
   </div>  
   <div style="clear: both;"></div>
