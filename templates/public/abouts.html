@@ -1,4 +1,4 @@
-v{% extends "public_base.html" %}
+{% extends "public_base.html" %}
 
 {% load quickblocks %}
 {% load thumbnail %}
@@ -23,21 +23,25 @@ v{% extends "public_base.html" %}
   padding: 0 10px 10px 10px;
 }
 
-.modal-photo {
+.modal-body {
+    min-height: 320px;;
+}
+
+.person-photo {
   width: 150px; 
   float: left;
 }
 
-.modal-words {
+.person-words {
   width: 650px; 
   float: right
 }
 
-.modal-content {
+.person-words-content {
  font-size: 15px;
 }
 
-.modal-title {
+.person-words-title {
   font-size: 25px; 
   padding: 10px 0px;
 }
@@ -123,27 +127,32 @@ v{% extends "public_base.html" %}
 		{{person.title}}
 	      </div>
 	    </a>
-	    
-	    <div id="myModal-{{person.pk}}" class="modal hide fade modal-own" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	      <div class="modal-body">
 
-		<div class="modal-photo">
-		  {% thumbnail person.image "120x140" crop="center" as im %}
-		  <img  src="{{im.url}}" />
-		  {% endthumbnail %}
-		</div>
-		
-		<div class="modal-words">
-		  <div class="modal-title">
-		    {{ person.title }}
-		  </div>
-		  <div class="modal-content">
-		    {{ person.content }}
-		  </div>
-		</div>
+          <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <div class="modal-body">
 
-	      </div>
-	    </div>
+                        <div class="person-photo">
+                            {% thumbnail person.image "120x140" crop="center" as im %}
+                                <img  src="{{im.url}}" />
+                            {% endthumbnail %}
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                {{ person.title }}
+                            </div>
+                            <div class="person-words-content">
+                                {{ person.content }}
+                            </div>
+                        </div>
+
+                      </div>
+
+                  </div>
+              </div>
+          </div>
 	    	   
 	  </td>
 	  
