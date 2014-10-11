@@ -1,0 +1,11 @@
+header {
+    background-color: #222;
+}
+
+.navbar a{
+    color: #aaa;
+}
+
+.navbar a:hover {
+    color: #444;
+}

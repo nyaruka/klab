@@ -1,5 +1,5 @@
 from django.db import models
-from members.models import *
+from klab.members.models import *
 
 class Project(SmartModel):
     title = models.CharField(max_length=64, help_text='The title of the project')

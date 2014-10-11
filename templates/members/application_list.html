@@ -2,22 +2,22 @@
 
 {% block table-controls %}
 <div class="row">
-  <div class="span6">
+  <div class="col-md-6">
     {% if view.search_fields %}
-    <form class="form-search">
-      <input type="text" class="input-medium search-query" name="search" value="{{ search }}">
-      <button type="submit" class="btn">Search</button>
+    <form class="form-search form-inline">
+      <input type="text" class="form-control input-medium search-query" name="search" value="{{ search }}">
+      <button type="submit" class="btn bn-default">Search</button>
     </form>
     {% else %}
     &nbsp;
     {% endif %}
   </div>
 
-  <div class="span6 buttons">
+  <div class="col-md-6 buttons">
     {% block table-buttons %}
     <div class="pull-right">
     {% if perms.members.application_csv %}
-    <a class="btn" href="{% url 'members.application_csv' %}">Export</a>
+    <a class="btn btn-default" href="{% url 'members.application_csv' %}">Export</a>
     {% endif %}
 
     {% if view.add_button %}

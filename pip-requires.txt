@@ -1,20 +1,20 @@
 Django
-PIL==1.1.7
+-e git+https://github.com/nyaruka/smartmin.git@to_django_1_7#egg=smartmin-dev
+-e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_7#egg=django-quickblocks
+git+git://github.com/benjaoming/django-wiki.git
+Pillow
 South
-django-compressor==1.1.2
+django-compressor
 django-guardian
-django-nose==1.0
-django-pagination==1.0.7
--e git+https://github.com/nyaruka/django-quickblocks.git#egg=django-quickblocks
-flickrapi==1.4.2
-coverage==3.5.1
+django-nose
+django-pagination
+flickrapi
+coverage
 django-debug-toolbar
--e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-dev
-sorl-thumbnail==11.12
+sorl-thumbnail==11.12.1b
 gunicorn
 pytz
 Markdown
 sentry
 nose
-wiki
 mysql-python

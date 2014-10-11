@@ -1,12 +1,12 @@
-import flickr
+from klab import flickr
 from datetime import datetime
 
 from models import *
-from blog.models import Post
-from events.models import Event, Video
-from projects.models import Project
-from members.models import Member
-from opportunities.models import Opportunity
+from klab.blog.models import Post
+from klab.events.models import Event, Video
+from klab.projects.models import Project
+from klab.members.models import Member
+from klab.opportunities.models import Opportunity
 
 from django import forms
 from django.conf import settings
@@ -53,9 +53,10 @@ def home(request):
         images = []
         sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
 
-        
         main_photo = main[0]
         images.append((flickr.get_url(main_photo, 'b'), sizes[0], main_photo.get('title')))
+
+        sizes = sizes[1:]
 
         # create an image file from every favorite
         for i,favorite in enumerate(favorites):  

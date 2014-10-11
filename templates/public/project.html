@@ -55,7 +55,7 @@
       <div style="clear: both;"></div>
 
       <div class="description">
-        {{project.description|markdown:"nl2br"}}
+        {{project.description|safe}}
       </div>
       {% if request.user and request.user == project.created_by %}
       <div>

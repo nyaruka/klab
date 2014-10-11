@@ -1,7 +1,9 @@
 config = dict(
    port='8015',
+   app_dir='klab',
    friendly_name='kLab',
    name='klab',
+   repo='klab',
    user='klab',
    env='env',
    settings='settings.py.dev',

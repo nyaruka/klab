@@ -24,7 +24,7 @@ fieldset {
 
 {% block main-contents %}
 <div class="row">
-  <div class="span6 offset4">
+    <div class="col-md-6 col-md-offset-4">
     <div class="page-header" ><h3>Login</h3></div>
 
     <form method="post" class="form-stacked" id="login-form">
@@ -39,6 +39,7 @@ fieldset {
       <fieldset>
         {% for field in form %}
         <div class="clearfix {% if field.error %}error{% endif %}">
+        <div class="form-group">
 	  {% if field.name == "username" %}
           <label for="username">Email</label>
 	  {% else %}
@@ -49,6 +50,7 @@ fieldset {
           <span class="help-inline">{{ field.error }}</span>
           {% endif %}
         </div>
+            </div>
         {% endfor %}
         {% csrf_token %}
         <input type="submit" class="btn btn-primary" value="Login">
