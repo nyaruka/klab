@@ -1,7 +1,7 @@
 Django
 -e git+https://github.com/nyaruka/smartmin.git@to_django_1_7#egg=smartmin-dev
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_7#egg=django-quickblocks
-git+git://github.com/django-wiki/django-wiki.git@django1.7#egg=wiki
+git+git://github.com/django-wiki/django-wiki.git
 Pillow
 South
 django-compressor
@@ -19,3 +19,4 @@ raven
 nose
 mysql-python
 django_nyt
+django-celery
