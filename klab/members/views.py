@@ -104,7 +104,7 @@ class ApplicationCRUDL(SmartCRUDL):
             return obj.get_frequency_display()
 
     class Csv(SmartCsvView):
-        fields = ('created_on', 'name', 'email', 'phone', 'professional_status', 'applying_for', 'frequency', 'city', 'country', 'goals', 'education', 'experience')
+        fields = ('created_on', 'name', 'email', 'professional_status', 'applying_for', 'frequency', 'city', 'country', 'goals', 'education', 'experience')
 
         def derive_queryset(self, **kwargs):
             queryset = super(ApplicationCRUDL.Csv, self).derive_queryset(**kwargs)
