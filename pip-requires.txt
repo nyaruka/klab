@@ -18,3 +18,4 @@ Markdown
 raven
 nose
 mysql-python
+django_nyt
