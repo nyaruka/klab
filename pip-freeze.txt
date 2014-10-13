@@ -31,7 +31,7 @@ six==1.8.0
 -e git+https://github.com/nyaruka/smartmin.git@6cce95cf98cb023a45b533abdd37dc61d88f60a5#egg=smartmin-origin-to_django_1_7
 sorl-thumbnail==11.12.1b
 sqlparse==0.1.13
-wiki==0.0.24dev
+git+git://github.com/django-wiki/django-wiki.git
 wsgiref==0.1.2
 xlrd==0.9.3
 xlutils==1.7.1
