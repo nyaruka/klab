@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^content/', include('django_quickblocks.urls')),
     url(r'^users/', include('smartmin.users.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^notifications/', get_notify_pattern()),
+    (r'^notify/', get_notify_pattern()),
     (r'^wiki/', get_wiki_pattern())
 )
 
