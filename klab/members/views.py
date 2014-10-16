@@ -2,7 +2,7 @@ from .models import *
 from smartmin.views import *
 from django.conf import settings
 from django.contrib.auth.models import User, Group
-from klab.projects.models import *
+from projects.models import *
 import random
 import string
 from django import forms

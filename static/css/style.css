@@ -1088,10 +1088,10 @@ h3 a , h3 a:hover {
 
 #likebox {
     float:right;
-    width:320px;
-    height:130px;
-    padding:15px 8px;
-    background-color:rgba(255,255,255,.7);
+    width:305px;
+    height:110px;
+    padding:10px 5px;
+    background-color:rgba(255,255,255,.8);
 }
 
 .byline {

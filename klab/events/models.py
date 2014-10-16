@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings
 from smartmin.models import SmartModel
 
-from klab import flickr
+import flickr
 from datetime import datetime, timedelta
 
 class Event(SmartModel):

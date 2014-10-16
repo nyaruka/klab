@@ -1,6 +1,8 @@
 {% extends "public_base.html" %}
 
+{% load markup %}
 {% load thumbnail %}
+
 
 {% block javascript %}
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -95,7 +97,7 @@
           <div style="clear: both;"></div>
 
           <div class="post_body">
-            {{post.teaser|safe}} <a href="{% url 'public_post' post.id %}">Read more</a>
+            {{post.teaser|markdown:"nl2br"}} <a href="{% url 'public_post' post.id %}">Read more</a>
             <span style="float:right;"><fb:comments-count href="http://www.klab.rw{% url 'public_post' post.id %}"/></fb:comments-count> comment(s) </span>
           </div>
 

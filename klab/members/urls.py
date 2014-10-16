@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls.defaults import patterns, include, url
 from .views import *
 
 activation = MemberCRUDL().view_for_action('activate').as_view()

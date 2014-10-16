@@ -1,4 +1,4 @@
-from klab import flickr
+import flickr
 
 from django.db import models
 from smartmin.models import SmartModel

@@ -9,40 +9,36 @@
 
 {% block extra-style %}
 <style>
-  
+
 .modal-toggle {
-  font-size: 20px; 
-  font-family: Homenaje, sans-serif; 
-  color:#088eec; 
+  font-size: 20px;
+  font-family: Homenaje, sans-serif;
+  color:#088eec;
   text-decoration:none;
   }
 
 .modal-own {
-  width:auto; 
+  width:auto;
   background-color: #e3e4e4;
   padding: 0 10px 10px 10px;
 }
 
-.modal-body {
-    min-height: 320px;;
-}
-
-.person-photo {
-  width: 150px; 
+.modal-photo {
+  width: 150px;
   float: left;
 }
 
-.person-words {
-  width: 650px; 
+.modal-words {
+  width: 650px;
   float: right
 }
 
-.person-words-content {
+.modal-content {
  font-size: 15px;
 }
 
-.person-words-title {
-  font-size: 25px; 
+.modal-title {
+  font-size: 25px;
   padding: 10px 0px;
 }
 
@@ -50,7 +46,7 @@
   padding: 7px 30px;
 }
 
-</style>  
+</style>
 
 {% endblock %}
 
@@ -62,6 +58,7 @@
 {% load_qbs "friends_of_klab" %}
 {% load_qbs "founding_members" %}
 
+{% load markup %}
 
 <div id="all_about_us">
 
@@ -71,9 +68,9 @@
       <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|safe}}
+      {{text.content|markdown:"nl2br"}}
     </div>
-  </div>  
+  </div>
   <div style="clear: both;"></div>
   {% endfor %}
 
@@ -83,9 +80,9 @@
       <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|safe}}
+      {{text.content|markdown:"nl2br"}}
     </div>
-  </div>  
+  </div>
   <div style="clear: both;"></div>
   {% endfor %}
 
@@ -95,13 +92,13 @@
       <span>{{address.title}}</span>
     </div>
     <div class="about_details">
-      {{address.content|safe}}
+      {{address.content|markdown:"nl2br"}}
     </div>
-  </div>  
+  </div>
   <div style="clear: both;"></div>
   {% endfor %}
 
-  
+
   <div class="about_group">
     <div class="questions">
       {% with founding_members|first as founder %}
@@ -111,11 +108,11 @@
     <div class="about_details">
       <table>
 	<tbody>
-	  
+
 	  {% for person in founding_members %}
           {% if forloop.counter0|divisibleby:"3" %}
           <tr>
-	  {% endif %}  
+	  {% endif %}
 	  <td class="modal-cell">
 	    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
 	      <div style="padding:5px">
@@ -128,45 +125,40 @@
 	      </div>
 	    </a>
 
-          <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                      <div class="modal-body">
+	    <div id="myModal-{{person.pk}}" class="modal hide fade modal-own" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-body">
 
-                        <div class="person-photo">
-                            {% thumbnail person.image "120x140" crop="center" as im %}
-                                <img  src="{{im.url}}" />
-                            {% endthumbnail %}
-                        </div>
+		<div class="modal-photo">
+		  {% thumbnail person.image "120x140" crop="center" as im %}
+		  <img  src="{{im.url}}" />
+		  {% endthumbnail %}
+		</div>
 
-                        <div class="person-words">
-                            <div class="person-words-title">
-                                {{ person.title }}
-                            </div>
-                            <div class="person-words-content">
-                                {{ person.content }}
-                            </div>
-                        </div>
+		<div class="modal-words">
+		  <div class="modal-title">
+		    {{ person.title }}
+		  </div>
+		  <div class="modal-content">
+		    {{ person.content }}
+		  </div>
+		</div>
 
-                      </div>
+	      </div>
+	    </div>
 
-                  </div>
-              </div>
-          </div>
-	    	   
 	  </td>
-	  
+
 	  {% if forloop.counter|divisibleby:"3" %}
 	  </tr>
 	  {% endif %}
-	  
+
 	{% endfor %}
 	</tbody>
       </table>
-      
+
     </div>
   </div>
-</div>  
+</div>
 <div style="clear: both;"></div>
 
 <div class="about_group">
@@ -180,11 +172,10 @@
     <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
     {% endfor %}
   </div>
-  </div>  
+  </div>
   <div style="clear: both;"></div>
-  
-  
+
+
 </div>
 
 {% endblock main-contents %}
-

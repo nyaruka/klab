@@ -9,20 +9,20 @@
 <div id="pjax" id="read-view">
   {% if perms.members.application_update %}
   <div class="row">
-    <div class="col-md-12 buttons">
+    <div class="span12 buttons">
       <a class="btn btn-primary pull-right" href="{% url 'members.application_update' object.id %}">edit</a>
     </div>
   </div>
   {% endif %}
 
   <div class="row">
-    <div class="col-md-2">
+    <div class="span2">
       {% thumbnail object.picture "120x170" crop="center" as img %}
       <img src="{{ img.url }}" />
       {% endthumbnail %}
       <br/>      <br/>
     </div>
-    <div class="col-md-10">
+    <div class="span10">
       <table class="table">
         <tbody>
           <tr>
@@ -51,7 +51,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="span12">
       {% block pre-fields %}
       {% endblock pre-fields %}
 

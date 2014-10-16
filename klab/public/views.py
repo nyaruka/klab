@@ -1,12 +1,12 @@
-from klab import flickr
+import flickr
 from datetime import datetime
 
 from models import *
-from klab.blog.models import Post
-from klab.events.models import Event, Video
-from klab.projects.models import Project
-from klab.members.models import Member
-from klab.opportunities.models import Opportunity
+from blog.models import Post
+from events.models import Event, Video
+from projects.models import Project
+from members.models import Member
+from opportunities.models import Opportunity
 
 from django import forms
 from django.conf import settings

@@ -2,8 +2,8 @@ from .models import *
 from smartmin.views import *
 from django.conf import settings
 from django.contrib.auth.models import User, Group
-from klab.members.models import *
-from klab.members.views import MemberPermsMixin
+from members.models import *
+from members.views import MemberPermsMixin
 
 class ProjectCRUDL(SmartCRUDL):
     model = Project
