@@ -1,12 +1,12 @@
-Django
-PIL==1.1.7
+Django==1.5.1
+Pillow
 South
 django-compressor==1.1.2
 django-guardian
 django-nose==1.0
 django-pagination==1.0.7
--e git+https://github.com/nyaruka/django-quickblocks.git#egg=django-quickblocks
-flickrapi==1.4.2
+-e git+https://github.com/nyaruka/django-quickblocks.git@054acd14c665ecaaf93a573cf7d35b8ab9f867d6#egg=django-quickblocks
+flickrapi==1.4.4
 coverage==3.5.1
 django-debug-toolbar
 -e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-dev
@@ -16,5 +16,6 @@ pytz
 Markdown
 sentry
 nose
-wiki
+wiki==0.0.22
 mysql-python
+django-mptt==0.6.0
