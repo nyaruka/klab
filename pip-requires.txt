@@ -1,6 +1,6 @@
 Django==1.5.1
 Pillow
-South
+South==0.8.4
 django-compressor==1.1.2
 django-guardian
 django-nose==1.0
