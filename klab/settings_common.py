@@ -227,7 +227,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.markup',
     'django.contrib.humanize',
 
     # error logging
@@ -235,14 +234,13 @@ INSTALLED_APPS = (
 
     # necessary apps
     'nose',
-    'south',
     'guardian',
     'smartmin',
     'compressor',
     'sorl.thumbnail',
     'pagination',
     'django_quickblocks',
-    'django_notify',
+    'django_nyt',
     'mptt',
     'sekizai',
 
@@ -250,17 +248,18 @@ INSTALLED_APPS = (
     'wiki.plugins.attachments',
     'wiki.plugins.notifications',
     'wiki.plugins.images',
+    'wiki.plugins.macros',
 
     # smartmin users app
     'smartmin.users',
 
     # project's apps
-    'blog',
-    'events',
-    'public',
-    'members',
-    'projects',
-    'opportunities',
+    'klab.blog',
+    'klab.events',
+    'klab.public',
+    'klab.members',
+    'klab.projects',
+    'klab.opportunities',
 )
 
 # cache

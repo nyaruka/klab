@@ -1,21 +1,21 @@
 {% extends "smartmin/create.html" %}
 
-{% load quickblocks markup thumbnail %}
+{% load quickblocks thumbnail %}
 
 {% block pre-content %}
 <div class="row" style="padding-top: 20px">
- <div class="span8">
+ <div class="col-md-8">
 
    {% load_qbs "application_headers" %}
    {% for header in application_headers %}
    <div class="title">{{ header.title }}</div>
    <p>
-     {{ header.content|markdown:"nl2br" }}
+     {{ header.content|safe }}
    </p>
    {% endfor %}
  </div>
 
- <div class="span4">
+ <div class="col-md-4">
    {% for header in application_headers %}
    {% if forloop.first %}
    {% thumbnail header.image "290x400" crop="center" as img %}
@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <div>&nbsp;</div>
     <div class="page-header"></div>
   </div>

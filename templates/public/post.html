@@ -1,7 +1,7 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
-{% load markup %}
+
 {% block title %} kLab - {{post.title}} {% endblock %}
 
 {% block inbody-script %}
@@ -57,7 +57,7 @@
         <div style="clear: both;"></div>          
         
         <div class="post_body">
-          {{post.body|markdown:"nl2br"}}
+          {{post.body|safe}}
 
         </div>
 

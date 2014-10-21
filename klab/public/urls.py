@@ -1,6 +1,6 @@
 from .views import home, blog, post, events, event, aboutus, projects,members,member, project, contact, opportunities
 
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 
 
 urlpatterns = patterns('',
