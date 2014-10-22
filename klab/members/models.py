@@ -81,6 +81,8 @@ class Member(SmartModel):
     
     token = models.CharField(max_length=32, unique=True, help_text="token used to activate account")
 
+    is_alumni = models.BooleanField(default=False, help_text="Member has became an Alumni")
+
     def update_member_picture(self):
         pic = self.application.picture
 
@@ -95,6 +97,10 @@ class Member(SmartModel):
             self.save()
 
             os.unlink(tmp_name)
+
+    def change_is_alumni(self):
+        self.is_alumni = not self.is_alumni
+        self.save()
 
     def get_password(self):
         return user.password

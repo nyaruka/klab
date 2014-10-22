@@ -87,8 +87,8 @@ class ApplicationCRUDL(SmartCRUDL):
             if member:
                 return '<a class="btn btn-large btn-success disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
             else:
-                 
-                return '<a class="btn btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
+
+                return '<a class="btn btn-default btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
 
 
         def get_name(self, obj):
@@ -182,8 +182,17 @@ class ApplicationCRUDL(SmartCRUDL):
 
 class MemberCRUDL(SmartCRUDL):
     model = Member
-    actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate')
+    actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate', 'alumni')
     permissions = True
+
+    class Alumni(SmartUpdateView):
+        fields = ('id',)
+        success_url = '@members.member_list'
+
+        def pre_save(self, obj):
+            obj = super(MemberCRUDL.Alumni, self).get_object()
+            obj.change_is_alumni()
+            return obj
 
     class Activate(SmartUpdateView):
         form_class = MemberForm
@@ -232,13 +241,23 @@ class MemberCRUDL(SmartCRUDL):
             return obj.application.get_applying_for_display()
 
     class List(SmartListView):
-        fields = ('name','email','phone','country','city',)
-        field_config = { 'email': dict(label="Email / User") }
+        fields = ('name', 'change_alumni', 'email','phone','country','city', 'is_alumni')
+        field_config = { 'email': dict(label="Email / User"), 'is_alumni' : dict(label="Alumni") }
         search_fields = ('first_name__icontains', 'last_name__icontains')
 
         def derive_queryset(self, **kwargs):
             queryset = super(MemberCRUDL.List, self).derive_queryset(**kwargs)
             return queryset.filter(is_active=True)
+
+        def get_is_alumni(self, obj):
+            if obj.is_alumni:
+                return "Yes"
+            return "No"
+
+        def get_change_alumni(self, obj):
+            if obj.is_alumni:
+                return '<a class="btn btn-warning posterize" href="%s">Remove from alumni</a>' % reverse('members.member_alumni', args=[obj.id])
+            return '<a class="btn btn-info posterize" href="%s">Add to alumni</a>' % reverse('members.member_alumni', args=[obj.id])
 
         def get_name(self, obj):
             return "%s %s" % (obj.first_name, obj.last_name)
