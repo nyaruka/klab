@@ -1,6 +1,5 @@
 {% extends "public_base.html" %}
 
-{% load markup %}
 {% load thumbnail %}
 
 
@@ -97,7 +96,7 @@
           <div style="clear: both;"></div>
 
           <div class="post_body">
-            {{post.teaser|markdown:"nl2br"}} <a href="{% url 'public_post' post.id %}">Read more</a>
+            {{post.teaser|safe}} <a href="{% url 'public_post' post.id %}">Read more</a>
             <span style="float:right;"><fb:comments-count href="http://www.klab.rw{% url 'public_post' post.id %}"/></fb:comments-count> comment(s) </span>
           </div>
 

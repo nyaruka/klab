@@ -2,7 +2,6 @@
 
 {% load thumbnail %}
 {% load pagination_tags %}
-{% load markup %}
 
 {% block main-contents %}
 
@@ -36,7 +35,7 @@
         <div style="clear: both;"></div>          
 
         <div class="post_body">
-          {{post.body|markdown:"nl2br"}}
+          {{post.body|safe }}
         </div>
       </div>
       

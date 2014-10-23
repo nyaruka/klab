@@ -1,12 +1,12 @@
-import flickr
+from klab import flickr
 from datetime import datetime
 
 from models import *
-from blog.models import Post
-from events.models import Event, Video
-from projects.models import Project
-from members.models import Member
-from opportunities.models import Opportunity
+from klab.blog.models import Post
+from klab.events.models import Event, Video
+from klab.projects.models import Project
+from klab.members.models import Member
+from klab.opportunities.models import Opportunity
 
 from django import forms
 from django.conf import settings
@@ -119,11 +119,13 @@ def project(request, project_id):
 def members(request, member_type):
 
     if member_type == "mentors":
-        members = Member.objects.filter(is_active=True,membership_type="B")
+        members = Member.objects.filter(is_active=True,membership_type="B", is_alumni=False)
     elif member_type == "tenants":
-        members = Member.objects.filter(is_active=True,membership_type="G")
+        members = Member.objects.filter(is_active=True,membership_type="G", is_alumni=False)
+    elif member_type == "alumni":
+        members = Member.objects.filter(is_active=True, is_alumni=True).order_by('membership_type')
     else:
-        members = Member.objects.filter(is_active=True).order_by('membership_type')
+        members = Member.objects.filter(is_active=True, is_alumni=False).order_by('membership_type')
         
     search = request.REQUEST.get("search",None)
     if search:

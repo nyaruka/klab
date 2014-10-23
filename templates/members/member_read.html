@@ -9,20 +9,20 @@
 <div id="pjax" id="read-view">
   {% if perms.members.member_update %}
   <div class="row">
-    <div class="span12 buttons">
+    <div class="col-md-12 buttons">
       <a class="btn btn-primary pull-right" href="{% url 'members.member_update' object.id %}">edit</a>
     </div>
   </div>
   {% endif %}
 
   <div class="row">
-    <div class="span2">
+    <div class="col-md-2">
       {% thumbnail object.picture "120x170" crop="center" as img %}
       <img src="{{ img.url }}" />
       {% endthumbnail %}
       <br/>      <br/>
     </div>
-    <div class="span10">
+    <div class="col-md-10">
       <table class="table">
         <tbody>
           <tr>
