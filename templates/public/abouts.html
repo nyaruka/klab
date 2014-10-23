@@ -65,129 +65,523 @@
 {% load_qbs "what_we_do" %}
 {% load_qbs "physical_address" %}
 {% load_qbs "friends_of_klab" %}
-{% load_qbs "founding_members" %}
+{% load_qbs "board_members" %}
+{% load_qbs "general_managers" %}
 
 
 <div id="all_about_us">
 
-  {% for text in who_are_we %}
-  <div class="about_group">
+{% if who_are_we %}
+{% for text in who_are_we %}
+<div class="about_group">
     <div class="questions">
-      <span>{{text.title}}</span>
+        <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|safe}}
+        {{text.content|safe}}
     </div>
-  </div>
-  <div style="clear: both;"></div>
-  {% endfor %}
+</div>
+<div style="clear: both;"></div>
+{% endfor %}
+{% endif %}
 
-  {% for text in what_we_do %}
-  <div class="about_group">
+{% if what_we_do %}
+{% for text in what_we_do %}
+<div class="about_group">
     <div class="questions">
-      <span>{{text.title}}</span>
+        <span>{{text.title}}</span>
     </div>
     <div class="about_details">
-      {{text.content|safe}}
+        {{text.content|safe}}
     </div>
-  </div>
-  <div style="clear: both;"></div>
-  {% endfor %}
+</div>
+<div style="clear: both;"></div>
+{% endfor %}
+{% endif %}
 
-  {% for address in physical_address %}
-  <div class="about_group">
+{% if physical_address %}
+{% for address in physical_address %}
+<div class="about_group">
     <div class="questions">
-      <span>{{address.title}}</span>
+        <span>{{address.title}}</span>
     </div>
     <div class="about_details">
-      {{address.content|safe}}
+        {{address.content|safe}}
     </div>
-  </div>
-  <div style="clear: both;"></div>
-  {% endfor %}
+</div>
+<div style="clear: both;"></div>
+{% endfor %}
+{% endif %}
 
+<div class="about_group">
+<div class="questions">
+    <span>Founding members</span>
+</div>
+<div class="about_details">
+<table>
+<tbody>
+<tr>
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-c_uwajeneza" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/c_uwajeneza150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Clement UWAJENEZA
+            </div>
+        </a>
 
-  <div class="about_group">
-    <div class="questions">
-      {% with founding_members|first as founder %}
-      <span>{{founder.quickblock_type.name}}</span>
-      {% endwith %}
-    </div>
-    <div class="about_details">
-      <table>
-	<tbody>
-
-	  {% for person in founding_members %}
-          {% if forloop.counter0|divisibleby:"3" %}
-          <tr>
-	  {% endif %}
-	  <td class="modal-cell">
-	    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
-	      <div style="padding:5px">
-		{% thumbnail person.image "150x150" crop="center" as im %}
-		<img  src="{{im.url}}" />
-		{% endthumbnail %}
-	      </div>
-	      <div style="padding-left: 5px;">
-		{{person.title}}
-	      </div>
-	    </a>
-
-          <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                      <div class="modal-body">
+        <div id="myModal-c_uwajeneza" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
 
                         <div class="person-photo">
-                            {% thumbnail person.image "120x140" crop="center" as im %}
-                                <img  src="{{im.url}}" />
-                            {% endthumbnail %}
+                            <img  src="{{ STATIC_URL }}images/c_uwajeneza120.jpg" />
                         </div>
 
                         <div class="person-words">
                             <div class="person-words-title">
-                                {{ person.title }}
+                                Clement UWAJENEZA
                             </div>
                             <div class="person-words-content">
-                                {{ person.content }}
+                                Clement Uwajeneza is the President of the Rwanda Software Developers Association is the Founder and Managing Director at AxIS, a software development company, since 2006. Clement has build an extensive experience in software projects management and innovation based enterprise management. Clement has a Master's degree in Computer Sciences and Management.
                             </div>
                         </div>
 
-                      </div>
+                    </div>
 
-                  </div>
-              </div>
-          </div>
+                </div>
+            </div>
+        </div>
 
-	  </td>
+    </td>
 
-	  {% if forloop.counter|divisibleby:"3" %}
-	  </tr>
-	  {% endif %}
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-p_kabagema" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/p_kabagema150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Patrick KABAGEMA
+            </div>
+        </a>
 
-	{% endfor %}
-	</tbody>
-      </table>
+        <div id="myModal-p_kabagema" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
 
-    </div>
-  </div>
+                        <div class="person-photo">
+                            <img  src="{{ STATIC_URL }}images/p_kabagema120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Patrick KABAGEMA
+                            </div>
+                            <div class="person-words-content">
+                                Patrick is very active in the ICT industry in Rwanda where he holds senior positions such as Chairman of the ICT Chamber, Chairman of RICTA (Rwanda ICT Association), Board Member of the Private Sector Federation and Cluster Leader on the National ICT Strategy planning committee (NICI III). He is the Managing Director Rock Global Consulting (RGC), an ICT company operating in Rwanda, Burundi, and Democratic Republic of Congo. Prior to joining RGC, he was Technology Lead in the Global IT Operations Department of Air Products & Chemical in Pennsylvania USA. He holds a dual Bachelor degrees in Computer Science and International Studies from Muhlenberg College in Pennsylvania. He looks forward to mentor the next generation of ICT entrepreneurs and provide early seed capital to the most promising venture.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-m_bezy" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/m_bezy150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Michel BEZY
+            </div>
+        </a>
+
+        <div id="myModal-m_bezy" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+                            <img  src="{{ STATIC_URL }}images/m_bezy120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Michel BEZY
+                            </div>
+                            <div class="person-words-content">
+                                Michel Bézy is Distinguished Service Professor in the Department of Engineering & Public Policy - School of Engineering at Carnegie Mellon University in Pittsburgh. Dr Bézy is currently the Associate Director of Carnegie Mellon University in Rwanda, a graduate engineering program announced in 2011. Dr Bézy has more than two decades of experience in developing business strategy for market introduction of software technology at IBM. He has been working with senior executives in enterprises to help them understand the value of emerging technology for their business. For three years, he was the CEO of a library automation software company based in Europe and delivering solutions to more than one hundred large corporations in the world. Dr Bézy has a degree of Engineering in Applied Mathematics from the Université Catholique of Louvain in Belgium, a Master Degree in Sciences from Carnegie Mellon University in Pittsburgh, USA and a Ph.D. in Applied Mechanics from the Université Catholique of Louvain.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+</tr>
+
+<tr>
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-a_yamanaka" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/a_yamanaka150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Atsushi YAMANAKA
+            </div>
+        </a>
+
+        <div id="myModal-a_yamanaka" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+                            <img  src="{{ STATIC_URL }}images/a_yamanaka120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Atsushi YAMANAKA
+                            </div>
+                            <div class="person-words-content">
+                                Atsushi Yamanaka is the National ICT Strategy & Policy Implementation Advisor at Rwanda Development Board ICT department (RDB-ICT). He is sponsored by Japan International Cooperation Agency (JICA). He has been supporting Rwanda's strategic vision of becoming Information rich Knowledge based economy to achieve Vision2020 goals for the past 2 years. In 2010-2011, he has facilitated the formulation of the 3rd National ICTStrategy & Policy (NICI: 2011-2015). Atsushi has more then 17 years of experiences in supporting the ICT for Development initiatives and providing policy advisory services in the developing countries. He has worked in different organizations that include UN and other international organizations, private sector, and Civil societies. His services have rendered improved business processes and developmental results in more then 100 country offices in 5 regions and their public and private sector clients. He has also hands-on experiences in supporting ICT private sector development in the Asia Pacific region. Atsushi earned M.A in the International Political Economy with concentration in the International Economic Policy (specialized in Telecom for Development and Science & Technology Policy) at the American University.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-e_magambo" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/e_magambo150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Elie GATETE MAGAMBO
+            </div>
+        </a>
+
+        <div id="myModal-e_magambo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+
+
+                            <img  src="{{ STATIC_URL }}images/e_magambo120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Elie GATETE MAGAMBO
+                            </div>
+                            <div class="person-words-content">
+                                Elie Gatete Magambo,known as Tim,is a passionate software developer who freelances in web and standalone apps. He is mostly interested in learning and teaching new software development technologies. He co-founded CODEPAC,which is a community based non profit organization with the aims of sharing techy knowledge among its members who believe that learning about computers should be fun rather than just a major in education. He graduated from National University Rwanda,majoring in Computer Science and attended E-health Software Development and Implementation program which is a partnership between E-health for excellence and Partner In Health where he has got experience in writing and testing e-health softwares. He is an aggressive basketball player and a heavy gamer.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-n_pottier" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/n_pottier150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Nicolas POTTIER
+            </div>
+        </a>
+
+        <div id="myModal-n_pottier" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+                            <img  src="{{ STATIC_URL }}images/n_pottier120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Nicolas POTTIER
+                            </div>
+                            <div class="person-words-content">
+                                Nicolas Pottier is the President and CEO of Nyaruka Limited, a Rwandan software company specializing in SMS data collection services. His previous work includes building patented algorithms to rank customer reviews at Amazon.com and improve search results for Medio Systems. Most recently, Nicolas cofounded Trileet Inc, which published top selling mobile applications across four different smartphone platforms. His background spans from building software run on thousands of servers to writing clients for mobile phones. Nicolas attended Carnegie Mellon University majoring in Computer Science and Physics. He is looking forward to bringing his passion for open source software, development methodologies and online teaching methods to the kLab community.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+</tr>
+
+<tr>
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-c_migisha" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/c_migisha150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Claude MIGISHA K.
+            </div>
+        </a>
+
+        <div id="myModal-c_migisha" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+                            <img  src="{{ STATIC_URL }}images/c_migisha120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Claude MIGISHA K.
+                            </div>
+                            <div class="person-words-content">
+                                Claude Migisha K. is a Technologist holding a BSc in Computer Science with over 5 years of experience in the areas of ICTs and sustainable development (ICT4D) as well as ICT innovations for economic and human development. Claude has worked in the area of Data Management, mHealth and using ICTs to promote maternal and child health (MDGs 4 and 5) with organizations such as Jhpiego (An affiliate to John Hopkins University) and World Relief. He is the Founding Manager of kLab (The 1st Tech Innovation Hub in Rwanda) and implementer of THINK (The 1st Tech Incubator in Rwanda), a $1 million Tech Incubator owned by Millicom Group created to support the development of new digital solutions in Africa. Claude is an international ICT4D events speaker, a 2009 ITU World Fellow and 2011 ITU Global Digital Innovator. He is a Unesco Chair Fellow in Human rights and the current Curator of The Global Shapers - Kigali Hub, an offshoot of the World Economic Forum. Claude is an active member of the Africa ICTs for Development Researchers Network and Amateur Photographer based in Kigali, Rwanda.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+
+    <td class="modal-cell">
+        <a data-toggle="modal" href="#myModal-m_mwizerwa" role="button" class="modal-toggle">
+            <div style="padding:5px">
+                <img  src="{{ STATIC_URL }}images/m_mwizerwa150.jpg" />
+            </div>
+            <div style="padding-left: 5px;">
+                Martin C. MWIZERWA
+            </div>
+        </a>
+
+        <div id="myModal-m_mwizerwa" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="person-photo">
+
+
+                            <img  src="{{STATIC_URL}}images/m_mwizerwa120.jpg" />
+                        </div>
+
+                        <div class="person-words">
+                            <div class="person-words-title">
+                                Martin C. MWIZERWA
+                            </div>
+                            <div class="person-words-content">
+                                Martin .C. Mwizerwa is the Acting Director of kLab. He is the Head of Planning in the Information and Communications Department at Rwanda Development Board. Martin is also the Head of the Mobile Solutions Cluster one of the 6 IT industry clusters. Martin is passionate about seeing Rwanda transform into a dynamic global hub for business, investment, and innovation. He has provided support and guidance to several ICT start-ups and several of them have turned out to be sustainable businesses. Prior to joining RDB, Martin lectured at the National University of Rwanda. Martin holds a Bachelor’s degree and a Master’s degree with over 7 years’ experience in the areas of Strategic Planning & Marketing Martin initiated and coordinated the development of the Third installment of the National ICT Strategy 2015 (NICI III) and is currently working on the second phase of the National ICT strategy.
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </td>
+
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <div style="clear: both;"></div>
 
-<div class="about_group">
-  <div class="questions">
-    {% with friends_of_klab|first as friend %}
-    <span>{{friend.quickblock_type.name}}</span>
-    {% endwith %}
-    </div>
-  <div class="about_details">
-    {% for logo in friends_of_klab %}
-    <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
-    {% endfor %}
-  </div>
-  </div>
-  <div style="clear: both;"></div>
+{% if board_members %}
 
+<div class="about_group">
+    <div class="questions">
+        {% with board_members|first as board_member %}
+        <span>{{board_member.quickblock_type.name}}</span>
+        {% endwith %}
+    </div>
+    <div class="about_details">
+        <table>
+            <tbody>
+
+            {% for person in board_members %}
+            {% if forloop.counter0|divisibleby:"3" %}
+            <tr>
+                {% endif %}
+                <td class="modal-cell">
+                    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
+                        <div style="padding:5px">
+                            {% thumbnail person.image "150x150" crop="center" as im %}
+                            <img  src="{{im.url}}" />
+                            {% endthumbnail %}
+                        </div>
+                        <div style="padding-left: 5px;">
+                            {{person.title}}
+                        </div>
+                    </a>
+
+                    <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-body">
+
+                                    <div class="person-photo">
+                                        {% thumbnail person.image "120x140" crop="center" as im %}
+                                        <img  src="{{im.url}}" />
+                                        {% endthumbnail %}
+                                    </div>
+
+                                    <div class="person-words">
+                                        <div class="person-words-title">
+                                            {{ person.title }}
+                                        </div>
+                                        <div class="person-words-content">
+                                            {{ person.content }}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                {% if forloop.counter|divisibleby:"3" %}
+            </tr>
+            {% endif %}
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+<div style="clear: both;"></div>
+{% endif %}
+
+{% if general_managers %}
+
+<div class="about_group">
+    <div class="questions">
+        {% with general_managers|first as manager %}
+        <span>{{ manager.quickblock_type.name}}</span>
+        {% endwith %}
+    </div>
+    <div class="about_details">
+        <table>
+            <tbody>
+
+            {% for person in general_managers %}
+            {% if forloop.counter0|divisibleby:"3" %}
+            <tr>
+                {% endif %}
+                <td class="modal-cell">
+                    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
+                        <div style="padding:5px">
+                            {% thumbnail person.image "150x150" crop="center" as im %}
+                            <img  src="{{im.url}}" />
+                            {% endthumbnail %}
+                        </div>
+                        <div style="padding-left: 5px;">
+                            {{person.title}}
+                        </div>
+                    </a>
+
+                    <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-body">
+
+                                    <div class="person-photo">
+                                        {% thumbnail person.image "120x140" crop="center" as im %}
+                                        <img  src="{{im.url}}" />
+                                        {% endthumbnail %}
+                                    </div>
+
+                                    <div class="person-words">
+                                        <div class="person-words-title">
+                                            {{ person.title }}
+                                        </div>
+                                        <div class="person-words-content">
+                                            {{ person.content }}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                {% if forloop.counter|divisibleby:"3" %}
+            </tr>
+            {% endif %}
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+<div style="clear: both;"></div>
+
+{% endif %}
+
+{% if friends_of_klab %}
+<div class="about_group">
+    <div class="questions">
+        {% with friends_of_klab|first as friend %}
+        <span>{{friend.quickblock_type.name}}</span>
+        {% endwith %}
+    </div>
+    <div class="about_details">
+        {% for logo in friends_of_klab %}
+        <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+        {% endfor %}
+    </div>
+</div>
+<div style="clear: both;"></div>
+{% endif %}
 
 </div>
 
