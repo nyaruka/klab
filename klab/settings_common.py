@@ -135,7 +135,7 @@ PERMISSIONS = {
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
   'members.application': ('csv', ),
-  'members.member' : ('myprofile', 'new'),
+  'members.member' : ('myprofile', 'new', 'alumni'),
   'projects.project' : ('shortlist',),
 }
 
@@ -154,6 +154,7 @@ GROUP_PERMISSIONS = {
                       'members.member_delete',
                       'members.member_list',
                       'members.member_new',
+                      'members.member_alumni',
                       'opportunities.opportunity.*',
                       ),
     "Editors": ('events.event.*', 
@@ -168,6 +169,7 @@ GROUP_PERMISSIONS = {
                 'members.member_delete',
                 'members.member_list',
                 'members.member_new',
+                'members.member_alumni',
                 'opportunities.opportunity.*',
                 ),
 
