@@ -518,7 +518,7 @@
                             {% endthumbnail %}
                         </div>
                         <div style="padding-left: 5px;">
-                            {{person.title}}
+                            {{person.title}}({{ person.created_on|date:'Y' }})
                         </div>
                     </a>
 
@@ -535,7 +535,7 @@
 
                                     <div class="person-words">
                                         <div class="person-words-title">
-                                            {{ person.title }}
+                                            {{ person.title }}({{ person.created_on|date:'Y' }})
                                         </div>
                                         <div class="person-words-content">
                                             {{ person.content }}
