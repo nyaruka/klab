@@ -10,11 +10,6 @@
 {% block extra-style %}
 <style>
 
-
-    .modal-dialog {
-        left: 0;
-    }
-
     .modal-toggle {
         font-size: 20px;
         font-family: Homenaje, sans-serif;
@@ -29,7 +24,8 @@
     }
 
     .modal-body {
-        min-height: 320px;;
+        min-height: 320px;
+        background-color: #e3e4e4;
     }
 
     .person-photo {
@@ -126,7 +122,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/c_uwajeneza150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Clement UWAJENEZA
             </div>
         </a>
@@ -162,7 +158,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/p_kabagema150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Patrick KABAGEMA
             </div>
         </a>
@@ -198,7 +194,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/m_bezy150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Michel BEZY
             </div>
         </a>
@@ -236,7 +232,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/a_yamanaka150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Atsushi YAMANAKA
             </div>
         </a>
@@ -272,7 +268,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/e_magambo150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Elie GATETE MAGAMBO
             </div>
         </a>
@@ -310,7 +306,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/n_pottier150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Nicolas POTTIER
             </div>
         </a>
@@ -348,7 +344,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/c_migisha150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Claude MIGISHA K.
             </div>
         </a>
@@ -384,7 +380,7 @@
             <div style="padding:5px">
                 <img  src="{{ STATIC_URL }}images/m_mwizerwa150.jpg" />
             </div>
-            <div style="padding-left: 5px;">
+            <div style="padding-left: 4px;">
                 Martin C. MWIZERWA
             </div>
         </a>
@@ -448,7 +444,7 @@
                             <img  src="{{im.url}}" />
                             {% endthumbnail %}
                         </div>
-                        <div style="padding-left: 5px;">
+                        <div style="padding-left: 4px;">
                             {{person.title}}
                         </div>
                     </a>
@@ -517,7 +513,7 @@
                             <img  src="{{im.url}}" />
                             {% endthumbnail %}
                         </div>
-                        <div style="padding-left: 5px;">
+                        <div style="padding-left: 4px;">
                             {{person.title}}({{ person.created_on|date:'Y' }})
                         </div>
                     </a>

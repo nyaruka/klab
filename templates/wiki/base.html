@@ -2,6 +2,11 @@
 
 {% load sekizai_tags i18n %}{% load url from future %}<!DOCTYPE html>
 
+{% block main-styles %}
+<link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.min.css" rel="stylesheet">
+{{ block.super }}
+{% endblock main-styles %}
+
 {% block extra-style %}
   {{ block.super }}
     <!-- TODO: Put all this stuff in Less -->
