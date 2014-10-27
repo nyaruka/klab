@@ -469,7 +469,7 @@
                                             {{ person.title }}
                                         </div>
                                         <div class="person-words-content">
-                                            {{ person.content }}
+                                            {{ person.content|safe }}
                                         </div>
                                     </div>
 
@@ -538,7 +538,7 @@
                                             {{ person.title }}({{ person.created_on|date:'Y' }})
                                         </div>
                                         <div class="person-words-content">
-                                            {{ person.content }}
+                                            {{ person.content|safe }}
                                         </div>
                                     </div>
 
