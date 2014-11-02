@@ -21,7 +21,8 @@ class Application(SmartModel):
 
     MEMBERSHIP_TYPES = (
         ('G', "Green - kLab Tenant"),
-        ('B', "Blue - kLab Mentor")
+        ('B', "Blue - kLab Mentor"),
+        ('R', "Red - kLab Core Team")
     )
 
     FREQUENCY_TYPES = (
@@ -57,7 +58,8 @@ class Member(SmartModel):
 
     MEMBERSHIP_TYPES = (
         ('G', "Green - kLab Tenant"),
-        ('B', "Blue - kLab Mentor")
+        ('B', "Blue - kLab Mentor"),
+        ('R', "Red - kLab Core Team")
     )
      
     

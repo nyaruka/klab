@@ -118,7 +118,9 @@ def project(request, project_id):
     
 def members(request, member_type):
 
-    if member_type == "mentors":
+    if member_type == "core":
+        members = Member.objects.filter(is_active=True,membership_type="R", is_alumni=False)
+    elif member_type == "mentors":
         members = Member.objects.filter(is_active=True,membership_type="B", is_alumni=False)
     elif member_type == "tenants":
         members = Member.objects.filter(is_active=True,membership_type="G", is_alumni=False)
