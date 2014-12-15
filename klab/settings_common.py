@@ -304,3 +304,5 @@ LOGGING = {
         },
     }
 }
+
+WIKI_ACCOUNT_SIGNUP_ALLOWED = False
