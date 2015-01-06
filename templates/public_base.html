@@ -117,8 +117,9 @@
         kLab	© 2012	Copyright. All rights reserved.  
         <span class="login">
           {% if perms.members.application_list %}
-          <a href="{% url 'members.application_list' %}">Admin</a>        
-          
+          <a href="{% url 'members.application_list' %}">Admin</a>
+          {% elif perms.events.event_list %}
+          <a href="{% url 'events.event_list' %}">Admin</a>
           {% endif %}
         </span>
         <span><a href="http://www.nyaruka.com"><img border="0" src="{{STATIC_URL}}images/nyaruka_footer.png" style="float: right;" /></a></span>
