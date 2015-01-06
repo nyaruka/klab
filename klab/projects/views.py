@@ -30,7 +30,7 @@ class ProjectCRUDL(SmartCRUDL):
             return str(obj)
 
         def get_owner(self, obj):
-            return str(obj.owner)
+            return "%s %s" % (obj.owner.first_name, obj.owner.last_name)
 
         def get_context_data(self, **kwargs):
             context = super(ProjectCRUDL.Read, self).get_context_data(**kwargs)
@@ -41,6 +41,9 @@ class ProjectCRUDL(SmartCRUDL):
     class List(SmartListView):
         fields = ('title', 'owner', 'description')
 
+        def get_owner(self, obj):
+            return "%s %s" % (obj.owner.first_name, obj.owner.last_name)
+
     class Update(MemberPermsMixin, SmartUpdateView):
         fields = ('title', 'description')
         success_url = "id@solo_project"
@@ -49,9 +52,12 @@ class ProjectCRUDL(SmartCRUDL):
             context['base_template'] = 'smartmin/public_base.html'
             return context
 
-    class Shortlist(MemberPermsMixin, SmartListView):
+    class Shortlist(SmartListView):
         fields = ('title', 'owner', 'description')
         add_button = True
+
+        def get_owner(self, obj):
+            return "%s %s" % (obj.owner.first_name, obj.owner.last_name)
 
         def derive_queryset(self):
             member = Member.objects.get(user=self.request.user)

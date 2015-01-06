@@ -173,6 +173,11 @@ GROUP_PERMISSIONS = {
                 'opportunities.opportunity.*',
                 ),
 
+    "Publishers": ('events.event.*',
+                   'blog.post.*',
+                   'opportunities.opportunity.*',
+                   ),
+
     "Members": ('members.member_read',
                 'members.member_myprofile',
                 'projects.project_create', 'projects.project_update', 'projects.project_shortlist', 'projects.project_read'),
