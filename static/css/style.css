@@ -551,6 +551,7 @@ h3 a , h3 a:hover {
 
 #menu ul {
     list-style: none;
+    padding: 0 0 0 15px;
 }
 
 #menu ul li {
