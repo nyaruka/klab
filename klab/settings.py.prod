@@ -3,6 +3,7 @@ import os.path
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = DEBUG
 
 ADMINS = (
     ('Nyaruka Code', 'code@nyaruka.com'),
