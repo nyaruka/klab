@@ -22,7 +22,7 @@ class Event(SmartModel):
     title = models.CharField(max_length=64,
                                    help_text="What is the title of this event")
     logo = models.ImageField(upload_to="photos/", help_text="The image representing the event in general (should be square)")
-    description = models.TextField(max_length=256,
+    description = models.TextField(max_length=1024,
                                    help_text="More descriptively say about this event")
     venue = models.CharField(max_length=128,
                              help_text="The exact location where event will take place")
