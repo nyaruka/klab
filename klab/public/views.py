@@ -35,7 +35,7 @@ def home(request):
 
     try:
         cache = get_cache('default')
-    
+
         if not cache.get('flickr_main'):
             # from flickr photos get one tagged "main"(should have only one)
             main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
@@ -58,10 +58,13 @@ def home(request):
 
         sizes = sizes[1:]
 
+        j = 0
         # create an image file from every favorite
-        for i,favorite in enumerate(favorites):  
+        for i,favorite in enumerate(favorites):
+
             if main_photo.get('id') != favorite.get('id'):
-                images.append((flickr.get_url(favorite, 'b'), sizes[i % len(sizes)], favorite.get('title')))
+                images.append((flickr.get_url(favorite, 'b'), sizes[j % len(sizes)], favorite.get('title')))
+                j += 1
     except Exception as e:
         import traceback
         traceback.print_exc(e)
