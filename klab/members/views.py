@@ -309,9 +309,10 @@ class MemberCRUDL(SmartCRUDL):
             ticket_response = None
 
             try:
-                ticket_response = requests.post("https://endian.klab.rw/admin/api/account/",
+                ticket_response = requests.post("https://endian.klab.rw:10443/admin/api/account/",
                                                 data=internet_post_data,
-                                                auth=(endian_user, endian_password))
+                                                auth=(endian_user, endian_password),
+                                                verify=False)
             except:
                 pass
 
