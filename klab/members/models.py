@@ -105,7 +105,10 @@ class Member(SmartModel):
 
     @classmethod
     def member_for_user(cls, user):
+        if user.is_anonymous():
+            return None
         return cls.objects.filter(user=user).first()
+
 
     def __unicode__(self):
         return "%s_%s" % (self.first_name, self.last_name)
