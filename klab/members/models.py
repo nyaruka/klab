@@ -103,8 +103,9 @@ class Member(SmartModel):
         self.is_alumni = not self.is_alumni
         self.save()
 
-    def get_password(self):
-        return user.password
+    @classmethod
+    def member_for_user(cls, user):
+        return cls.objects.filter(user=user).first()
 
     def __unicode__(self):
         return "%s_%s" % (self.first_name, self.last_name)

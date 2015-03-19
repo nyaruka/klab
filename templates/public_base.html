@@ -69,7 +69,7 @@
         <ul>
 	  
           <li><a href="/wiki/">wiki</a></li>
-	  {% if perms.members.member_myprofile %}
+	  {% if perms.members.member_myprofile and member_for_user %}
           <li><a href="{% url 'members.member_myprofile' 0 %}">profile</a></li>
 	  {% endif %}
 	  <li><a href="{% url 'public_members' "all" %}">members</a></li>

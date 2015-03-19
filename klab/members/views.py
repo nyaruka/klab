@@ -48,10 +48,7 @@ class MemberForm(forms.ModelForm):
 
     project_description = forms.CharField(max_length=2048,label='Project Description', help_text='This is the project description to be published on the kLab website', widget=forms.widgets.Textarea())
 
-   
     def save(self, commit=True):
-
-        
         member = super(MemberForm, self).save(commit)
         if member.membership_type == 'G':
             project = Project.objects.create(owner=member,created_by=member.user, modified_by= member.user)
@@ -74,7 +71,8 @@ class MemberForm(forms.ModelForm):
 
     class Meta:
         model = Member
-        fields = ('is_active','application','user','first_name','last_name','phone','email','picture','country','city','neighborhood','education','experience','projects','token')
+        fields = ('is_active', 'application', 'user', 'first_name', 'last_name', 'phone', 'email', 'picture', 'country',
+                  'city', 'neighborhood', 'education', 'experience', 'projects', 'token')
             
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
@@ -82,17 +80,16 @@ class ApplicationCRUDL(SmartCRUDL):
     permissions = True
 
     class Read(SmartReadView):
-        fields = ('professional_status', 'applying_for', 'frequency',
-                  'goals', 'education', 'experience', 'approve')
+        fields = ('professional_status', 'applying_for', 'frequency', 'goals', 'education', 'experience', 'approve')
 
         def get_approve(self, obj):
             member = Member.objects.filter(application=obj)
             if member:
-                return '<a class="btn btn-large btn-success disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
+                approve_btn = '<a class="btn btn-large btn-success disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
             else:
+                approve_btn = '<a class="btn btn-default btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
 
-                return '<a class="btn btn-default btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
-
+            return approve_btn
 
         def get_name(self, obj):
             return str(obj)
@@ -125,9 +122,7 @@ class ApplicationCRUDL(SmartCRUDL):
     class List(SmartListView):
         fields = ('name', 'email', 'applying_for', 'city', 'country', 'created_on')
         search_fields = ('first_name__icontains', 'last_name__icontains')
-        field_config = { 'applying_for': dict(label="Membership Type") }
-
-        
+        field_config = {'applying_for': dict(label="Membership Type")}
 
         def derive_queryset(self, **kwargs):
             queryset = super(ApplicationCRUDL.List, self).derive_queryset(**kwargs)
@@ -142,9 +137,9 @@ class ApplicationCRUDL(SmartCRUDL):
     class Create(SmartCreateView):
         permission = None
         success_url = 'id@members.application_thanks'
-        field_config = { 'goals': dict(label="Your goals in 1K"),
-                         'education': dict(label="Your education in 1K"),
-                         'experience': dict(label="Your experience in 1K") }
+        field_config = {'goals': dict(label="Your goals in 1K"),
+                        'education': dict(label="Your education in 1K"),
+                        'experience': dict(label="Your experience in 1K")}
         submit_button_name = "Apply for Membership"
 
         def pre_save(self, obj):
@@ -210,7 +205,6 @@ class MemberCRUDL(SmartCRUDL):
             else:
                 return ('new_password','project_title','project_description')
 
-
         def get_context_data(self, **kwargs):
             context = super(MemberCRUDL.Activate, self).get_context_data(**kwargs)
             context['base_template'] = 'smartmin/public_base.html'
@@ -222,12 +216,17 @@ class MemberCRUDL(SmartCRUDL):
 
     class Myprofile(SmartUpdateView):
 
-        fields = ('first_name','last_name','phone','email','picture','country','city','neighborhood','education','experience')
+        fields = ('first_name', 'last_name', 'phone', 'email', 'picture', 'country', 'city', 'neighborhood',
+                  'education','experience')
+
+        def pre_process(self, request, *args, **kwargs):
+            if not self.get_object():
+                return HttpResponseRedirect(reverse('public_home'))
+            return None
+
         def has_permission(self, request, *args, **kwargs):
-            
             super(MemberCRUDL.Myprofile,self).has_permission(request, *args, **kwargs)
             return True
-
 
         def get_context_data(self, **kwargs):
             context = super(MemberCRUDL.Myprofile, self).get_context_data(**kwargs)
@@ -235,11 +234,12 @@ class MemberCRUDL(SmartCRUDL):
             return context
 
         def get_object(self, queryset=None):
-            return Member.objects.get(user=self.request.user)
+            return Member.objects.filter(user=self.request.user).first()
 
 
     class Read(SmartReadView):
         fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood','education','education','experience','projects','token')
+
         def get_membership_type(self, obj):
             return obj.application.get_applying_for_display()
 
