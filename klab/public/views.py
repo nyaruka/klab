@@ -38,14 +38,15 @@ def home(request):
 
         if not cache.get('flickr_main'):
             # from flickr photos get one tagged "main"(should have only one)
-            main = flickr.api.walk(user_id=flickr.user_id, tags="main", sort="date-posted-desc")
+            main = flickr.api.walk(user_id=flickr.user_id, tags="main", tag_mode='all', sort="date-posted-desc")
+
             cache.set('flickr_main', list(iter(main)), 3600)
 
         main = cache.get('flickr_main')
 
         if not cache.get('flickr_favorites'):
             # from flickr get all photo elements tagged "favorite"
-            favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", sort="date-posted-desc")
+            favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", tag_mode='all', sort="date-posted-desc")
             cache.set('flickr_favorites', list(iter(favorites)), 3600)
 
         favorites = cache.get('flickr_favorites')
