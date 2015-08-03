@@ -29,7 +29,7 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
 #### 3. Initialize it with all the required libraries:
 
 ```   
-  % pip install -r pip-requires.txt
+  % pip install -r pip-freeze.txt
 ```
 
 #### 4. Symlink your dev settings file:
