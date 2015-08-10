@@ -37,6 +37,7 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
 ```
   % cd klab
   % ln -s settings.py.dev settings.py
+  % cd ..
 ```
 
 #### 5. Initialize our database:
