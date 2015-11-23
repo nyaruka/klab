@@ -1,0 +1,15 @@
+{% extends "smartmin/update.html" %}
+
+{% block extra-script %}
+{{ block.super }}
+<script>
+$(function(){
+  $("#id_description").wysihtml5({
+    parserRules: wysihtml5ParserRules,
+    stylesheets: ["/static/css/wysiwyg-color.css"],
+  });
+});
+
+</script>
+
+{% endblock %}
