@@ -1286,3 +1286,32 @@ h3 a , h3 a:hover {
 .opportunity_details .post_body {
     font-size: 16px;
 }
+
+.page-header {
+  border: none;
+  margin: 0px;
+  font-size: 2em;
+}
+
+fieldset {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 10px;
+}
+
+.smartmin-form-buttons button {
+
+  margin-left: 10px;
+}
+
+#id_username, #id_password {
+  min-width: 350px;
+  height: 2.2em;
+  padding: 5px;
+
+}
+
+label.control-label.col-sm-2 {
+    padding-left: 0px;
+}

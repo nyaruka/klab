@@ -17,6 +17,12 @@ fieldset {
   margin: 0px;
   padding: 0px;
 }
+  #id_username, #id_password {
+    min-width: 350px;
+    height: 2.2em;
+    padding: 5px;
+
+  }
 
 </style>
 
@@ -35,7 +41,7 @@ fieldset {
       </div>
       {% endif %}
       {% endfor %}
-      
+
       <fieldset>
         {% for field in form %}
         <div class="clearfix {% if field.error %}error{% endif %}">
@@ -54,6 +60,9 @@ fieldset {
         {% endfor %}
         {% csrf_token %}
         <input type="submit" class="btn btn-primary" value="Login">
+        {% if allow_email_recovery %}
+        <span class="pull-right" style="padding-top:7px;padding-right:150px;"><a href="{% url 'users.user_forget' %}">Forgot Password?</a></span>
+        {% endif %}
       </fieldset>
     </form>
   </div>

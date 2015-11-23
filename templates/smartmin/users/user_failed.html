@@ -1,0 +1,76 @@
+{% extends "public_base.html" %}
+
+
+{% load smartmin i18n %}
+
+{% block extra-style %}
+<style>
+.smartmin-form-buttons button {
+
+  margin-left: 10px;
+  margin-top: 10px;;
+}
+
+#id_email, #id_password {
+  min-width: 350px;
+  height: 2.2em;
+  padding: 5px;
+
+}
+
+</style>
+
+{% endblock %}
+
+{% block main-contents %}
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    <div class="alert alert-danger">
+    <div class="page-header"><h2>{% trans "Login Failure" %}</h2></div>
+    <p>
+      {% blocktrans %}
+      Sorry, you cannot log in at this time because we received {{failed_login_limit}} incorrect login attempts.
+      {% endblocktrans %}
+    </p>
+
+    {% if lockout_timeout >= 0 %}
+    <p>
+      {% blocktrans %}
+      Please wait {{lockout_timeout}} minutes before to try log in again.
+      {% endblocktrans %}
+    </p>
+    {% endif %}
+
+    {% if allow_email_recovery %}
+    <p>{% trans "Alternatively, you can fill out the form below to have your password reset via e-mail." %}</p>
+    {% else %}
+    <p>{% trans "Please contact the website administrator to have your password reset." %}</p>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if allow_email_recovery %}
+<div class="row" >
+  <div class="col-md-6 col-md-offset-4">
+    <form class="form-horiontal" method="post" action="{% url 'users.user_forget' %}">
+      {% csrf_token %}
+      <fieldset>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="email">You Email</label>
+          <div class="col-sm-10 smartmin-form-field">
+            <input class="form-control" id="id_email" name="email" type="email">
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group smartmin-form-buttons">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Recover</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
