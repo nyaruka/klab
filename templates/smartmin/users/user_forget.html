@@ -1,0 +1,29 @@
+{% extends "smartmin/users/public_form.html" %}
+
+
+{% load i18n %}
+
+{% block extra-style %}
+<style>
+.smartmin-form-buttons button {
+
+  margin-left: 10px;
+}
+
+#id_username, #id_password {
+  min-width: 350px;
+  height: 2.2em;
+  padding: 5px;
+
+}
+  label.control-label.col-sm-2 {
+    padding-left: 0px;
+  }
+
+</style>
+
+{% endblock %}
+
+{% block pre-form %}
+<div class="alert alert-info">{% trans "Please enter the email address you used to sign up and we will help you recover your password." %}</div>
+{% endblock %}
