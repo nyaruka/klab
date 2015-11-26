@@ -67,6 +67,7 @@
 {% load_qbs "friends_of_klab" %}
 {% load_qbs "board_members" %}
 {% load_qbs "general_managers" %}
+{% load_qbs "assets" %}
 
 
 <div id="all_about_us">
@@ -659,6 +660,20 @@
     </div>
 </div>
 <div style="clear: both;"></div>
+{% endif %}
+
+{% if assets %}
+{% for text in assets %}
+<div class="about_group">
+    <div class="questions">
+        <span>{{text.title}}</span>
+    </div>
+    <div class="about_details">
+        {{text.content|safe}}
+    </div>
+</div>
+<div style="clear: both;"></div>
+{% endfor %}
 {% endif %}
 
 

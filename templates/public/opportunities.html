@@ -31,7 +31,7 @@
       <div class="opportunity_details">
         <table width="100%" cellspacing="" cellpadding="" border="0">
           <tr>
-            <td colspan="2" class="oppheading"><a href="{{opportunity.link}}">{{opportunity.title|truncatewords:"9"}}</a></td>
+            <td colspan="2" class="oppheading"><a href="{% if opportunity.link != None %}{{opportunity.link}}{% else %}{% url 'public_opportunities' '' %}{% endif %}">{{opportunity.title|truncatewords:"9"}}</a></td>
           </tr>
 	  <tr>
             <td class="top right">Posted by</td>
@@ -60,10 +60,18 @@
 	  {% if opportunity.link != None %}
           <tr>
             <td class="top">For more info visit</td>
-	  </tr>
+          </tr>
           <tr>
             <td colspan="2" class="bottom"><a href="{{opportunity.link}}">{{opportunity.link}}</a></td>
           </tr>
+          {% else %}
+          <tr>
+            <td class="top">For more info</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="bottom"><a href="{% url 'public_contact' %}">Contact Us</a></td>
+          </tr>
+
 	  {% endif %}
         </table>
       </div>

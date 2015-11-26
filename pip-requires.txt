@@ -1,4 +1,4 @@
-Django==1.7.10
+Django==1.7.11
 -e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-dev
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_7#egg=django-quickblocks
 -e git+https://github.com/norkans7/django-wiki.git#egg=wiki

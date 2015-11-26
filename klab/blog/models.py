@@ -23,7 +23,7 @@ class Post(SmartModel):
     def photo(self):
         cache = get_cache('default')
         key = self.get_cache_key()
-        
+
         if not cache.get(key):
             blog_photos = flickr.api.walk(user_id=flickr.user_id, tags="blog")
             cache.set(key, list(iter(blog_photos)), 3600)

@@ -182,7 +182,7 @@ def opportunities(request, status):
         opportunities = Opportunity.objects.filter(is_active=True).order_by('-created_on')
         group = "Newly posted"
 
-    search = request.REQUEST.get("search",None)
+    search = request.REQUEST.get("search", None)
     if search:
         tokens = search.strip().split()
         start_set = opportunities
@@ -190,7 +190,6 @@ def opportunities(request, status):
         for token in tokens:
             query = query | Q(title__icontains=token) | Q(link__icontains=token)
         opportunities = start_set.filter(query)
-
 
     context = dict(opportunities=opportunities, group=group)
     return render(request, 'public/opportunities.html', context)
