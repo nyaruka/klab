@@ -19,6 +19,8 @@
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/colorbox.css">
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+  <!--load css for breakpoint less than 1030px-->
+  <link type="text/css" rel="stylesheet" media="screen and (max-width : 1030px)" href="{{STATIC_URL}}css/responsive.css">
   {% endblock %}
 
   <!-- JavaScript at the bottom for fast page loading, conditional based on whether we are serving locally -->
@@ -68,25 +70,31 @@
       <div id="menu">
         <ul>
 	  
-          <li><a href="/wiki/">wiki</a></li>
+          <li><a href="/wiki/" class="menu_item">wiki</a></li>
 	  {% if perms.members.member_myprofile and member_for_user %}
-          <li><a href="{% url 'members.member_myprofile' 0 %}">profile</a></li>
+          <li><a href="{% url 'members.member_myprofile' 0 %}" class="menu_item">profile</a></li>
 	  {% endif %}
-	  <li><a href="{% url 'public_members' "all" %}">members</a></li>
-	  <li><a href="{% url 'public_opportunities' "new" %}">opportunities</a></li>
-	  <li><a href="{% url 'public_contact' %}">contact</a></li>
-          <li><a href="{% url 'public_blog' %}">blog</a></li>
-          <li><a href="{% url 'public_events' "all" %}">events</a></li>
-          <li><a href="{% url 'public_about' %}">about us</a></li>
+	  <li><a href="{% url 'public_members' "all" %}" class="menu_item">members</a></li>
+	  <li><a href="{% url 'public_opportunities' "new" %}" class="menu_item">opportunities</a></li>
+	  <li><a href="{% url 'public_contact' %}" class="menu_item">contact</a></li>
+          <li><a href="{% url 'public_blog' %}" class="menu_item">blog</a></li>
+          <li><a href="{% url 'public_events' "all" %}" class="menu_item">events</a></li>
+          <li><a href="{% url 'public_about' %}" class="menu_item">about us</a></li>
 	  
 	  {% if request.user.is_authenticated %}
-	  <li><a href="{% url 'users.user_logout' %}">logout</a></li>
+	  <li><a href="{% url 'users.user_logout' %}" class="menu_item">logout</a></li>
 	               
           {% else %}
-          <li><a href="{% url 'users.user_login' %}">login</a></li>
+          <li><a href="{% url 'users.user_login' %}" class="menu_item">login</a></li>
           {% endif %}
         </ul>
       </div>
+       <!--Add a hambuger icon-->
+        <a class="header_menu" id="menu_nav">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+          </svg> 
+        </a>
     </div>                                                                                <!-- End Header -->
     <div style="clear: both;"></div>
 
@@ -134,6 +142,23 @@
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tweet.js"></script>
+
+  <!--Add javascript snippet to open and close the navigation drawer-->
+  <script type="text/javascript">
+      var menu = document.querySelector('#menu');
+      var container = document.querySelector('#container');
+      var hambuger_icon = document.querySelector('#menu_nav');
+
+      hambuger_icon.addEventListener('click',function(e){
+          menu.classList.toggle('open');
+          e.stopPropagation();
+      });
+
+      container.addEventListener('click',function(){
+          menu.classList.remove('open');
+      });
+
+  </script>
 
   {% block javascript %}
   {% endblock javascript %}

@@ -1315,3 +1315,11 @@ fieldset {
 label.control-label.col-sm-2 {
     padding-left: 0px;
 }
+
+/*Add first breakpoint for the sites*/
+@media screen and (min-width : 1030px){
+    /*Comming soon !!!*/
+    #menu_nav{
+        display: none;
+    }
+}
