@@ -1253,12 +1253,6 @@ h3 a , h3 a:hover {
     font-size: 20px;
 }
 
-.description {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 .well {
   min-height: 20px;
   margin-bottom: 20px;
@@ -1322,4 +1316,35 @@ label.control-label.col-sm-2 {
     #menu_nav{
         display: none;
     }
+}
+
+nav.navbar.navbar-default {
+    background-color: #E3E4E4;
+}
+
+#example-navbar-collapse{
+    float: right;
+    margin-top: 7px;
+}
+
+#example-navbar-collapse ul li a {
+    color: #9b9996;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+#example-navbar-collapse ul li {
+    color: #9b9996;
+    display: inline;
+    font-size: 20px;
+    font-family: Homenaje, sans-serif;
+}
+
+#example-navbar-collapse ul {
+    list-style: none;
+    padding: 0 0 0 15px;
+}
+#example-navbar-collapse ul li a:hover {
+    background: #3f3e3c;
 }
