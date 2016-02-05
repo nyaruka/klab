@@ -1348,3 +1348,12 @@ nav.navbar.navbar-default {
 #example-navbar-collapse ul li a:hover {
     background: #3f3e3c;
 }
+
+.person-words {
+    width: 700px;
+    float: right
+}
+.modal-body {
+    min-height: 300px;
+    background-color: #e3e4e4;
+}

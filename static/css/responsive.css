@@ -1,9 +1,26 @@
 #container,
 #footer,
 #footer_contents,
-#main,#no-flickr,
-.paginate,
+#main,
+#no-flickr,
 #events_content,
+#main-contents,
+#sides,
+#wiki-container,
+#favorites,
+#main-side,
+#likebox,
+#opportunities_content,
+#small-side,
+#blog_contents,
+#blog_main,
+#all_about_us,
+.person-words,
+.about_details,
+.questions,
+.paginate,
+.row,
+.post_main,
 .event_small,
 .event_main,
 .event_heading,
@@ -12,13 +29,13 @@
 .pull-right,
 .event_details,
 .full-events,
-#main-contents,
-#sides,
-#wiki-container,
-#main-side,
-#likebox,
-#small-side,
-#favorites{
+.opportunity_small,
+.search_form input,
+.full_opportunities,
+.opportunity_main,
+.contact input,
+.contact textarea,
+.opportunity_details{
 	width:100%;
 }
 #footer,#socialize{
@@ -37,8 +54,19 @@
 .event_heading{
 	margin-top: 15px;
 }
-.event_main,.event_small,#posts,#apply,#small-side{
+.event_main,
+.post_main,
+.event_small,
+.opportunity_details,
+.opportunity_small,
+.post_small .post_photos,
+#posts,
+#apply,
+#small-side{
 	padding: 30px;
+}
+.post_small .post_photos{
+	background-color: rgba(68, 68, 68, 0);
 }
 #small-side {
 	height: auto;
@@ -125,4 +153,33 @@ tr.row_responsive,tr{
 }
 #example-navbar-collapse{
     float: left;
+}
+.paginate{
+	text-align: center;
+}
+input.send_button.button.radius.shadow {
+    width: 100%;
+}
+.post_small .post_photos{
+	position: relative;
+}
+.post_main {
+    margin-top: 30px;
+}
+.about_details{
+	border-bottom: 1px solid #088eec;
+	border-left: 0px;
+	float:none;
+}
+.questions{
+	float: none;
+}
+tr td.modal-cell{
+	display: inline-table;
+}
+.about_group {
+    margin: 30px;
+}
+.modal-body{
+	min-height: 800px;
 }
