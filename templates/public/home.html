@@ -31,7 +31,6 @@
   // Load the SDK Asynchronously
   (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
      js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
@@ -76,10 +75,20 @@
           to collaborate and innovate in Kigali, Rwanda
         </p>
         kLab, ICT Park, 6th Floor<br/>
-        Boulevard de l'Umuganda, Kacyiru
+        Boulevard de l'Umuganda, Kacyiru<br/>
+        <table>
+          <tr>
+            <td>Open Hours : </td>
+            <td class="open_hours">Monday - Friday : 7AM-9PM</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="open_hours">Saturday : 9AM - 6PM</td>
+          </tr>
+        </table>
       </div> 
       <div id="apply">
-        <a href="{% url 'members.application_create' %}"><div class="big button radius shadow">Become a Member</div></a>
+        <a href="{% url 'members.application_create' %}"><span class="big button radius shadow">Become a Member</span></a>
       </div>
       <div id="posts">
         {% for post in recent %}

@@ -19,6 +19,7 @@
 .about_details,
 .questions,
 .paginate,
+.full_post,
 .row,
 .post_main,
 .event_small,
@@ -104,6 +105,7 @@
 }
 #likebox{
 	height: 60px;
+	float: none;
 }
 #socialize{
 	padding: 0px;
@@ -188,4 +190,7 @@ tr td.modal-cell{
 .modal-content{
 	background-color: #E3E4E4;
 	padding-bottom: 10px;
+}
+span.big.button.radius.shadow {
+    display: block;
 }

@@ -1,6 +1,5 @@
 {% extends "public_base.html" %}
 
-
 {% block main-contents %} 
 <div id="blog_contents">
 
@@ -10,10 +9,18 @@
       <div class="post_main">
         <div class="post_header">
           <div class="title">
+            Where are we?
+          </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div id="klab-map" style="height:300px">
+
+        </div>
+
+        <div class="post_header">
+          <div class="title">
             Contact
           </div>
-	  
-	  
         </div>
         <div style="clear: both;"></div>          
         
@@ -49,3 +56,13 @@
 
 </div>
 {% endblock main-contents %}
+
+{% block extra-script %}
+<script>
+    var image = '{{ STATIC_URL }}images/maplogo.png';
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="{{STATIC_URL}}js/map.js">
+</script>
+
+{% endblock %}
