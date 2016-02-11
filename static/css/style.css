@@ -631,6 +631,7 @@ h3 a , h3 a:hover {
     background-position: bottom right;
     font-family: Homenaje, sans-serif;
     padding: 10px 25px;
+    display: inline-block;
 }
 
 #welcome p {
@@ -798,6 +799,8 @@ h3 a , h3 a:hover {
 
 #blog_main .title {
     font-size: 28px;
+    padding-bottom: 20px;
+    padding-top: 10px
 }
 
 #blog_main .post_body {
@@ -1314,4 +1317,39 @@ fieldset {
 
 label.control-label.col-sm-2 {
     padding-left: 0px;
+}
+
+td.open_hours {
+    padding-left: 10px;
+}
+.details_size {
+    font-size: 20px;
+    color: #9b9996;
+}
+.panel-default>.panel-heading {
+    color: #088eec;
+    background-color: #E3E4E4;
+    border-color: #E3E4E4;
+}
+div.panel-collapse.collapse {
+    background-color: #E3E4E4;
+}
+.panel.panel-default {
+    border: none;
+}
+div#welcome table {
+    float: right;
+}
+.panel-group .panel-heading+.panel-collapse>.panel-body {
+    border-top: none;
+}
+.panel{
+    background-color: #E3E4E4;
+}
+#welcome span {
+    float: left;
+}
+.panel {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
