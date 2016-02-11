@@ -9,7 +9,7 @@ function initialize() {
       position: myLatlng,
       map: map,
       title: 'kLab',
-      icon: image
+      icon: kLabImageMapLogo
   });
 }
 
