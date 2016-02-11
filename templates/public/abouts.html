@@ -68,6 +68,7 @@
 {% load_qbs "board_members" %}
 {% load_qbs "general_managers" %}
 {% load_qbs "assets" %}
+{% load_qbs "faq" %}
 
 
 <div id="all_about_us">
@@ -677,32 +678,50 @@
 {% endif %}
 
 
+{% if faq %}
+<div class="about_group">
+    <div class="questions">
+        <span>Frequently Asked Questions</span>
+    </div>
+        <div class="about_details">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {% for text in faq %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{forloop.counter}}">
+                    <h4 class="panel-title">
+                        {% if forloop.counter == 1 %}
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                                {{text.title}}
+                            </a>
+                        {% else %}
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{forloop.counter}}" aria-expanded="false" aria-controls="collapse{{forloop.counter}}">
+                                {{text.title}}
+                            </a>
+                        {% endif %}
+                    </h4>
+                </div>
+                <div id="collapse{{forloop.counter}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{forloop.counter}}">
+                    <div class="panel-body">
+                        {{text.content|safe}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
 </div>
 {% endblock main-contents %}
 
 
 {% block extra-script %}
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
-function initialize() {
-  var myLatlng = new google.maps.LatLng(-1.9446696,30.089721);
-  var mapOptions = {
-    zoom: 14,
-    center: myLatlng
-  }
-  var map = new google.maps.Map(document.getElementById('klab-map'), mapOptions);
-
-  var image = '{{ STATIC_URL }}images/maplogo.png';
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: 'kLab',
-      icon: image
-  });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-</script>
+    var kLabImageMapLogo = '{{ STATIC_URL }}images/maplogo.png';
+  </script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="{{STATIC_URL}}js/map.js"></script>
 
 {% endblock %}
