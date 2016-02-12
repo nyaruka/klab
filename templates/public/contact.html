@@ -9,11 +9,11 @@
       <div class="post_main">
         <div class="post_header">
           <div class="title">
-            Where are we?
+            Location
           </div>
         </div>
         <div style="clear: both;"></div>
-        <div id="klab-map" style="height:300px">
+        <div id="klab-map">
 
         </div>
 
@@ -59,7 +59,7 @@
 
 {% block extra-script %}
 <script>
-    var image = '{{ STATIC_URL }}images/maplogo.png';
+    var kLabImageMapLogo = '{{ STATIC_URL }}images/maplogo.png';
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script src="{{STATIC_URL}}js/map.js">
