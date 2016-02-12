@@ -8,17 +8,16 @@
 
       <div class="post_main">
         <div class="post_header">
-          <div class="title">
+          <div class="title contact-map-title">
             Location
           </div>
         </div>
         <div style="clear: both;"></div>
-        <div id="klab-map">
+        <div id="klab-map" style="height:300px;width:400px;">
 
         </div>
-
         <div class="post_header">
-          <div class="title">
+          <div class="title contact-form-title">
             Contact
           </div>
         </div>
@@ -58,11 +57,10 @@
 {% endblock main-contents %}
 
 {% block extra-script %}
-<script>
+  <script>
     var kLabImageMapLogo = '{{ STATIC_URL }}images/maplogo.png';
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script src="{{STATIC_URL}}js/map.js">
-</script>
-
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <script src="{{STATIC_URL}}js/map.js">
+  </script>
 {% endblock %}

@@ -118,6 +118,9 @@ class ApplicationCRUDL(SmartCRUDL):
 
         def get_frequency(self, obj):
             return obj.get_frequency_display()
+
+        def get_name(self, obj):
+            return "%s %s" % (obj.first_name, obj.last_name)
         
     class List(SmartListView):
         fields = ('name', 'email', 'applying_for', 'city', 'country', 'created_on')

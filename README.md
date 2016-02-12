@@ -53,7 +53,12 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
   % python manage.py loaddata ../test_data.json
 ```
 
-#### 7. Start the server:
+#### 7. Create media directory
+```
+  % mkdir media
+```
+
+#### 8. Start the server:
 
 ```
   % python manage.py runserver
