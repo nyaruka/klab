@@ -204,7 +204,7 @@
             </div>
         </div>
 
-        <div class="founder_content">
+        <div id="founder_contents">
             <div class="founder_image">
                  <img src="{{STATIC_URL}}images/a_ntale150.jpg" alt="Founder Image" class="img_detail">
             </div>
@@ -400,7 +400,9 @@
 {% if faq %}
 <div class="about_group">
     <div class="questions">
-        <span>Frequently Asked Questions</span>
+        {% with faq|first as faq_name %}
+            <span>{{ faq_name.quickblock_type.name }}</span>
+        {% endwith %}
     </div>
     <div class="about_details">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

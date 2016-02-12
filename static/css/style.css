@@ -1405,7 +1405,7 @@ div.panel-collapse.collapse {
 .img_detail {
     border: 2px solid white;
 }
-.founder_content{
+.founder_content,#founder_contents{
     display: flex;
 }
 .founder_image{
@@ -1415,4 +1415,7 @@ div.panel-collapse.collapse {
 .founder_detail{
     padding-left: 3px;
     float: right;
+}
+.founder_image {
+    padding-top: 20px;
 }

@@ -45,6 +45,9 @@
 	height:auto;
 	margin-top: 80px;
 }
+body{
+	font-size: 18px;
+}
 .big.button.radius.shadow {
     text-align: center;
 }
@@ -201,4 +204,13 @@ span.big.button.radius.shadow {
 }
 #welcome span{
 	float: none;
+}
+.founder_content{
+	display: initial;
+	border-bottom: 1px solid #088eec;
+    padding-bottom: 20px;
+}
+#founder_contents{
+	display: initial;
+	padding-bottom: 20px;
 }
