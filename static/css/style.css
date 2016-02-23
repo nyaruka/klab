@@ -1119,6 +1119,11 @@ h3 a , h3 a:hover {
     border:0;
 }
 
+.guide-download,.guide-download:hover {
+    text-decoration: none;
+    margin-top:10px;
+}
+
 .contact input {
     width:400px;
     padding:5px;
@@ -1447,7 +1452,7 @@ div.panel-collapse.collapse {
     margin-top: 30px;
 }
 
-.contact-map-title {
+.contact-map-title, .contact-guide-title {
     margin-bottom: 15px;
 }
 #klab-map{
