@@ -578,7 +578,7 @@ h3 a , h3 a:hover {
 }
 
 #main-contents {
-    pasition: relative;
+    position: relative;
 }
 
 #favorites {
@@ -1130,9 +1130,6 @@ h3 a , h3 a:hover {
     padding:5px;
     margin-top:3px;
 }
-
-
-
 .search_form input { 
 
     color: #9b9996;   
@@ -1392,10 +1389,6 @@ div.panel-collapse.collapse {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-#klab-map{
-    width: 400px;
-    height:300px
-}
 #about_detail{
     display: flex;
     flex-wrap: wrap;
@@ -1436,9 +1429,6 @@ div.panel-collapse.collapse {
 .panel.panel-default {
     border: none;
 }
-div#welcome table {
-    float: right;
-}
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: none;
 }
@@ -1459,4 +1449,11 @@ div#welcome table {
 
 .contact-map-title {
     margin-bottom: 15px;
+}
+#klab-map{
+    width: 400px;
+}
+iframe {
+    float: right;
+    width: 305px;
 }

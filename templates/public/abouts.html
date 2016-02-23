@@ -227,66 +227,19 @@
         {% endwith %}
     </div>
     <div class="about_details">
-        <table>
-            <tbody>
-
-            {% for person in board_members %}
-            {% if forloop.counter0|divisibleby:"3" %}
-            <tr>
-                {% endif %}
-                <td class="modal-cell">
-                    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
-                        <div style="padding:5px">
-                            {% thumbnail person.image "150x150" crop="center" as im %}
-                            <img  src="{{im.url}}" />
-                            {% endthumbnail %}
-                        </div>
-                        <div style="padding-left: 3px;">
-                            {{person.title}}
-                        </div>
-                    </a>
-
-                    <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="person-photo">
-                                        {% thumbnail person.image "150x150" crop="center" as im %}
-                                        <img  src="{{im.url}}" />
-                                        {% endthumbnail %}
-                                    </div>
-
-                                    <div class="person-words">
-                                        <div class="person-words-title">
-                                            {{ person.title }}
-                                        </div>
-                                        <div class="person-words-content">
-                                            {{ person.content|safe }}
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </td>
-
-                {% if forloop.counter|divisibleby:"3" %}
-            </tr>
-            {% endif %}
-
-            {% endfor %}
-            </tbody>
-        </table>
-
+        {% for person in board_members %}
+        <div class="founder_content">
+            <div class="founder_image">
+                {% thumbnail person.image "150x150" crop="center" as im %}
+                    <img src="{{im.url}}" alt="Board Member Image" class="img_detail">
+                {% endthumbnail %}
+            </div>
+            <div class="founder_detail">
+                <h2 class="modal-toggle">{{person.title}}</h2>
+                {{person.content|safe}}
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 <div style="clear: both;"></div>
@@ -301,65 +254,19 @@
         {% endwith %}
     </div>
     <div class="about_details">
-        <table>
-            <tbody>
-
-            {% for person in general_managers %}
-            {% if forloop.counter0|divisibleby:"3" %}
-            <tr>
-                {% endif %}
-                <td class="modal-cell">
-                    <a data-toggle="modal" href="#myModal-{{person.pk}}" role="button" class="modal-toggle">
-                        <div style="padding:5px">
-                            {% thumbnail person.image "150x150" crop="center" as im %}
-                            <img  src="{{im.url}}" />
-                            {% endthumbnail %}
-                        </div>
-                        <div style="padding-left: 4px;">
-                            {{person.title}}({{ person.created_on|date:'Y' }})
-                        </div>
-                    </a>
-
-                    <div id="myModal-{{person.pk}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="person-photo">
-                                        {% thumbnail person.image "150x150" crop="center" as im %}
-                                        <img  src="{{im.url}}" />
-                                        {% endthumbnail %}
-                                    </div>
-
-                                    <div class="person-words">
-                                        <div class="person-words-title">
-                                            {{ person.title }}({{ person.created_on|date:'Y' }})
-                                        </div>
-                                        <div class="person-words-content">
-                                            {{ person.content|safe }}
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </td>
-
-                {% if forloop.counter|divisibleby:"3" %}
-            </tr>
-            {% endif %}
-
-            {% endfor %}
-            </tbody>
-        </table>
+        {% for person in general_managers %}
+            <div class="founder_content">
+                <div class="founder_image">
+                    {% thumbnail person.image "150x150" crop="center" as im %}
+                        <img src="{{im.url}}" alt="Board Member Image" class="img_detail">
+                    {% endthumbnail %}
+                </div>
+                <div class="founder_detail">
+                    <h2 class="modal-toggle">{{person.title}}({{ person.created_on|date:'Y' }})</h2>
+                    {{person.content|safe}}
+                </div>
+            </div>
+        {% endfor %}
 
     </div>
 </div>
