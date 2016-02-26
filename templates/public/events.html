@@ -27,11 +27,11 @@
         <img src="{{im.url}}" />
         {% endthumbnail %}
       </div>
+      <span class="heading">
+        <a href="{% url 'solo_event' event.id %}">{{event.title|truncatewords:"9"}}</a>
+      </span>
       <div class="event_details">
         <table width="100%" cellspacing="" cellpadding="" border="0">
-          <tr>
-            <td colspan="2" class="heading"><a href="{% url 'solo_event' event.id %}">{{event.title|truncatewords:"9"}}</a></td>
-          </tr>
           <tr>
             <td class="right">Venue</td>
             <td class="left">{{event.venue}}</td>            

@@ -22,6 +22,7 @@ src
 coverage-report/
 klab/.coverage
 klab/settings.py.protected
+klab/settings_local.py
 klab/smartmin
 
 # Pycharm

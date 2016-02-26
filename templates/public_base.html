@@ -19,6 +19,10 @@
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/colorbox.css">
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+  {% block stylesheet %}
+  {% endblock %}
+   <!--load css for mobile and tablet-->
+  <link type="text/css" rel="stylesheet" media="screen and (max-width : 990px)" href="{{STATIC_URL}}css/responsive.css">
   {% endblock %}
 
   <!-- JavaScript at the bottom for fast page loading, conditional based on whether we are serving locally -->
@@ -29,9 +33,6 @@
         document.write(unescape('%3Cscript src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"%3E%3C/script%3E'));
     }
   </script>
-
-  {% block stylesheet %}
-  {% endblock stylesheet %}
 
   {% render_block "css" %}
 
@@ -60,33 +61,46 @@
   <div id="container">
     {% load smartmin %}
     <div id="header">                                                                     <!-- Header -->
-      <div id="logo">
-        <a href="{% url 'public_home' %}">
-          <img src="{{ STATIC_URL }}images/logo.jpg" class="" alt="" />
-        </a>
+      <nav class="navbar navbar-default" role="navigation">
+
+      <div class="navbar-header">
+
+        <div id="logo">
+          <a href="{% url 'public_home' %}">
+            <img src="{{ STATIC_URL }}images/logo.jpg" class="" alt="" />
+          </a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-      <div id="menu">
-        <ul>
-	  
-          <li><a href="/wiki/">wiki</a></li>
-	  {% if perms.members.member_myprofile and member_for_user %}
-          <li><a href="{% url 'members.member_myprofile' 0 %}">profile</a></li>
-	  {% endif %}
-	  <li><a href="{% url 'public_members' "all" %}">members</a></li>
-	  <li><a href="{% url 'public_opportunities' "new" %}">opportunities</a></li>
-	  <li><a href="{% url 'public_contact' %}">contact</a></li>
-          <li><a href="{% url 'public_blog' %}">blog</a></li>
-          <li><a href="{% url 'public_events' "all" %}">events</a></li>
-          <li><a href="{% url 'public_about' %}">about us</a></li>
-	  
-	  {% if request.user.is_authenticated %}
-	  <li><a href="{% url 'users.user_logout' %}">logout</a></li>
-	               
-          {% else %}
-          <li><a href="{% url 'users.user_login' %}">login</a></li>
-          {% endif %}
-        </ul>
-      </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+          <ul class="nav navbar-nav">
+  	  
+            <li><a href="/wiki/" class="active">wiki</a></li>
+  	  {% if perms.members.member_myprofile and member_for_user %}
+            <li><a href="{% url 'members.member_myprofile' 0 %}" >profile</a></li>
+  	  {% endif %}
+  	  <li><a href="{% url 'public_members' "all" %}" >members</a></li>
+  	  <li><a href="{% url 'public_opportunities' "new" %}" >opportunities</a></li>
+  	  <li><a href="{% url 'public_contact' %}" >contact</a></li>
+            <li><a href="{% url 'public_blog' %}" >blog</a></li>
+            <li><a href="{% url 'public_events' "all" %}" >events</a></li>
+            <li><a href="{% url 'public_about' %}" >about us</a></li>
+  	  
+  	  {% if request.user.is_authenticated %}
+  	  <li><a href="{% url 'users.user_logout' %}" >logout</a></li>
+  	               
+            {% else %}
+            <li><a href="{% url 'users.user_login' %}">login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
     </div>                                                                                <!-- End Header -->
     <div style="clear: both;"></div>
 
@@ -102,7 +116,7 @@
     <div id="footer_contents">
 
 <div id="likebox">
-<iframe style="float:right" src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FkLab%2F252632714822375&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=312581992141260" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:305px; height:110px;" allowTransparency="true"></iframe>
+<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FkLab%2F252632714822375&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=312581992141260" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:110px;" allowTransparency="true"></iframe>
 </div>
 
       <div id="socialize">
@@ -134,7 +148,6 @@
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.colorbox-min.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tweet.js"></script>
-
   {% block javascript %}
   {% endblock javascript %}
 

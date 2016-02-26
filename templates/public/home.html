@@ -9,7 +9,7 @@
 
 <script type='text/javascript'>
 
-  jQuery("a.gallery").colorbox({rel:"favorites"});
+  jQuery("a.gallery").colorbox({rel:"favorites",maxHeight : '70%',maxWidth : '100%'});
 
 </script>
 {% endblock %}
@@ -31,7 +31,6 @@
   // Load the SDK Asynchronously
   (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
      js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
@@ -63,7 +62,7 @@
   </div>
   {% else %}
   <div id="no-flickr">
-    <img src="{{ STATIC_URL }}images/no-flickr.jpg" style="width: 1000px;height: 380px;"/>
+    <img src="{{ STATIC_URL }}images/no-flickr.jpg" style="width: 100%;height: 380px;"/>
   </div>
   {% endif %}
   <div style="clear: both;"></div>

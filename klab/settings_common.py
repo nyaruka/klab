@@ -1,5 +1,4 @@
 # Django settings for klab project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = DEBUG

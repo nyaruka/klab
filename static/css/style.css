@@ -578,7 +578,7 @@ h3 a , h3 a:hover {
 }
 
 #main-contents {
-    pasition: relative;
+    position: relative;
 }
 
 #favorites {
@@ -1000,7 +1000,7 @@ h3 a , h3 a:hover {
     -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.about_details {
+.about_details, #about_detail{
     float: right;
     width: 680px;
     text-align: left;
@@ -1135,9 +1135,6 @@ h3 a , h3 a:hover {
     padding:5px;
     margin-top:3px;
 }
-
-
-
 .search_form input { 
 
     color: #9b9996;   
@@ -1259,12 +1256,6 @@ h3 a , h3 a:hover {
     font-size: 20px;
 }
 
-.description {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 .well {
   min-height: 20px;
   margin-bottom: 20px;
@@ -1322,6 +1313,53 @@ label.control-label.col-sm-2 {
     padding-left: 0px;
 }
 
+/*Add first breakpoint for the sites*/
+@media screen and (min-width : 1030px){
+    /*Comming soon !!!*/
+    #menu_nav{
+        display: none;
+    }
+}
+
+nav.navbar.navbar-default {
+    background-color: #E3E4E4;
+}
+
+#example-navbar-collapse{
+    float: right;
+    margin-top: 7px;
+}
+
+#example-navbar-collapse ul li a {
+    color: #9b9996;
+    text-decoration: none;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+#example-navbar-collapse ul li {
+    color: #9b9996;
+    display: inline;
+    font-size: 20px;
+    font-family: Homenaje, sans-serif;
+}
+
+#example-navbar-collapse ul {
+    list-style: none;
+    padding: 0 0 0 15px;
+}
+#example-navbar-collapse ul li a:hover {
+    background: #3f3e3c;
+}
+
+.person-words {
+    width: 700px;
+    float: right
+}
+.modal-body {
+    min-height: 300px;
+    background-color: #e3e4e4;
+}
 td.open_hours {
     padding-left: 10px;
 }
@@ -1340,8 +1378,61 @@ div.panel-collapse.collapse {
 .panel.panel-default {
     border: none;
 }
-div#welcome table {
+#welcome table {
     float: right;
+}
+.panel-group .panel-heading+.panel-collapse>.panel-body {
+    border-top: none;
+}
+.panel{
+    background-color: #E3E4E4;
+}
+#welcome span {
+    float: left;
+}
+.panel {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#about_detail{
+    display: flex;
+    flex-wrap: wrap;
+}
+.img_detail {
+    border: 2px solid white;
+}
+.founder_content,#founder_contents{
+    display: flex;
+}
+.founder_image{
+    padding:5px;
+    float: left;
+}
+.founder_detail{
+    padding-left: 3px;
+    float: right;
+}
+.founder_image {
+    padding-top: 20px;
+}
+
+td.open_hours {
+    padding-left: 10px;
+}
+.details_size {
+    font-size: 20px;
+    color: #9b9996;
+}
+.panel-default>.panel-heading {
+    color: #088eec;
+    background-color: #E3E4E4;
+    border-color: #E3E4E4;
+}
+div.panel-collapse.collapse {
+    background-color: #E3E4E4;
+}
+.panel.panel-default {
+    border: none;
 }
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: none;
@@ -1363,4 +1454,11 @@ div#welcome table {
 
 .contact-map-title, .contact-guide-title {
     margin-bottom: 15px;
+}
+#klab-map{
+    width: 400px;
+}
+iframe {
+    float: right;
+    width: 305px;
 }
