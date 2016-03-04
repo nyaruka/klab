@@ -243,7 +243,14 @@ span.heading{
 	padding-left: 0px;
 }
 #example-navbar-collapse ul li a{
-	margin-right: 20px;
+	margin-right: 10px;
+}
+#small-side h3 a{
+    width: 48px;
+    height: 48px;
+}
+.paginate .prev, .next, .page {
+    padding: 5px 5px;
 }
 @media screen and (orientation:landscape){
     .fav_3{
