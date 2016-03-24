@@ -21,11 +21,10 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@klabrw">
-  <meta name="twitter:creator" content="@klabrw">
   <meta name="twitter:title" content="{{event.title|truncatewords:"9"}}">
   <meta name="twitter:description" content="{{event.description|safe|truncatewords:"20" }}">
   {% thumbnail event.logo "280x150" crop="center" as im %}
-    <meta name="twitter:image" content="http://6f29fee9.ngrok.io{{im.url}}">
+    <meta name="twitter:image" content="http://www.klab.rw{{im.url}}">
   {% endthumbnail %}
 {% endblock %}
 

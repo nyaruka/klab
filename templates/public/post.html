@@ -11,7 +11,7 @@
   <meta property="og:description"   content="{{post.title|truncatewords:"5"}}" />
 
   {% thumbnail post.photo "280x150" crop="center" as im %}
-    <meta  property="og:image" content="http://http://www.klab.rw{{im.url}}">
+    <meta  property="og:image" content="http://www.klab.rw{{im.url}}">
   {% endthumbnail %}
 {% endblock %}
 
@@ -19,11 +19,10 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@klabrw">
-  <meta name="twitter:creator" content="@klabrw">
   <meta name="twitter:title" content="{{post.title|truncatewords:"9"}}">
   <meta name="twitter:description" content="{{post.body|safe|truncatewords:"20" }}">
   {% thumbnail post.photo "280x150" crop="center" as im %}
-    <meta name="twitter:image" content="http://6f29fee9.ngrok.io{{im.url}}">
+    <meta name="twitter:image" content="http://www.klab.rw{{im.url}}">
   {% endthumbnail %}
 {% endblock %}
 
