@@ -1,0 +1,111 @@
+{% extends "public/home.html"%}
+
+{% block title %}
+	{{block.super}}
+{% endblock title %}
+
+{% block share-button %}
+	<meta property="og:url"           content="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="kLab" />
+	<meta property="og:description"   content="{{opportunity.title|truncatewords:"5"}}" />
+	<meta property="og:image"         content="http://www.klab.rw{{STATIC_URL}}images/klab_card_final.png" />
+{% endblock %}
+
+{% block twitter-card %}
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@klabrw">
+	<meta name="twitter:title" content="{{opportunity.title|truncatewords:"9"}}">
+	<meta name="twitter:description" content="{{opportunity.description|safe|truncatewords:"20" }}">
+	<meta name="twitter:image" content="http://www.klab.rw{{STATIC_URL}}images/klab_card_final.png">
+{% endblock %}
+
+{% block main-contents %}
+	<div id="opprtunities_content">
+		{% block pull-left %}
+  			<div class="pull-left">
+    			<div class="opportunity_small">
+      				<a href="{% url 'public_opportunities' "new" %}">Newly Posted</a>
+      				<a href="{% url 'public_opportunities' "ending" %}">Ending Soon</a>
+      				<a href="{% url 'public_opportunities' "archived" %}">Archived</a>
+				      	<form class="search_form" method="get">
+					      <input type="text" name="search" onfocus="if
+							(this.value==this.defaultValue) this.value='';">
+					      <input type="submit" value="Search">
+      					</form>
+
+    			</div>  
+  			</div>
+  		{% endblock %}
+  		<div class="pull-right">
+  			<div class="full_opportunities">
+    
+		    <div class="opportunity_main">
+		      <div class="opportunity_details">
+		        <table width="100%" cellspacing="" cellpadding="" border="0">
+		          <tr>
+		            <td colspan="2" class="oppheading"><a href="{% if opportunity.link != None %}{{opportunity.link}}{% else %}{% url 'solo_opportunity' opportunity.id %}{% endif %}">{{opportunity.title|truncatewords:"9"}}</a></td>
+		          </tr>
+			  <tr>
+		            <td class="top right">Posted by</td>
+		            <td class="bottom left"> 
+			      {% with opportunity.created_by as author %}
+			      {{ author.first_name|capfirst }} {{ author.last_name }}
+			      {% endwith %}
+			    </td>	 
+			  </tr>
+		          <tr>
+		            <td clospan="2" class="top">Description</td>
+			  </tr>
+		          <tr>
+		            <td colspan="2"  class="post_body">{{opportunity.description|safe }}</td>
+		          </tr>
+		          <tr>
+		            <td  colspan="2" class="top">Deadline</td>
+		          </tr>
+		          <tr>
+			    {% if opportunity.deadline != None %}
+			    <td colspan="2" class="bottom">{{opportunity.deadline|date:"F dS, Y"}}</td>
+		            {% else %}
+			    <td colspan="2" class="bottom">No deadline.</td>
+			    {% endif %}
+			  </tr>
+			  {% if opportunity.link != None %}
+		          <tr>
+		            <td class="top">For more info visit</td>
+		          </tr>
+		          <tr>
+		            <td colspan="2" class="bottom"><a href="{{opportunity.link}}">{{opportunity.link}}</a></td>
+		          </tr>
+		          {% else %}
+		          <tr>
+		            <td class="top">For more info</td>
+		          </tr>
+		          <tr>
+		            <td colspan="2" class="bottom"><a href="{% url 'public_contact' %}">Contact Us</a></td>
+		          </tr>
+		          <tr>
+		          	<td>
+		          		<!-- Facebook share button -->
+						<div id="fb-root"></div>
+						<div class="fb-share-button" data-href="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" data-layout="button">
+						</div>	
+		          	</td>
+		          	<td>
+		          		<!--Tweet link-->
+						<a class="twitter-share-button" id="tweet_button"  href="https://twitter.com/intent/tweet" data-size="default">Tweet</a>	
+		          	</td>
+		          </tr>
+
+			  {% endif %}
+		        </table>
+		        
+		
+
+		      </div>
+		    </div>
+
+  		</div>
+  		</div>
+	</div>
+{% endblock %}

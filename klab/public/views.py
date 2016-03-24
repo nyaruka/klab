@@ -194,6 +194,10 @@ def opportunities(request, status):
     context = dict(opportunities=opportunities, group=group)
     return render(request, 'public/opportunities.html', context)
 
+def opportunity(request,opportunity_id):
+    opportunity = get_object_or_404(Opportunity,pk=opportunity_id)
+    context = dict(opportunity=opportunity)
+    return render(request,'public/opportunity.html',context)
 
 def aboutus(request):
     #
