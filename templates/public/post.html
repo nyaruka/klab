@@ -7,8 +7,8 @@
 {% block share-button %}
   <meta property="og:url"           content="http://www.klab.rw{% url 'public_post' post.id %}" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="kLab" />
-  <meta property="og:description"   content="{{post.title|truncatewords:"5"}}" />
+  <meta property="og:title"         content="{{post.title|truncatewords:"9"}}" />
+  <meta property="og:description"   content="{{post.body|truncatewords:"20" }}" />
 
   {% thumbnail post.photo "280x150" crop="center" as im %}
     <meta  property="og:image" content="http://www.klab.rw{{im.url}}">
@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@klabrw">
   <meta name="twitter:title" content="{{post.title|truncatewords:"9"}}">
-  <meta name="twitter:description" content="{{post.body|safe|truncatewords:"20" }}">
+  <meta name="twitter:description" content="{{post.body|truncatewords:"20" }}">
   {% thumbnail post.photo "280x150" crop="center" as im %}
     <meta name="twitter:image" content="http://www.klab.rw{{im.url}}">
   {% endthumbnail %}

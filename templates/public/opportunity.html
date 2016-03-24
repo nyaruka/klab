@@ -7,8 +7,8 @@
 {% block share-button %}
 	<meta property="og:url"           content="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="kLab" />
-	<meta property="og:description"   content="{{opportunity.title|truncatewords:"5"}}" />
+	<meta property="og:title"         content="{{opportunity.title|truncatewords:"9"}}" />
+	<meta property="og:description"   content="{{opportunity.description|truncatewords:"20" }}" />
 	<meta property="og:image"         content="http://www.klab.rw{{STATIC_URL}}images/klab_card_final.png" />
 {% endblock %}
 
@@ -16,8 +16,8 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@klabrw">
 	<meta name="twitter:title" content="{{opportunity.title|truncatewords:"9"}}">
-	<meta name="twitter:description" content="{{opportunity.description|safe|truncatewords:"20" }}">
-	<meta name="twitter:image" content="http://www.klab.rw{{STATIC_URL}}images/klab_card_final.png">
+	<meta name="twitter:description" content="{{opportunity.description|truncatewords:"20" }}">
+	<meta name="twitter:image" content="{{STATIC_URL}}images/klab_card_final.png">
 {% endblock %}
 
 {% block main-contents %}
@@ -84,8 +84,14 @@
 		          <tr>
 		            <td colspan="2" class="bottom"><a href="{% url 'public_contact' %}">Contact Us</a></td>
 		          </tr>
+              {% endif %}
+
+                </table>
+              <hr>
+                <table>
+
 		          <tr>
-		          	<td>
+		          	<td class="tweet_fb">
 		          		<!-- Facebook share button -->
 						<div id="fb-root"></div>
 						<div class="fb-share-button" data-href="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" data-layout="button">
@@ -97,7 +103,6 @@
 		          	</td>
 		          </tr>
 
-			  {% endif %}
 		        </table>
 		        
 		
