@@ -1,10 +1,33 @@
-{% extends "public_base.html" %}
+{% extends "public/home.html" %}
 
 {% load thumbnail %}
 
 {% block title %}
 {{block.super}}
 {% endblock title %}
+
+{% block share-button %}
+  <meta property="og:url"           content="http://www.klab.rw{% url 'solo_event' event.id %}" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="kLab" />
+  <meta property="og:description"   content="{{event.title|truncatewords:"5"}}" />
+
+  {% thumbnail event.logo "280x150" crop="center" as im %}
+    <meta  property="og:image" content="http://www.klab.rw{{im.url}}">
+  {% endthumbnail %}
+{% endblock %}
+
+{% block twitter-card %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@klabrw">
+  <meta name="twitter:creator" content="@klabrw">
+  <meta name="twitter:title" content="{{event.title|truncatewords:"9"}}">
+  <meta name="twitter:description" content="{{event.description|safe|truncatewords:"20" }}">
+  {% thumbnail event.logo "280x150" crop="center" as im %}
+    <meta name="twitter:image" content="http://6f29fee9.ngrok.io{{im.url}}">
+  {% endthumbnail %}
+{% endblock %}
 
 {% block main-contents %}
 
@@ -48,7 +71,20 @@
       <div class="description">
         {{event.description|safe}}
       </div>
-
+      
+      <table>
+        <tr>
+          <td class="tweet_fb">
+            <!-- Facebook share button -->
+            <div id="fb-root"></div>
+            <div class="fb-share-button" data-href="http://www.klab.rw{% url 'solo_event' event.id %}" data-layout="button">
+            </div>
+          </td>
+          <td>
+             <a class="twitter-share-button" id="tweet_button" style="float:left;" href="https://twitter.com/intent/tweet" data-size="default">Tweet</a>
+          </td>
+        </tr>
+      </table>
     </div>
 
 </div>
