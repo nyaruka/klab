@@ -23,14 +23,14 @@ django-reversion==1.9.3
 django-sekizai==0.8.2
 flickrapi==1.4.5
 gunicorn==19.3.0
-kombu==3.0.29
+kombu==3.0.35
 nose==1.3.7
 pytz==2015.7
 raven==5.8.1
 redis==2.10.5
 requests==2.8.1
 six==1.10.0
--e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-master
+-e git+https://github.com/nyaruka/smartmin.git@73573c115071a0ef09b6c06673905b82f3c20331#egg=smartmin-master
 sorl-thumbnail==12.3
 sqlparse==0.1.18
 -e git+https://github.com/norkans7/django-wiki.git#egg=wiki-master
