@@ -1,5 +1,5 @@
 from settings_common import *
-import os.path
+import os
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -13,9 +13,9 @@ HOSTNAME = "klab.rw"
 
 # set the mail settings, we send throught gmail
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '${gmail_user}'
-DEFAULT_FROM_EMAIL = '${gmail_user}'
-EMAIL_HOST_PASSWORD = '${gmail_password}'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'MISSING_EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'MISSING_DEFAULT_FROM_EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'MISSING_EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 #EMAIL_PORT=587
 

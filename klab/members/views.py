@@ -239,6 +239,10 @@ class MemberCRUDL(SmartCRUDL):
         def get_object(self, queryset=None):
             return Member.objects.filter(user=self.request.user).first()
 
+        def post_save(self, obj):
+            obj = super(MemberCRUDL.Myprofile, self).post_save(obj)
+            User.objects.filter(pk=obj.user_id).update(username=obj.email, email=obj.email)
+            return obj
 
     class Read(SmartReadView):
         fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood','education','education','experience','projects','token')

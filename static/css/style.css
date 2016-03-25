@@ -1455,10 +1455,13 @@ div.panel-collapse.collapse {
 .contact-map-title, .contact-guide-title {
     margin-bottom: 15px;
 }
-#klab-map{
+#klab-map,#kLab-guide{
     width: 400px;
 }
 iframe {
-    float: right;
-    width: 305px;
+    float: left;
+    width: auto;
+}
+.tweet_fb{
+    padding-right: 20px;
 }
