@@ -64,18 +64,15 @@ class KLabPublicTest(Helpers):
 		self.create_event(-1,"$500k Investment Lessons From Seedstars World 2016","This Thursday meet Louis Antoine Muhire, CEO& Founder of Mergims, who is going to clear;y highlight and broadly describe the $500k Investment lessons From Seedstars World 2016.")
 		response = self.client.get(reverse('public_home'))
 		self.assertEqual(response.status_code,200)
-		self.assertQuerysetEqual(response.context['recent'],
-            ['<Post: Apply for Global Entrepreneurship Summit>'])
+		self.assertQuerysetEqual(response.context['recent'],['<Post: Apply for Global Entrepreneurship Summit>'])
 		self.assertQuerysetEqual(response.context['upcoming'],[])
 
 	def test_main_page_with_post_event(self):
 		self.create_event(0,"Demo Night by Skyline Digital","This Wednesday,kLab based startup Skyline Digital that is to officially launch 2 platforms,namely rwandait.rw, which will be covering all IT news in Rwanda")
 		response = self.client.get(reverse('public_home'))
 		self.assertEqual(response.status_code,200)
-		self.assertQuerysetEqual(response.context['recent'],
-    		['<Post: Apply for Global Entrepreneurship Summit>'])
-		self.assertQuerysetEqual(response.context['upcoming'],
-            ['<Event: Demo Night by Skyline Digital>'])
+		self.assertQuerysetEqual(response.context['recent'],['<Post: Apply for Global Entrepreneurship Summit>'])
+		self.assertQuerysetEqual(response.context['upcoming'],['<Event: Demo Night by Skyline Digital>'])
 
 	def test_event_detail(self):
 		event = self.create_event(1,"kLab MTN Day","kLab is hosting the kLab MTN day after so many startup developers and entrepreneurs claiming to not work closely with Rwanda Telecom Companies.")
