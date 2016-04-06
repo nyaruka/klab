@@ -22,7 +22,7 @@ class KLabTest(SmartminTest):
 class Helpers(KLabTest):
     """Helper Class for creating for creating object model on the fly"""
     def setUp(self):
-	super(Helpers,self).setUp()
+        super(Helpers,self).setUp()
 
     def create_event(self,day,title,description):
 	self.event_date = timezone.now() + timedelta(days=day)
@@ -37,7 +37,7 @@ class Helpers(KLabTest):
                                     modified_by=self.editor)
 
     def create_opportunity(self,days,title,description,link):
-		return Opportunity.objects.create(title=title,
+        return Opportunity.objects.create(title=title,
                                           description=description,
                                           remaining_days=days,
                                           link=link,
