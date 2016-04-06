@@ -16,17 +16,17 @@ class KLabTest(SmartminTest):
         super(KLabTest, self).setUp()
 
         self.admin = self.create_user('admin', ["Administrator"])
-        self.editor = self.create_user('editor', ["Editors"])   
+        self.editor = self.create_user('editor', ["Editors"])
 
 
 class Helpers(KLabTest):
-	"""Helper Class for creating for creating object model on the fly"""
-	def setUp(self):
-		super(Helpers,self).setUp()
+    """Helper Class for creating for creating object model on the fly"""
+    def setUp(self):
+	super(Helpers,self).setUp()
 
-	def create_event(self,day,title,description):
-		self.event_date = timezone.now() + timedelta(days=day)
-		return Event.objects.create(title=title,
+    def create_event(self,day,title,description):
+	self.event_date = timezone.now() + timedelta(days=day)
+	return Event.objects.create(title=title,
                                     date=self.event_date,
                                     time=strftime('%H:%S'),
                                     duration=60,
@@ -36,7 +36,7 @@ class Helpers(KLabTest):
                                     created_by=self.editor,
                                     modified_by=self.editor)
 
-	def create_opportunity(self,days,title,description,link):
+    def create_opportunity(self,days,title,description,link):
 		return Opportunity.objects.create(title=title,
                                           description=description,
                                           remaining_days=days,
