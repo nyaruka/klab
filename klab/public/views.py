@@ -1,3 +1,5 @@
+import json
+
 from klab import flickr
 from datetime import datetime
 
@@ -19,17 +21,18 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db.models import Q
 
+
 class EmailForm(forms.Form):
     firstname = forms.CharField(max_length=64)
     lastname = forms.CharField(max_length=64)
     email = forms.EmailField()
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=64)
     email = forms.EmailField()
     message = forms.CharField(widget=forms.widgets.Textarea())
 
-     
 
 def home(request):
 
@@ -39,17 +42,21 @@ def home(request):
         if not cache.get('flickr_main'):
             # from flickr photos get one tagged "main"(should have only one)
             main = flickr.api.walk(user_id=flickr.user_id, tags="main", tag_mode='all', sort="date-posted-desc")
+            main_list = list(iter(main))
 
-            cache.set('flickr_main', list(iter(main)), 3600)
+            cache.set('flickr_main', json.dumps([dict(elt.items()) for elt in main_list]), timeout=3600)
 
-        main = cache.get('flickr_main')
+        cached_main = cache.get('flickr_main')
+        main = json.loads(cached_main)
 
         if not cache.get('flickr_favorites'):
             # from flickr get all photo elements tagged "favorite"
             favorites = flickr.api.walk(user_id=flickr.user_id, tags="favorite, -main", tag_mode='all', sort="date-posted-desc")
-            cache.set('flickr_favorites', list(iter(favorites)), 3600)
+            favorites_list = list(iter(favorites))
+            cache.set('flickr_favorites',json.dumps([dict(elt.items()) for elt in favorites_list]) , timeout=3600)
 
-        favorites = cache.get('flickr_favorites')
+        cached_favorites = cache.get('flickr_favorites')
+        favorites = json.loads(cached_favorites)
 
         images = []
         sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
@@ -82,6 +89,7 @@ def home(request):
     context = dict(images = images, recent=recent, upcoming=upcoming, videos=videos)
     return render(request, 'public/home.html', context)
 
+
 def blog(request):
     # get all blog posts in descending order
     posts = Post.objects.filter(is_active=True).order_by('-created_on')
@@ -89,11 +97,13 @@ def blog(request):
     context = dict(posts=posts)
     return render(request, 'public/blog.html', context)
 
+
 def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     
     context = dict(post=post)
     return render(request, 'public/post.html', context)
+
 
 def projects(request, project_type):
     if project_type == 'all':
@@ -114,12 +124,14 @@ def projects(request, project_type):
     context = dict(projects=projects)
     return render(request, 'public/projects.html', context)
 
+
 def project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     context = dict(project=project)
     return render(request, 'public/project.html', context)
-    
+
+
 def members(request, member_type):
 
     if member_type == "core":
@@ -145,12 +157,14 @@ def members(request, member_type):
     context = dict(members=members,member_type=member_type)
     return render(request, 'public/members.html', context)
 
+
 def member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
     
     
     context = dict(member=member,project=project)
     return render(request, 'public/member.html', context)
+
 
 def events(request, period):
 
@@ -164,11 +178,13 @@ def events(request, period):
     context = dict(events=events)
     return render(request, 'public/events.html', context)
 
+
 def event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
 
     context = dict(event=event)
     return render(request, 'public/event.html', context)
+
 
 def opportunities(request, status):
 
@@ -194,15 +210,18 @@ def opportunities(request, status):
     context = dict(opportunities=opportunities, group=group)
     return render(request, 'public/opportunities.html', context)
 
+
 def opportunity(request,opportunity_id):
     opportunity = get_object_or_404(Opportunity,pk=opportunity_id)
     context = dict(opportunity=opportunity)
     return render(request,'public/opportunity.html',context)
 
+
 def aboutus(request):
     #
     context = {}
     return render(request, 'public/abouts.html', context)
+
 
 def contact(request):
     if request.method == 'POST':

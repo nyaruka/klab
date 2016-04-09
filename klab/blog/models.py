@@ -1,5 +1,6 @@
 from klab import flickr
 
+import json
 from django.db import models
 from smartmin.models import SmartModel
 from django.core.cache import get_cache
@@ -26,13 +27,15 @@ class Post(SmartModel):
 
         if not cache.get(key):
             blog_photos = flickr.api.walk(user_id=flickr.user_id, tags="blog")
-            cache.set(key, list(iter(blog_photos)), 3600)
-            
-        blog_photos = cache.get(key)
+            blog_photos_list = list(iter(blog_photos))
+            cache.set(key, json.dumps([dict(elt.items()) for elt in blog_photos_list]), timeout=None)
+
+        cached_blog_photos = cache.get(key)
+        blog_photos = json.loads(cached_blog_photos)
 
         for photo in blog_photos:
             if photo.get('id') == self.image_id:
-                return flickr.get_url(photo,"b")
+                return flickr.get_url(photo, "b")
 
     def teaser(self):
         words = self.body.split(" ")

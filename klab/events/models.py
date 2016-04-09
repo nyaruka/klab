@@ -1,3 +1,5 @@
+import json
+
 from django.core.cache import get_cache
 from django.db import models
 from django.conf import settings
@@ -44,7 +46,6 @@ class Event(SmartModel):
             days = self.duration / 1440
             return "%d days" % days
 
-
     def __unicode__(self):
         return self.title
 
@@ -60,15 +61,18 @@ class Event(SmartModel):
                 key = self.get_cache_key()
 
                 if not cache.get(key):
-                    event_photos = flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag) 
-                    cache.set(key, list(iter(event_photos)), 3600)
+                    event_photos = flickr.api.walk(user_id=flickr.user_id, tags=self.photo_tag)
+                    event_photos_list = list(iter(event_photos))
+                    cache.set(key, json.dumps([dict(elt.items()) for elt in event_photos_list]), None)
 
-                event_photos = cache.get(key)
+                cached_event_photos = cache.get(key)
+                event_photos = json.loads(cached_event_photos)
 
                 return event_photos
             except:
                 # otherwise give back nothing
                 return None
+
 
 class Video(SmartModel):
     name = models.CharField(help_text="The name of the video", max_length=255)

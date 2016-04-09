@@ -64,13 +64,13 @@ STATICFILES_FINDERS = (
 )
 
 # Flickr key
-FLICKR_KEY = '82b7f31b4cdf878d31eeb8866625a252'
+FLICKR_KEY = 'FLICKR-API_KEY'
 
 # Flickr secret
-FLICKR_SECRET = '919778c72bf31035'
+FLICKR_SECRET = 'FLICKR-SECRET'
 
 # Flickr user@id
-FLICKR_USER_ID = '130625444@N08'
+FLICKR_USER_ID = 'FLICKR-USER-ID'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '8&k54&4x%kv-rdtb*j&!a7nt@v@rwsie8g72_3lm6y%#%+lli1'

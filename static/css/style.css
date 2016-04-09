@@ -1195,8 +1195,6 @@ h3 a , h3 a:hover {
     margin-bottom: 30px;
 }
 
-}
-
 .solo_opportunity_image {
     float: left;
     width: 100px;
@@ -1323,11 +1321,14 @@ label.control-label.col-sm-2 {
 
 nav.navbar.navbar-default {
     background-color: #E3E4E4;
+    border-color: transparent;
 }
 
 #example-navbar-collapse{
     float: right;
     margin-top: 7px;
+    border: none;
+    box-shadow: none;
 }
 
 #example-navbar-collapse ul li a {
