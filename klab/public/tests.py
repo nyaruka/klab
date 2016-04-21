@@ -62,7 +62,7 @@ class KLabPublicTest(Helpers):
         self.mock_response = mock.Mock()
 
     @mock.patch('flickrapi.FlickrAPI.walk')
-    def test_main_page_with_post_past_event(self,mock_flickr):
+    def test_main_page_with_post_past_event(self, mock_flickr):
         self.create_event(-1, "$500k Investment Lessons From Seedstars World 2016", "This Thursday meet Louis Antoine Muhire, CEO& Founder of Mergims, who is going to clear;y highlight and broadly describe the $500k Investment lessons From Seedstars World 2016.")
         self.mock_response.etree.return_value = self.data
         self.mock_response.status_code = 200
@@ -73,7 +73,7 @@ class KLabPublicTest(Helpers):
         self.assertQuerysetEqual(response.context['upcoming'], [])
 
     @mock.patch('flickrapi.FlickrAPI.walk')
-    def test_main_page_with_post_event(self,mock_flickr):
+    def test_main_page_with_post_event(self, mock_flickr):
         self.create_event(0, "Demo Night by Skyline Digital", "This Wednesday,kLab based startup Skyline Digital that is to officially launch 2 platforms,namely rwandait.rw, which will be covering all IT news in Rwanda")
         self.mock_response.etree.return_value = self.data
         self.mock_response.status_code = 200
@@ -89,7 +89,7 @@ class KLabPublicTest(Helpers):
         self.assertContains(response, event.title, status_code=200)
 
     @mock.patch('flickrapi.FlickrAPI.walk')
-    def test_post_detail(self,mock_flickr):
+    def test_post_detail(self, mock_flickr):
         self.mock_response.etree.return_value = self.data
         self.mock_response.status_code = 200
         mock_flickr.return_value = self.mock_response.etree.return_value
