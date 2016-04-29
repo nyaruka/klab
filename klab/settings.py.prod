@@ -44,9 +44,12 @@ DATABASES = {
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a trailing slash.
 ADMIN_MEDIA_PREFIX = '/sitestatic/'
 
-INSTALLED_APPS += ('gunicorn',)
+INSTALLED_APPS += ('gunicorn', 'raven.contrib.django.raven_compat',)
+
+# Set your DSN value
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('RAVEN_DSN', 'MISSING_RAVEN_DSN')
+}
 
 # static dir is different for prod
 STATIC_URL = '/sitestatic/'
-
-SENTRY_DSN = 'http://8680e6db98394b5988fce79d12dfa5be:dc0e5c12969541049aa726b4980af986@monitor.nyaruka.com/2'

@@ -237,9 +237,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.humanize',
 
-    # error logging
-    'raven.contrib.django',
-
     # necessary apps
     'nose',
     'guardian',
