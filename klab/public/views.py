@@ -33,7 +33,6 @@ class ContactForm(forms.Form):
     email = forms.EmailField()
     message = forms.CharField(widget=forms.widgets.Textarea())
 
-
 def home(request):
 
     try:
@@ -100,7 +99,7 @@ def blog(request):
 
 def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    
+
     context = dict(post=post)
     return render(request, 'public/post.html', context)
 
@@ -111,7 +110,7 @@ def projects(request, project_type):
     else:
 
         projects = Project.objects.filter(is_active=True).order_by('-created_on')
-        
+
     search = request.REQUEST.get("search",None)
     if search:
         tokens = search.strip().split()
@@ -144,7 +143,7 @@ def members(request, member_type):
         members = Member.objects.filter(is_active=True, is_alumni=True).order_by('membership_type')
     else:
         members = Member.objects.filter(is_active=True, is_alumni=False).order_by('membership_type')
-        
+
     search = request.REQUEST.get("search",None)
     if search:
         tokens = search.strip().split()
@@ -160,8 +159,8 @@ def members(request, member_type):
 
 def member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
-    
-    
+
+
     context = dict(member=member,project=project)
     return render(request, 'public/member.html', context)
 
