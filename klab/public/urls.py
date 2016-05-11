@@ -1,4 +1,4 @@
-from .views import home, blog, post, events, event, aboutus, projects,members,member, project, contact, opportunities, opportunity
+from .views import home, blog, post, events, event, aboutus, projects,members,member, project, contact, opportunities, opportunity, startup, startups
 
 from django.conf.urls import patterns, include, url
 
@@ -17,4 +17,7 @@ urlpatterns = patterns('',
     url(r'public/opportunity/(\d+)$',opportunity,name='solo_opportunity'),
     url(r'^public/about$', aboutus, name='public_about'),
     url(r'^public/contact$', contact, name='public_contact'),
+    url(r'^public/startups$', startups, name='public_startups'),
+    url(r'^public/startups/startup/(\d+)$', startup, name='public_startup'),
+
 )

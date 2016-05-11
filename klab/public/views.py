@@ -90,17 +90,32 @@ def home(request):
     return render(request, 'public/home.html', context)
 
 
+def startups(request):
+    # get all blog posts in descending order
+    posts = Post.objects.filter(is_active=True, post_type=Post.TYPE_STARTUP).order_by('-created_on')
+
+    context = dict(posts=posts)
+    return render(request, 'public/blog.html', context)
+
+
+def startup(request, post_id):
+    post = get_object_or_404(Post, pk=post_id, post_type=Post.TYPE_STARTUP)
+
+    context = dict(post=post)
+    return render(request, 'public/post.html', context)
+
+
 def blog(request):
     # get all blog posts in descending order
-    posts = Post.objects.filter(is_active=True).order_by('-created_on')
+    posts = Post.objects.filter(is_active=True, post_type=Post.TYPE_BLOG).order_by('-created_on')
 
     context = dict(posts=posts)
     return render(request, 'public/blog.html', context)
 
 
 def post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    
+    post = get_object_or_404(Post, pk=post_id, post_type=Post.TYPE_BLOG)
+
     context = dict(post=post)
     return render(request, 'public/post.html', context)
 

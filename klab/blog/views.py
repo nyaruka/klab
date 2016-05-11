@@ -8,7 +8,10 @@ class PostCRUDL(SmartCRUDL):
     permissions = True
 
     class List(SmartListView):
-        fields = ('title', 'created_by', 'created_on')
+        fields = ('title', 'post_type', 'created_by', 'created_on')
+
+        def get_post_type(self, obj):
+            return obj.get_post_type_display()
 
     class Update(SmartUpdateView):
         exclude = ('modified_by',)
