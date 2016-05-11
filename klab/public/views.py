@@ -79,7 +79,7 @@ def home(request):
         images = []
 
     # get recent blog posts
-    recent = Post.objects.filter(is_active=True).order_by('-created_on')[:5]
+    recent = Post.objects.filter(is_active=True, post_type=Post.TYPE_BLOG).order_by('-created_on')[:5]
 
     # get upcoming events
     upcoming = Event.objects.filter(is_active=True, date__gte=datetime.today())[:5]
