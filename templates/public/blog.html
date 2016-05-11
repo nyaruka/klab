@@ -30,9 +30,11 @@
           <div class="title">
             <a href="{{ post.get_public_url }}">{{post.title}}</a>
           </div>
-	  {% with post.created_by as author %}
-	  <div class="byline">by {{ author.first_name|capfirst }} {{ author.last_name }}</div>
-	  {% endwith %}
+          {% if post.post_type == 'B' %}
+          {% with post.created_by as author %}
+            <div class="byline">by {{ author.first_name|capfirst }} {{ author.last_name }}</div>
+          {% endwith %}
+          {% endif %}
         </div>
         <div style="clear: both;"></div>          
 

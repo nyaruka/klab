@@ -5,7 +5,7 @@
 {% block title %} kLab - {{post.title}} {% endblock %}
 
 {% block share-button %}
-  <meta property="og:url"           content="http://www.klab.rw{% url 'public_post' post.id %}" />
+  <meta property="og:url"           content="http://www.klab.rw{{ post.get_public_url }} }" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="{{post.title|truncatewords:"9"}}" />
   <meta property="og:description"   content="{{post.body|truncatewords:"20" }}" />
@@ -47,9 +47,11 @@
           <div class="title">
             {{post.title}}
           </div>
-	  {% with post.created_by as author %}
-	  <div class="byline">by {{ author.first_name|capfirst }} {{ author.last_name }}</div>
-	  {% endwith %}
+          {% if post.post_type == 'B' %}
+          {% with post.created_by as author %}
+            <div class="byline">by {{ author.first_name|capfirst }} {{ author.last_name }}</div>
+          {% endwith %}
+          {% endif %}
         </div>
         <div style="clear: both;"></div>          
         
@@ -62,7 +64,7 @@
             <td class="tweet_fb">
               <!-- Facebook share button -->
               <div id="fb-root"></div>
-              <div class="fb-share-button" data-href="http://www.klab.rw{% url 'public_post' post.id %}" data-layout="button">
+              <div class="fb-share-button" data-href="http://www.klab.rw{{ post.get_public_url }}" data-layout="button">
               </div>
             </td>
             <td>
@@ -72,7 +74,7 @@
         </table>
 
         <!-- Facebook comments -->
-        <div class="fb-comments" data-href="http://www.klab.rw{% url 'public_post' post.id %}" data-num-posts="5" data-width="100%"></div>
+        <div class="fb-comments" data-href="http://www.klab.rw{{ post.get_public_url }}" data-num-posts="5" data-width="100%"></div>
       </div>
     </div>
 
