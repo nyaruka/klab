@@ -1,5 +1,6 @@
 {% extends "public_base.html" %}
 
+{% load quickblocks %}
 {% load thumbnail %}
 
 
@@ -41,7 +42,9 @@
 
 {% block main-contents %}
 
+
 <div id="main-contents">
+  {% load_qbs "operation_hours" %}
 
   {% if images %}
   <div id="favorites" class="radius shadow">
@@ -78,20 +81,18 @@
           kLab, ICT Park, 6th Floor<br/>
           Boulevard de l'Umuganda, Kacyiru
         </span>
+
+        {% if operation_hours %}
         <table>
+          {% for elt in operation_hours %}
           <tr class="details_size">
-            <td>Open Hours : </td>
-            <td class="open_hours">Monday - Friday : 6:00AM-9:00PM</td>
+            <td> {{ elt.title }}</td>
+            <td class="open_hours">{{ elt.content|safe }}</td>
           </tr>
-          <tr class="details_size">
-            <td></td>
-            <td class="open_hours">Saturday : 9:00AM - 6:00PM</td>
-          </tr>
-          <tr class="details_size">
-            <td></td>
-            <td class="open_hours">Sunday : Closed</td>
-	   </tr>
+          {% endfor %}
         </table>
+
+        {% endif %}
       </div> 
       <div id="apply">
         <a href="{% url 'members.application_create' %}"><span class="big button radius shadow">Become a Member</span></a>
