@@ -46,6 +46,18 @@
 <div id="main-contents">
   {% load_qbs "operation_hours" %}
 
+  {% block messages %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-{{ message.tags }}" data-alert="alert">
+      <a class="close" data-dismiss="alert" href="#">×</a>
+      <p>{{ message }}.</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+  {% endblock messages %}
+
+
   {% if images %}
   <div id="favorites" class="radius shadow">
     {% for url, geo, title in images|slice:":5" %}

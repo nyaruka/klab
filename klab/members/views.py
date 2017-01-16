@@ -4,6 +4,7 @@ import requests
 from smartmin.views import *
 from django.conf import settings
 from django.contrib.auth.models import User, Group
+from django.contrib import messages
 from django.core.mail import send_mail
 from klab.projects.models import *
 import random
@@ -202,6 +203,12 @@ class MemberCRUDL(SmartCRUDL):
         success_message = "Password saved and account activated successfully, now you can login to the website"
         success_url = "@users.user_login"
 
+        def pre_process(self, request, *args, **kwargs):
+            if not self.get_object():
+                messages.info(request, "Invalid link. Please contact info@klab.rw")
+                return HttpResponseRedirect(reverse('public_home'))
+            return None
+
         def derive_fields(self):
             if self.object.membership_type == 'B':
                 return ('new_password',)
@@ -215,7 +222,7 @@ class MemberCRUDL(SmartCRUDL):
 
         def get_object(self, queryset=None):
             token = self.kwargs.get('token')
-            return Member.objects.get(token=token)
+            return Member.objects.filter(token=token).first()
 
     class Myprofile(SmartUpdateView):
 
@@ -223,7 +230,8 @@ class MemberCRUDL(SmartCRUDL):
                   'education','experience')
 
         def pre_process(self, request, *args, **kwargs):
-            if not self.get_object():
+            if request.user.is_anonymous() or not self.get_object():
+                messages.info(request, "No user logged in.")
                 return HttpResponseRedirect(reverse('public_home'))
             return None
 
