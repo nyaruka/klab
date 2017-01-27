@@ -303,7 +303,19 @@ class MemberCRUDL(SmartCRUDL):
             obj.experience = userapp.experience
             obj.token = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 
-            user = User.objects.create(username=obj.application.email,email=obj.application.email)
+            existing_email_users = list(User.objects.filter(username=obj.application.email))
+            if existing_email_users:
+                for each_user in existing_email_users:
+                    # make existing user inactive
+                    Member.objects.filter(user=each_user).update(is_active=False)
+
+                    # make existing users inactive
+                    inactive_username = obj.application.email + "_inactive_" + ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(4))
+                    each_user.username = inactive_username
+                    each_user.email = ''
+                    each_user.save()
+
+            user = User.objects.create(username=obj.application.email, email=obj.application.email)
 
             # generate a random 8 digits password.
             internet_password = ''.join(["%s" % random.randint(0, 9) for num in range(0, 8)])
