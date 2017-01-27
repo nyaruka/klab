@@ -310,7 +310,7 @@ class MemberCRUDL(SmartCRUDL):
                     Member.objects.filter(user=each_user).update(is_active=False)
 
                     # make existing users inactive
-                    inactive_username = obj.application.email + "_inactive_" + ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(4))
+                    inactive_username = obj.application.email + "." + ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(4))
                     each_user.username = inactive_username
                     each_user.email = ''
                     each_user.save()
