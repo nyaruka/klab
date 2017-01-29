@@ -231,7 +231,7 @@ class MemberCRUDL(SmartCRUDL):
 
         def pre_process(self, request, *args, **kwargs):
             if request.user.is_anonymous() or not self.get_object():
-                messages.info(request, "No user logged in.")
+                messages.info(request, "No user logged in or no profile.")
                 return HttpResponseRedirect(reverse('public_home'))
             return None
 
@@ -245,7 +245,7 @@ class MemberCRUDL(SmartCRUDL):
             return context
 
         def get_object(self, queryset=None):
-            return Member.objects.filter(user=self.request.user).first()
+            return Member.objects.filter(user_id=self.request.user.id).first()
 
         def post_save(self, obj):
             obj = super(MemberCRUDL.Myprofile, self).post_save(obj)
