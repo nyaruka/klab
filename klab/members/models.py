@@ -30,6 +30,19 @@ class Application(SmartModel):
         ('M', "A few times a month")
     )
 
+    LOCATION_CHOICES = (
+        ('KIGALI', 'Kigali'),
+        ('KIGALI/KINYINYA', 'Kigali Kinyinya (For under 15 years ONLY)'),
+        ('KARONGI', 'Karongi'),
+        ('RUBAVU', 'Rubavu'),
+        ('RUSIZI', 'Rusizi'),
+        ('MUSANZE', 'Musanze'),
+        ('HUYE', 'Huye'),
+        ('MUHANGA', 'Muhanga'),
+        ('NYAGATARE', 'Nyagatare'),
+        ('RWAMAGANA', 'Rwamagana')
+    )
+
     first_name = models.CharField(max_length=64, help_text="Your first (given) name")
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
     phone = models.CharField(max_length=12, help_text="Your phone number (including country code) - eg: 250788123456")
@@ -38,6 +51,7 @@ class Application(SmartModel):
     country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")
     city = models.CharField(max_length=18, help_text="The city you live in - eg: Kigali")
     neighborhood = models.CharField(max_length=26, help_text="The neighborhood you live in - eg: Nyamirambo")
+    location = models.CharField(max_length=64, choices=LOCATION_CHOICES, default='KIGALI', help_text="kLab location your are applying for.")
     professional_status = models.CharField(max_length=3, choices=PROFESSIONAL_STATUS, help_text="Your professional background")
     applying_for = models.CharField(max_length=1, choices=MEMBERSHIP_TYPES, help_text="The type of membership you are applying for")
     frequency = models.CharField(max_length=1, choices=FREQUENCY_TYPES, help_text="How often you plan on visiting kLab")
@@ -52,7 +66,6 @@ class Application(SmartModel):
         return "%s %s" % (self.first_name, self.last_name)
 
 
-
 class Member(SmartModel):
 
     MEMBERSHIP_TYPES = (
@@ -60,8 +73,7 @@ class Member(SmartModel):
         ('B', "Blue - kLab Mentor"),
         ('R', "Red - kLab Core Team")
     )
-     
-    
+
     application = models.ForeignKey(Application, help_text="The initial Application of the member")
 
     user = models.ForeignKey(User, help_text="The user account associated with this member")
@@ -75,6 +87,7 @@ class Member(SmartModel):
     country = models.CharField(max_length=18, help_text="The country you live in - eg: Rwanda")
     city = models.CharField(max_length=18, help_text="The city you live in - eg: Kigali")
     neighborhood = models.CharField(max_length=26, help_text="The neighborhood you live in - eg: Nyamirambo")
+    location = models.CharField(max_length=64, default='KIGALI', help_text="kLab location choosen")
     education = models.TextField(max_length=1024, help_text="Your education, including any degrees or certifications earned (1024 character limit).")
     experience = models.TextField(max_length=1024, help_text="Briefly describe your experience, projects you have worked on, and companies you have worked for. "
                                   "Please include the URLs of any projects you worked on and how you contributed (1024 character limit).")
@@ -108,7 +121,6 @@ class Member(SmartModel):
         if user.is_anonymous():
             return None
         return cls.objects.filter(user=user).first()
-
 
     def __unicode__(self):
         return "%s_%s" % (self.first_name, self.last_name)
