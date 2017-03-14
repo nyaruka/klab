@@ -38,8 +38,12 @@
             <td class="read-value"><a href="mailto:{{ object.email }}">{{ object.email }}</a></td>
           </tr>
           <tr>
-            <td class="read-label">Location</td>
+            <td class="read-label">Residence</td>
             <td class="read-value">{{ object.neighborhood }}, {{ object.city }} in {{ object.country }}</td>
+          </tr>
+          <tr>
+            <td class="read-label">Location</td>
+            <td class="read-value">{{ object.get_location_display }}</td>
           </tr>
           <tr>
             <td class="read-label">Submitted</td>

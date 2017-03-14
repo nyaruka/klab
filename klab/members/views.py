@@ -74,7 +74,8 @@ class MemberForm(forms.ModelForm):
         model = Member
         fields = ('is_active', 'application', 'user', 'first_name', 'last_name', 'phone', 'email', 'picture', 'country',
                   'city', 'neighborhood', 'education', 'experience', 'projects', 'token')
-            
+
+
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
     actions = ('create', 'read', 'update', 'list', 'thanks', 'csv')
@@ -124,19 +125,22 @@ class ApplicationCRUDL(SmartCRUDL):
             return "%s %s" % (obj.first_name, obj.last_name)
         
     class List(SmartListView):
-        fields = ('name', 'email', 'applying_for', 'city', 'country', 'created_on')
+        fields = ('name', 'email', 'applying_for', 'location', 'city', 'country', 'created_on')
         search_fields = ('first_name__icontains', 'last_name__icontains')
         field_config = {'applying_for': dict(label="Membership Type")}
 
         def derive_queryset(self, **kwargs):
             queryset = super(ApplicationCRUDL.List, self).derive_queryset(**kwargs)
-            return queryset.filter(is_active=True)
+            return queryset.filter(is_active=True).order_by('-created_on')
 
         def get_name(self, obj):
             return "%s %s" % (obj.first_name, obj.last_name)
 
         def get_applying_for(self, obj):
             return obj.get_applying_for_display()
+
+        def get_location(self, obj):
+            return obj.get_location_display()
 
     class Create(SmartCreateView):
         permission = None
@@ -231,7 +235,7 @@ class MemberCRUDL(SmartCRUDL):
 
         def pre_process(self, request, *args, **kwargs):
             if request.user.is_anonymous() or not self.get_object():
-                messages.info(request, "No user logged in.")
+                messages.info(request, "No user logged in or no profile.")
                 return HttpResponseRedirect(reverse('public_home'))
             return None
 
@@ -245,7 +249,7 @@ class MemberCRUDL(SmartCRUDL):
             return context
 
         def get_object(self, queryset=None):
-            return Member.objects.filter(user=self.request.user).first()
+            return Member.objects.filter(user_id=self.request.user.id).first()
 
         def post_save(self, obj):
             obj = super(MemberCRUDL.Myprofile, self).post_save(obj)
@@ -253,19 +257,22 @@ class MemberCRUDL(SmartCRUDL):
             return obj
 
     class Read(SmartReadView):
-        fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood','education','education','experience','projects','token')
+        fields = ('application','user','first_name','last_name','phone','membership_type','email','picture','country','city','neighborhood', 'location', 'education','education','experience','projects','token')
+
+        def get_location(self, obj):
+            return obj.application.get_location_display()
 
         def get_membership_type(self, obj):
             return obj.application.get_applying_for_display()
 
     class List(SmartListView):
-        fields = ('name', 'change_alumni', 'email','phone','country','city', 'is_alumni')
+        fields = ('name', 'change_alumni', 'email','phone','country','city', 'is_alumni', 'created_on')
         field_config = { 'email': dict(label="Email / User"), 'is_alumni' : dict(label="Alumni") }
         search_fields = ('first_name__icontains', 'last_name__icontains')
 
         def derive_queryset(self, **kwargs):
             queryset = super(MemberCRUDL.List, self).derive_queryset(**kwargs)
-            return queryset.filter(is_active=True)
+            return queryset.filter(is_active=True).order_by('-created_on')
 
         def get_is_alumni(self, obj):
             if obj.is_alumni:
@@ -299,6 +306,7 @@ class MemberCRUDL(SmartCRUDL):
             obj.country = userapp.country
             obj.city = userapp.city
             obj.neighborhood = userapp.neighborhood
+            obj.location = userapp.location
             obj.education = userapp.education
             obj.experience = userapp.experience
             obj.token = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
@@ -330,22 +338,24 @@ class MemberCRUDL(SmartCRUDL):
                                       ticket="99")
 
             klab_system = QuickBlock.objects.filter(quickblock_type__slug='klab_system', title="Endian").first()
-            endian_user =  klab_system.summary.strip()
+            endian_user = klab_system.summary.strip()
             endian_password = klab_system.content.strip()
 
             ticket_response = None
 
-            try:
-                ticket_response = requests.post("https://endian.klab.rw:10443/admin/api/account/",
-                                                data=internet_post_data,
-                                                auth=(endian_user, endian_password),
-                                                verify=False)
-            except:
-                pass
+            if obj.location == 'KIGALI':
+                try:
+                    ticket_response = requests.post("https://endian.klab.rw:10443/admin/api/account/",
+                                                    data=internet_post_data,
+                                                    auth=(endian_user, endian_password),
+                                                    verify=False)
+                except:
+                    pass
 
-            if ticket_response and  ticket_response.status_code == 200:
-                user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account \n \n http://klab.rw/members/member/activate/%s/  \n \n kLab Wi-fi Internet access: \n Username: %s \n Password: %s \n \n After you have activated your account, login using your full email address as username and your password \n \n And  customize what will be published on your kLab website profile by click profile link on the left of members \n \n  This email is generated by the kLab website do not reply to it. " % (obj.token, obj.email, internet_password),"website@klab.rw")
-            else:
+                if ticket_response and ticket_response.status_code == 200:
+                    user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account \n \n http://klab.rw/members/member/activate/%s/  \n \n kLab Wi-fi Internet access: \n Username: %s \n Password: %s \n \n After you have activated your account, login using your full email address as username and your password \n \n And  customize what will be published on your kLab website profile by click profile link on the left of members \n \n  This email is generated by the kLab website do not reply to it. " % (obj.token, obj.email, internet_password),"website@klab.rw")
+
+            if obj.location != 'KIGALI' or not (ticket_response and ticket_response.status_code == 200):
                 user.email_user("kLab account activation","Your membership to kLab has been approved go to the following link to activate your account \n \n http://klab.rw/members/member/activate/%s/  \n \n After you have activated your account, login using your full email address as username and your password \n \n And  customize what will be published on your kLab website profile by click profile link on the left of members \n \n  This email is generated by the kLab website do not reply to it. " % obj.token,"website@klab.rw")
 
                 # notify core team
