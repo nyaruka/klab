@@ -5,13 +5,13 @@
 {% block title %} kLab - {{post.title}} {% endblock %}
 
 {% block share-button %}
-  <meta property="og:url"           content="http://www.klab.rw{{ post.get_public_url }} }" />
+  <meta property="og:url"           content="https://www.klab.rw{{ post.get_public_url }} }" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="{{post.title|truncatewords:"9"}}" />
   <meta property="og:description"   content="{{post.body|truncatewords:"20" }}" />
 
   {% thumbnail post.photo "280x150" crop="center" as im %}
-    <meta  property="og:image" content="http://www.klab.rw{{im.url}}">
+    <meta  property="og:image" content="https://www.klab.rw{{im.url}}">
   {% endthumbnail %}
 {% endblock %}
 
@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="{{post.title|truncatewords:"9"}}">
   <meta name="twitter:description" content="{{post.body|truncatewords:"20" }}">
   {% thumbnail post.photo "280x150" crop="center" as im %}
-    <meta name="twitter:image" content="http://www.klab.rw{{im.url}}">
+    <meta name="twitter:image" content="https://www.klab.rw{{im.url}}">
   {% endthumbnail %}
 {% endblock %}
 
@@ -64,7 +64,7 @@
             <td class="tweet_fb">
               <!-- Facebook share button -->
               <div id="fb-root"></div>
-              <div class="fb-share-button" data-href="http://www.klab.rw{{ post.get_public_url }}" data-layout="button">
+              <div class="fb-share-button" data-href="https://www.klab.rw{{ post.get_public_url }}" data-layout="button">
               </div>
             </td>
             <td>
@@ -74,7 +74,7 @@
         </table>
 
         <!-- Facebook comments -->
-        <div class="fb-comments" data-href="http://www.klab.rw{{ post.get_public_url }}" data-num-posts="5" data-width="100%"></div>
+        <div class="fb-comments" data-href="https://www.klab.rw{{ post.get_public_url }}" data-num-posts="5" data-width="100%"></div>
       </div>
     </div>
 

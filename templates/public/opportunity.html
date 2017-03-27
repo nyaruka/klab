@@ -5,11 +5,11 @@
 {% endblock title %}
 
 {% block share-button %}
-	<meta property="og:url"           content="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" />
+	<meta property="og:url"           content="https://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="{{opportunity.title|truncatewords:"9"}}" />
 	<meta property="og:description"   content="{{opportunity.description|truncatewords:"20" }}" />
-	<meta property="og:image"         content="http://www.klab.rw{{STATIC_URL}}images/klab_card_final.png" />
+	<meta property="og:image"         content="https://www.klab.rw{{STATIC_URL}}images/klab_card_final.png" />
 {% endblock %}
 
 {% block twitter-card %}
@@ -94,7 +94,7 @@
 		          	<td class="tweet_fb">
 		          		<!-- Facebook share button -->
 						<div id="fb-root"></div>
-						<div class="fb-share-button" data-href="http://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" data-layout="button">
+						<div class="fb-share-button" data-href="https://www.klab.rw{% url 'solo_opportunity' opportunity.id %}" data-layout="button">
 						</div>	
 		          	</td>
 		          	<td>
