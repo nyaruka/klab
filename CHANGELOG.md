@@ -1,3 +1,7 @@
+v0.0.138
+----------
+ * Use https for js libs and fonts and all external links
+
 v0.0.137
 ----------
  * Error files
