@@ -1,3 +1,7 @@
+v0.0.140
+----------
+ * Add logging config and update wiki
+
 v0.0.139
 ----------
  * Fix static files
