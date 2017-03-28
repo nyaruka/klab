@@ -1,3 +1,7 @@
+v0.0.142
+----------
+ * More Https
+
 v0.0.141
 ----------
  * Fix member picture filename
