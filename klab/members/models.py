@@ -107,7 +107,9 @@ class Member(SmartModel):
             tmp_file.close()
 
             tmp_file = open(tmp_name, 'r')
-            self.picture.save('%s.jpg' % self.application, File(tmp_file), save=True)
+
+            filename = unicode(self.application)
+            self.picture.save('%s.jpg' % filename.encode('ascii', 'ignore'), File(tmp_file), save=True)
             self.save()
 
             os.unlink(tmp_name)
