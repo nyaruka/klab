@@ -1,3 +1,7 @@
+v0.0.143
+----------
+ * Overwrite the jquery script to use the recent one on admin site
+
 v0.0.142
 ----------
  * More Https
