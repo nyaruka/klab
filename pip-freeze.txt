@@ -33,7 +33,7 @@ raven==5.13.0
 redis==2.10.5
 requests==2.8.1
 six==1.10.0
--e git+https://github.com/nyaruka/smartmin.git@73573c115071a0ef09b6c06673905b82f3c20331#egg=smartmin
+-e git+https://github.com/nyaruka/smartmin.git@c950ab1eea2a12d5aac3448bd77d12927d51fc45#egg=smartmin
 sorl-thumbnail==12.3
 South==1.0.2
 sqlparse==0.1.18
