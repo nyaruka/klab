@@ -1,3 +1,7 @@
+v0.0.141
+----------
+ * Fix member picture filename
+
 v0.0.140
 ----------
  * Add logging config and update wiki
