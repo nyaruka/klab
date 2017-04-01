@@ -1,3 +1,7 @@
+v0.0.145
+----------
+ * Update logging config
+
 v0.0.144
 ----------
  * Use smartmin branch to overwrite breaking jquery
