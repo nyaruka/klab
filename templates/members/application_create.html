@@ -19,6 +19,8 @@
    {% if forloop.first %}
    {% thumbnail header.image "290x400" crop="center" as img %}
    <img src="{{ img.url }}" width="290px"/>
+   {% empty %}
+     <img src="{{STATIC_URL}}images/placeholder_250x300.jpg" />
    {% endthumbnail %}
    {% endif %}
    {% endfor %}

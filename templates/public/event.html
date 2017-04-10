@@ -13,7 +13,9 @@
   <meta property="og:description"   content="{{event.description|truncatewords:"20" }}" />
 
   {% thumbnail event.logo "280x150" crop="center" as im %}
-    <meta  property="og:image" content="https://www.klab.rw{{im.url}}">
+    <meta  property="og:image" content="https://www.klab.rw{{im.url}}" />
+  {% empty %}
+     <meta  property="og:image" content="https://www.klab.rw{{STATIC_URL}}images/placeholder_280x150.jpg" />
   {% endthumbnail %}
 {% endblock %}
 
@@ -25,6 +27,8 @@
   <meta name="twitter:description" content="{{event.description|truncatewords:"20" }}">
   {% thumbnail event.logo "280x150" crop="center" as im %}
     <meta name="twitter:image" content="{{im.url}}">
+  {% empty %}
+     <meta  property="og:image" content="{{STATIC_URL}}images/placeholder_280x150.jpg" />
   {% endthumbnail %}
 {% endblock %}
 
@@ -43,6 +47,8 @@
       <div class="solo_event_image">
         {% thumbnail event.logo "100x110" crop="center" as im %}
         <img src="{{im.url}}" />
+        {% empty %}
+          <img src="{{STATIC_URL}}images/placeholder_100x110.jpg">
         {% endthumbnail %}
       </div>
       <div class="event_heading">

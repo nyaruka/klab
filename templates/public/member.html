@@ -22,6 +22,8 @@
       <div class="solo_event_image">
         {% thumbnail member.picture "100x110" crop="center" as im %}
         <img src="{{im.url}}" />
+        {% empty %}
+          <img src="{{STATIC_URL}}images/placeholder_100x110.jpg">
         {% endthumbnail %}
       </div>
       <div class="event_heading">
