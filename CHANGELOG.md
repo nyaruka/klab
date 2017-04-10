@@ -1,3 +1,7 @@
+v0.0.146
+----------
+ * Fix approve
+
 v0.0.145
 ----------
  * Update logging config
