@@ -1,3 +1,9 @@
+v0.0.147
+----------
+ * Email should contain https
+ * update pillow
+ * Use empty for failing thumbnails
+
 v0.0.146
 ----------
  * Fix approve
