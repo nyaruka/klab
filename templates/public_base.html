@@ -95,7 +95,6 @@
             <li><a href="{% url 'public_opportunities' "new" %}" >opportunities</a></li>
             <li><a href="{% url 'public_events' "all" %}" >events</a></li>
             <li><a href="{% url 'public_blog' %}" >blog</a></li>
-            <li><a href="/wiki/" >wiki</a></li>
 
             {% if perms.members.member_myprofile and member_for_user %}
               <li><a href="{% url 'members.member_myprofile' 0 %}" >profile</a></li>

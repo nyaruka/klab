@@ -245,15 +245,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'pagination',
     'django_quickblocks',
-    'django_nyt',
-    'mptt',
     'sekizai',
-
-    'wiki',
-    'wiki.plugins.attachments',
-    'wiki.plugins.notifications',
-    'wiki.plugins.images',
-    'wiki.plugins.macros',
 
     # smartmin users app
     'smartmin.users',
