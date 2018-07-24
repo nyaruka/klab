@@ -1,9 +1,7 @@
 Django==1.7.11
 -e git+https://github.com/nyaruka/smartmin.git#egg=smartmin-dev
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_7#egg=django-quickblocks
-wiki==0.1
 Pillow
-South
 django-compressor
 django-guardian
 django-nose
@@ -18,6 +16,5 @@ Markdown
 raven
 nose
 mysqlclient
-django_nyt
 django-celery
 requests
