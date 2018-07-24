@@ -17,7 +17,7 @@ pytz
 Markdown
 raven
 nose
-mysql-python
+mysqlclient
 django_nyt
 django-celery
 requests

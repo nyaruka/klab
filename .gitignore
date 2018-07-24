@@ -27,3 +27,5 @@ klab/smartmin
 
 # Pycharm
 .idea/
+
+.vscode/
