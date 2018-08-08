@@ -6,6 +6,7 @@ deploy
 .DS_Store
 db/
 env
+venv
 \#*
 \.#*
 media
