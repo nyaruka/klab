@@ -1,7 +1,6 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
-{% load pagination_tags %}
 
 {% block title %}
 {{block.super}}
@@ -28,7 +27,6 @@
     </div>  
   </div>
   <div class="pull-right">
-  {% autopaginate members 10 %}
   {% for member in members %}
   <div class="full_events">
     
@@ -68,9 +66,5 @@
   </div>
 </div>
 
-
-<div class="paginate">
-  {% paginate %}
-</div>
 
 {% endblock main-contents %}

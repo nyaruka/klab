@@ -53,7 +53,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'pagination.middleware.PaginationMiddleware',
     'smartmin.middleware.AjaxRedirect',
     'smartmin.middleware.ProfileMiddleware',
 )

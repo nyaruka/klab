@@ -1,11 +1,10 @@
-Django<1.9
-smartmin<1.10
+Django<1.10
+smartmin<1.11
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_11#egg=django-quickblocks
 Pillow
 django-compressor<2.0
 django-guardian
 django-nose
-django-pagination
 flickrapi==1.4.5
 coverage
 django-debug-toolbar

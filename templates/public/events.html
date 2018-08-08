@@ -1,7 +1,6 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
-{% load pagination_tags %}
 
 {% block title %}
 {{block.super}}
@@ -17,7 +16,6 @@
       <a href="{% url 'public_events' "past" %}">Past Events</a>
     </div>  
 
-  {% autopaginate events 10 %}
   {% for event in events %}
   <div class="full_events">
     
@@ -56,9 +54,5 @@
 
 </div>
 
-
-<div class="paginate">
-  {% paginate %}
-</div>
 
 {% endblock main-contents %}

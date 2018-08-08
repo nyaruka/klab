@@ -15,11 +15,13 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from django.core.cache import get_cache
+from django.core.cache import cache
+from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.db.models import Q
+
 
 
 class EmailForm(forms.Form):
@@ -37,8 +39,6 @@ class ContactForm(forms.Form):
 def home(request):
 
     try:
-        cache = get_cache('default')
-
         if not cache.get('flickr_main'):
             # from flickr photos get one tagged "main"(should have only one)
             main = flickr.api.walk(user_id=flickr.user_id, tags="main", tag_mode='all', sort="date-posted-desc")
@@ -93,8 +93,15 @@ def home(request):
 def startups(request):
     # get all blog posts in descending order
     posts = Post.objects.filter(is_active=True, post_type=Post.TYPE_STARTUP).order_by('-created_on')
+    
+    paginator = Paginator(posts, 3)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(posts=posts)
+    context = dict(posts=objects_page, paginator=paginator)
     return render(request, 'public/blog.html', context)
 
 
@@ -108,8 +115,15 @@ def startup(request, post_id):
 def blog(request):
     # get all blog posts in descending order
     posts = Post.objects.filter(is_active=True, post_type=Post.TYPE_BLOG).order_by('-created_on')
+    
+    paginator = Paginator(posts, 3)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(posts=posts)
+    context = dict(posts=objects_page, paginator=paginator)
     return render(request, 'public/blog.html', context)
 
 
@@ -127,7 +141,7 @@ def projects(request, project_type):
 
         projects = Project.objects.filter(is_active=True).order_by('-created_on')
         
-    search = request.REQUEST.get("search",None)
+    search = request.GET.get("search",None)
     if search:
         tokens = search.strip().split()
         start_set = projects
@@ -136,7 +150,13 @@ def projects(request, project_type):
             query = query | Q(owner__last_name__icontains=token) | Q(owner__first_name__icontains=token) | Q(title__icontains=token) |  Q(description__icontains=token)
         projects = start_set.filter(query)
 
-    context = dict(projects=projects)
+    paginator = Paginator(projects, 10)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
+    context = dict(projects=objects_page, paginator=paginator)
     return render(request, 'public/projects.html', context)
 
 
@@ -160,7 +180,7 @@ def members(request, member_type):
     else:
         members = Member.objects.filter(is_active=True, is_alumni=False).order_by('membership_type')
         
-    search = request.REQUEST.get("search",None)
+    search = request.GET.get("search",None)
     if search:
         tokens = search.strip().split()
         start_set = members
@@ -168,8 +188,15 @@ def members(request, member_type):
         for token in tokens:
             query = query | Q(first_name__icontains=token) | Q(last_name__icontains=token)
         members = start_set.filter(query)
+    
+    paginator = Paginator(members, 10)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(members=members,member_type=member_type)
+    context = dict(members=objects_page,member_type=member_type, paginator=paginator)
     return render(request, 'public/members.html', context)
 
 
@@ -189,8 +216,15 @@ def events(request, period):
         events = Event.objects.filter(is_active=True, date__lte=datetime.today())
     else:
         events = Event.objects.filter(is_active=True).order_by('-date')
+    
+    paginator = Paginator(events, 10)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(events=events)
+    context = dict(events=objects_page, paginator=paginator)
     return render(request, 'public/events.html', context)
 
 
@@ -213,7 +247,7 @@ def opportunities(request, status):
         opportunities = Opportunity.objects.filter(is_active=True).order_by('-created_on')
         group = "Newly posted"
 
-    search = request.REQUEST.get("search", None)
+    search = request.GET.get("search", None)
     if search:
         tokens = search.strip().split()
         start_set = opportunities
@@ -222,7 +256,14 @@ def opportunities(request, status):
             query = query | Q(title__icontains=token) | Q(link__icontains=token)
         opportunities = start_set.filter(query)
 
-    context = dict(opportunities=opportunities, group=group)
+    paginator = Paginator(opportunities, 5)
+    page = request.GET.get('page', 1)
+    try:
+        objects_page = paginator.page(page)
+    except EmptyPage:
+        objects_page = paginator.page(paginator.num_pages)
+
+    context = dict(opportunities=objects_page, group=group, paginator=paginator)
     return render(request, 'public/opportunities.html', context)
 
 

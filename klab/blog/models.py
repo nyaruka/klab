@@ -4,7 +4,7 @@ from klab import flickr
 import json
 from django.db import models
 from smartmin.models import SmartModel
-from django.core.cache import get_cache
+from django.core.cache import cache
 
 class Post(SmartModel):
     """
@@ -36,7 +36,6 @@ class Post(SmartModel):
         return 'flickr_blog_photos_%d' % self.pk
 
     def photo(self):
-        cache = get_cache('default')
         key = self.get_cache_key()
 
         try:

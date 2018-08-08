@@ -866,6 +866,11 @@ h3 a , h3 a:hover {
     -moz-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
+.paginate .prev.disabled, .next.disabled, .page.disabled {
+    padding: 0px;
+    margin: 0px;
+}
+
 /*
   Event contents
 */

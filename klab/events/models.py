@@ -1,6 +1,6 @@
 import json
 
-from django.core.cache import get_cache
+from django.core.cache import cache
 from django.db import models
 from django.conf import settings
 from smartmin.models import SmartModel
@@ -57,7 +57,6 @@ class Event(SmartModel):
         
             # try to get flickr photos with a given tag
             try:
-                cache = get_cache('default')
                 key = self.get_cache_key()
 
                 if not cache.get(key):

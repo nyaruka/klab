@@ -100,7 +100,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'pagination.middleware.PaginationMiddleware',
     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
 )
 
@@ -242,7 +241,6 @@ INSTALLED_APPS = (
     'smartmin',
     'compressor',
     'sorl.thumbnail',
-    'pagination',
     'django_quickblocks',
 
     # smartmin users app

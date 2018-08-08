@@ -172,7 +172,7 @@ class ApplicationCRUDL(SmartCRUDL):
 
         def form_valid(self, form):
             # is our hidden field displayed?  we are probably a bot, return a 200 request
-            if 'message' in self.request.REQUEST and len(self.request.REQUEST['message']) > 0:
+            if 'message' in self.request.GET and len(self.request.GET['message']) > 0:
                 return HttpResponse("Thanks for your application.  You appear to be slightly automated however so we may not actually use it.  If you think you have received this in error, please contact the kLab team.")
             else:
                 return super(ApplicationCRUDL.Create, self).form_valid(form)
