@@ -6,7 +6,7 @@ certifi==2018.4.16
 chardet==3.0.4
 contextlib2==0.5.5
 coverage==4.5.1
-Django==1.7.11
+Django==1.8.19
 django-appconf==1.0.2
 django-celery==3.2.2
 django-compressor==1.6

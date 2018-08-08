@@ -1,4 +1,4 @@
-Django==1.7.11
+Django<1.9
 smartmin<1.10
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_11#egg=django-quickblocks
 Pillow
