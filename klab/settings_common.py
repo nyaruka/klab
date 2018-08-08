@@ -90,7 +90,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
    'django.core.context_processors.static',
    'django.contrib.messages.context_processors.messages',
    'django.core.context_processors.request',
-   'sekizai.context_processors.sekizai',
    'klab.members.context_processors.member_for_user',
 )
 
@@ -245,7 +244,6 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'pagination',
     'django_quickblocks',
-    'sekizai',
 
     # smartmin users app
     'smartmin.users',
