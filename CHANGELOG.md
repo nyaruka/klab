@@ -1,3 +1,16 @@
+v0.0.148
+----------
+ * Merge pull request #34 from nyaruka/progressive-updates
+ * Add migrations
+ * Update to django 1.11.15
+ * Update to django 1.9, Change pagination
+ * Update to django 1.8.19
+ * Update deps
+ * Remove Sekizai
+ * Remove Wiki deps
+ * Remove Wiki
+ * Update MySQL client
+
 v0.0.147
 ----------
  * Email should contain https
