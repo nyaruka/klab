@@ -11,7 +11,7 @@ django-compressor==2.2
 django-debug-toolbar==1.9.1
 django-guardian==1.4.9
 django-nose==1.4.5
--e git+https://github.com/nyaruka/django-quickblocks.git@308d4292fd5b8e36f3de63aa5ffe64dc4478e73d#egg=django_quickblocks
+-e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_11#egg=django_quickblocks
 flickrapi==2.4.0
 gunicorn==19.9.0
 idna==2.7
