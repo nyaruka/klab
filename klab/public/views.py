@@ -1,4 +1,5 @@
 import json
+import random
 
 from klab import flickr
 from datetime import datetime
@@ -61,12 +62,13 @@ def home(request):
         images = []
         sizes = ['496x374', '296x224', '296x146', '194x146', '194x224']
 
-        main_photo = main[0]
+        main_photo = main[random.choice(range(len(main)))]
         images.append((flickr.get_url(main_photo, 'b'), sizes[0], main_photo.get('title')))
 
         sizes = sizes[1:]
 
         j = 0
+        random.shuffle(favorites)
         # create an image file from every favorite
         for i,favorite in enumerate(favorites):
 
