@@ -1,3 +1,7 @@
+v0.0.150
+----------
+ * Update Flickr link to be HTTPS
+
 v0.0.149
 ----------
  * Update quickblocks
