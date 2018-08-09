@@ -24,6 +24,6 @@ def get_url(photo,size=None):
 
     if size is None:
         # get the url for medium
-        return "http://farm%s.staticflickr.com/%s/%s_%s.jpg" % (farm, server, photo_id, secret)
+        return "https://farm%s.staticflickr.com/%s/%s_%s.jpg" % (farm, server, photo_id, secret)
 
-    return "http://farm%s.staticflickr.com/%s/%s_%s_%s.jpg" % (farm, server, photo_id, secret, size)
+    return "https://farm%s.staticflickr.com/%s/%s_%s_%s.jpg" % (farm, server, photo_id, secret, size)
