@@ -1,4 +1,4 @@
-v0.0.148
+v0.0.148 
 ----------
  * Merge pull request #34 from nyaruka/progressive-updates
  * Add migrations
