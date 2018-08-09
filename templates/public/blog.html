@@ -1,14 +1,12 @@
 {% extends "public_base.html" %}
 
 {% load thumbnail %}
-{% load pagination_tags %}
 
 {% block main-contents %}
 
 <div id="blog_contents">
 
   <div id="blog_main">
-    {% autopaginate posts 3 %}
 
     {% for post in posts %}
     <div class="full_post">
@@ -52,8 +50,5 @@
 </div>
 <div style="clear: both;"></div>
 
-<div class="paginate">
-  {% paginate %}
-</div>
 
 {% endblock main-contents %}

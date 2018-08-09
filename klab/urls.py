@@ -1,13 +1,12 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from wiki.urls import get_pattern as get_wiki_pattern
-from django_nyt.urls import get_pattern as get_nyt_pattern
 
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^', include('klab.public.urls')),
     url(r'^blog/', include('klab.blog.urls')),
     url(r'^events/', include('klab.events.urls')),
@@ -17,19 +16,14 @@ urlpatterns = patterns('',
     url(r'^content/', include('django_quickblocks.urls')),
     url(r'^users/', include('smartmin.users.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^notifications/', get_nyt_pattern()),
-    (r'^wiki/', get_wiki_pattern())
-)
+]
 
 # does this environment for development
 urlpatterns += staticfiles_urlpatterns()
 
 if settings.DEBUG:
-   urlpatterns += patterns('',
-       url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-             'document_root': settings.MEDIA_ROOT,
-       }),
-   )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
 
 def handler500(request):
     """

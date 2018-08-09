@@ -1,4 +1,4 @@
-{% load sekizai_tags i18n %}
+{% load i18n %}
 <!doctype html>
 <!-- [if IE ]> <html class="no-js"> <![endif] -->
 <head>
@@ -40,8 +40,6 @@
         document.write(unescape('%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"%3E%3C/script%3E'));
     }
   </script>
-
-  {% render_block "css" %}
 
   {% block extra-style %}{% endblock %}
 
@@ -95,7 +93,6 @@
             <li><a href="{% url 'public_opportunities' "new" %}" >opportunities</a></li>
             <li><a href="{% url 'public_events' "all" %}" >events</a></li>
             <li><a href="{% url 'public_blog' %}" >blog</a></li>
-            <li><a href="/wiki/" >wiki</a></li>
 
             {% if perms.members.member_myprofile and member_for_user %}
               <li><a href="{% url 'members.member_myprofile' 0 %}" >profile</a></li>
@@ -116,6 +113,51 @@
     <div id="main">                                                                       <!-- Main -->
       {% block main-contents %}
       {% endblock %}
+      
+      <div class="paginate">
+        {% if paginator and paginator.num_pages > 1 %}
+        <ul class="pagination pull-right">
+          {% if page_obj.has_previous %}
+          <li class="prev"><a href="?page={{page_obj.previous_page_number}}">&larr; {% trans "Previous" %}</a></li>
+          {% else %}
+          <li class="prev disabled"><a href="#">&larr; {% trans "Previous" %}</a></li>
+          {% endif %}
+  
+          {% for page_num in paginator.page_range %}
+      {% if page_obj.number < 5 %}
+        {% if page_num < 10 %}
+          {% if not page_num == page_obj.number %}
+            <li><a href="?page={{page_num}}">{{ page_num }}</a></li>
+          {% else %}
+                  <li class="active"><a href="#">{{ page_num }}</a></li>
+                {% endif %}
+              {% endif %}
+      {% elif page_num < page_obj.number|add:"5" and page_num > page_obj.number|add:"-5" %}
+        {% if not page_num == page_obj.number %}
+          <li><a href="?page={{page_num}}">{{ page_num }}</a></li>
+        {% else %}
+                <li class="active"><a href="#">{{ page_num }}</a></li>
+              {% endif %}
+      {% elif page_obj.number > paginator.num_pages|add:"-5" %}
+        {% if page_num > paginator.num_pages|add:"-9" %}
+          {% if not page_num == page_obj.number %}
+            <li><a href="?page={{page_num}}">{{ page_num }}</a></li>
+          {% else %}
+                  <li class="active"><a href="#">{{ page_num }}</a></li>
+                {% endif %}
+        {% endif %}
+  
+            {% endif %}
+          {% endfor %}
+  
+          {% if page_obj.has_next %}
+          <li class="next"><a href="?page={{page_obj.next_page_number}}">{% trans "Next" %} &rarr;</a></li>
+          {% else %}
+          <li class="next disabled"><a href="#">{% trans "Next" %} &rarr;</a></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+      </div>
     </div>  
   </div>
   <div style="clear: both;"></div>
@@ -172,7 +214,6 @@
   {# endcompress #}
 
 
-  {% render_block "js" %}
   <!-- End Script -->
 </body>
 

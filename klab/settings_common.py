@@ -7,7 +7,7 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-ALLOWED_HOSTS = ['.nyaruka.com', '.klab.rw']
+ALLOWED_HOSTS = ['.nyaruka.com', '.klab.rw', 'localhost']
 
 MANAGERS = ADMINS
 
@@ -75,24 +75,6 @@ FLICKR_USER_ID = 'FLICKR-USER-ID'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '8&k54&4x%kv-rdtb*j&!a7nt@v@rwsie8g72_3lm6y%#%+lli1'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-   'django.contrib.auth.context_processors.auth',
-   'django.core.context_processors.debug',
-   'django.core.context_processors.i18n',
-   'django.core.context_processors.media',
-   'django.core.context_processors.static',
-   'django.contrib.messages.context_processors.messages',
-   'django.core.context_processors.request',
-   'sekizai.context_processors.sekizai',
-   'klab.members.context_processors.member_for_user',
-)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -101,7 +83,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'pagination.middleware.PaginationMiddleware',
     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
 )
 
@@ -243,17 +224,7 @@ INSTALLED_APPS = (
     'smartmin',
     'compressor',
     'sorl.thumbnail',
-    'pagination',
     'django_quickblocks',
-    'django_nyt',
-    'mptt',
-    'sekizai',
-
-    'wiki',
-    'wiki.plugins.attachments',
-    'wiki.plugins.notifications',
-    'wiki.plugins.images',
-    'wiki.plugins.macros',
 
     # smartmin users app
     'smartmin.users',
@@ -344,3 +315,31 @@ LOGGING = {
 
 
 WIKI_ACCOUNT_SIGNUP_ALLOWED = False
+
+# -----------------------------------------------------------------------------------
+# Templates Configuration
+# -----------------------------------------------------------------------------------
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(PROJECT_DIR, "../templates")],
+        "OPTIONS": {
+            "context_processors": [
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",
+                'klab.members.context_processors.member_for_user',
+            ],
+            "loaders": [
+                "django.template.loaders.filesystem.Loader",
+                "django.template.loaders.app_directories.Loader",
+                "django.template.loaders.eggs.Loader",
+            ],
+            "debug": DEBUG,
+        },
+    }
+]

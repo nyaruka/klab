@@ -1,6 +1,5 @@
 {% extends "public_base.html" %}
 
-{% load pagination_tags %}
 
 {% block title %}
 {{block.super}}
@@ -25,7 +24,6 @@
   </div>
   {% endblock %}
   <div class="pull-right">
-  {% autopaginate opportunities 5 %}
   {% for opportunity in opportunities %}
   <div class="full_opportunities">
     
@@ -59,11 +57,6 @@
   <div style="clear: both;"></div>          
   {% endfor %}
   </div>
-</div>
-
-
-<div class="paginate">
-  {% paginate %}
 </div>
 
 {% endblock main-contents %}
