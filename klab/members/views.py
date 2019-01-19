@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.utils.safestring import mark_safe
 from klab.projects.models import *
 import random
 import string
@@ -91,7 +92,7 @@ class ApplicationCRUDL(SmartCRUDL):
             else:
                 approve_btn = '<a class="btn btn-default btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
 
-            return approve_btn
+            return mark_safe(approve_btn)
 
         def get_name(self, obj):
             return str(obj)
@@ -281,8 +282,8 @@ class MemberCRUDL(SmartCRUDL):
 
         def get_change_alumni(self, obj):
             if obj.is_alumni:
-                return '<a class="btn btn-warning posterize" href="%s">Remove from alumni</a>' % reverse('members.member_alumni', args=[obj.id])
-            return '<a class="btn btn-info posterize" href="%s">Add to alumni</a>' % reverse('members.member_alumni', args=[obj.id])
+                return mark_safe('<a class="btn btn-warning posterize" href="%s">Remove from alumni</a>' % reverse('members.member_alumni', args=[obj.id]))
+            return mark_safe('<a class="btn btn-info posterize" href="%s">Add to alumni</a>' % reverse('members.member_alumni', args=[obj.id]))
 
         def get_name(self, obj):
             return "%s %s" % (obj.first_name, obj.last_name)
