@@ -1,3 +1,9 @@
+v0.0.151
+----------
+ * Mark safe approve button
+ * Randomizi images on homepage ;)
+ * Fix render_to_response parameter
+
 v0.0.150
 ----------
  * Update Flickr link to be HTTPS
