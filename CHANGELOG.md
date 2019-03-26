@@ -1,3 +1,7 @@
+v0.0.152
+----------
+ * Use summary for GMs
+
 v0.0.151
 ----------
  * Mark safe approve button
