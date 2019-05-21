@@ -1,3 +1,7 @@
+v0.0.153
+----------
+ * Update Migisha bio
+
 v0.0.152
 ----------
  * Use summary for GMs
