@@ -30,3 +30,7 @@ klab/smartmin
 .idea/
 
 .vscode/
+
+fabric
+fabfile.py
+fabconfig.py
