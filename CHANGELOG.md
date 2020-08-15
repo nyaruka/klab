@@ -1,3 +1,7 @@
+v0.0.155
+----------
+ * Fix settings
+
 v0.0.154
 ----------
  * Update gitignore
