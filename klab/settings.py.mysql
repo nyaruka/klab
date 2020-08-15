@@ -1,5 +1,5 @@
 # import our default settings
-from settings_common import *
+from klab.settings_common import *
 
 DEBUG = True
 TEMPLATE_DEBUG = True

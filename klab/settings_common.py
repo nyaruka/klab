@@ -181,8 +181,7 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
 )
 
-# this is required by guardian
-ANONYMOUS_USER_ID = -1
+ANONYMOUS_USER_NAME = "AnonymousUser"
 
 #-----------------------------------------------------------------------------------
 # Django-Nose config

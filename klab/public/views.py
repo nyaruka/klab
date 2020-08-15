@@ -4,7 +4,7 @@ import random
 from klab import flickr
 from datetime import datetime
 
-from models import *
+from .models import *
 from klab.blog.models import Post
 from klab.events.models import Event, Video
 from klab.projects.models import Project
