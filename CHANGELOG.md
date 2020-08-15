@@ -1,3 +1,9 @@
+v0.0.154
+----------
+ * Update gitignore
+ * Merge pull request #35 from nyaruka/updates-1
+ * Update deps
+
 v0.0.153
 ----------
  * Update Migisha bio
