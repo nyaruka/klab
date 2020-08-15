@@ -1,4 +1,4 @@
-from settings_common import *
+from klab.settings_common import *
 import os.path
 
 DEBUG = False
