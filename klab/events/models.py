@@ -46,7 +46,7 @@ class Event(SmartModel):
             days = self.duration / 1440
             return "%d days" % days
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_cache_key(self):

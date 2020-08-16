@@ -8,7 +8,7 @@ class Project(SmartModel):
     logo = models.ImageField(upload_to="projects/logos", null=True,blank=True, help_text="A logo for your project")
     owner = models.ForeignKey(Member, help_text="The owner of the project", on_delete=models.PROTECT)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s_%s" % (self.owner, self.title)
 
 
