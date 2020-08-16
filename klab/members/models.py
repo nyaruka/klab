@@ -5,6 +5,7 @@ from tempfile import mktemp
 import os
 from django.core.files import File
 
+logger = logging.getLogger(__name__)
 
 class Application(SmartModel):
     """
@@ -114,7 +115,8 @@ class Member(SmartModel):
                 self.save()
 
                 os.unlink(tmp_name)
-            except Exception:
+            except Exception as e:
+                logger.error(f"Error copying image for member ({self.id}): {str(e)}", exc_info=True)
                 pass
 
     def change_is_alumni(self):
