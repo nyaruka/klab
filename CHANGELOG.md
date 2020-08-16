@@ -1,3 +1,10 @@
+v0.0.157
+----------
+ * Merge pull request #36 from nyaruka/update-py3
+ * Report error to sentry
+ * More support python 3
+ * WIP updates to Python 3
+
 v0.0.156
 ----------
  * Fix config
