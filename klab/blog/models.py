@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from klab import flickr
 
 import json
@@ -24,7 +24,7 @@ class Post(SmartModel):
     post_type = models.CharField(default=TYPE_BLOG, max_length=1, choices=POST_TYPES_CHOICES,
                                  help_text="Whether this post is a blog post or a startup")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_public_url(self):

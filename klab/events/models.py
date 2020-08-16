@@ -17,7 +17,7 @@ class Event(SmartModel):
         ('M', "Monthly"),
         )
 
-    parent = models.ForeignKey('self', related_name='children', null=True, blank=True)
+    parent = models.ForeignKey('self', related_name='children', null=True, blank=True, on_delete=models.PROTECT)
     date = models.DateField(help_text="The date when the event will occur")
     time = models.TimeField(help_text="The start time for the event")
     duration = models.IntegerField(help_text="The duration in minutes of the event")
@@ -30,7 +30,7 @@ class Event(SmartModel):
                              help_text="The exact location where event will take place")
     
     recurrence_type = models.CharField(max_length=1, choices=RECURRENCE_CHOICES, null=True, blank=True,
-                                   help_text="Does this event accur weekly or monthly")
+                                   help_text="Does this event occur weekly or monthly")
     dow = models.IntegerField(null=True, blank=True)
     monthly_ordinal = models.IntegerField(null=True, blank=True)
     photo_tag = models.CharField(max_length=64, null=True, blank=True)
@@ -46,7 +46,7 @@ class Event(SmartModel):
             days = self.duration / 1440
             return "%d days" % days
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_cache_key(self):

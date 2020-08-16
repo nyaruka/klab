@@ -4,7 +4,7 @@ from klab.tests import Helpers
 from klab.blog.models import Post
 from klab.members.models import Application, Member
 from klab.projects.models import Project
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 class KLabPublicTest(Helpers):
     """Basic unit test for kLab public website"""

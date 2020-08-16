@@ -5,6 +5,7 @@ from tempfile import mktemp
 import os
 from django.core.files import File
 
+logger = logging.getLogger(__name__)
 
 class Application(SmartModel):
     """
@@ -62,7 +63,7 @@ class Application(SmartModel):
     experience = models.TextField(max_length=1024, help_text="Briefly describe your experience, projects you have worked on, and companies you have worked for. "
                                   "Please include the URLs of any projects you worked on and how you contributed (1024 character limit).")
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
 
 
@@ -74,9 +75,9 @@ class Member(SmartModel):
         ('R', "Red - kLab Core Team")
     )
 
-    application = models.ForeignKey(Application, help_text="The initial Application of the member")
+    application = models.ForeignKey(Application, on_delete=models.PROTECT, help_text="The initial Application of the member")
 
-    user = models.ForeignKey(User, help_text="The user account associated with this member")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, help_text="The user account associated with this member")
 
     first_name = models.CharField(max_length=64, help_text="Your first (given) name")
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
@@ -101,18 +102,22 @@ class Member(SmartModel):
         pic = self.application.picture
 
         if pic:
-            tmp_name = mktemp()
-            tmp_file = open(tmp_name, 'wb')
-            tmp_file.write(str(pic.file.read()))
-            tmp_file.close()
+            try:
+                tmp_name = mktemp()
+                tmp_file = open(tmp_name, 'wb')
+                tmp_file.write(str(pic.file.read()))
+                tmp_file.close()
 
-            tmp_file = open(tmp_name, 'r')
+                tmp_file = open(tmp_name, 'r')
 
-            filename = unicode(self.application)
-            self.picture.save('%s.jpg' % filename.encode('ascii', 'ignore'), File(tmp_file), save=True)
-            self.save()
+                filename = unicode(self.application)
+                self.picture.save('%s.jpg' % filename.encode('ascii', 'ignore'), File(tmp_file), save=True)
+                self.save()
 
-            os.unlink(tmp_name)
+                os.unlink(tmp_name)
+            except Exception as e:
+                logger.error(f"Error copying image for member ({self.id}): {str(e)}", exc_info=True)
+                pass
 
     def change_is_alumni(self):
         self.is_alumni = not self.is_alumni
@@ -120,9 +125,9 @@ class Member(SmartModel):
 
     @classmethod
     def member_for_user(cls, user):
-        if user.is_anonymous():
+        if user.is_anonymous:
             return None
         return cls.objects.filter(user=user).first()
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s_%s" % (self.first_name, self.last_name)

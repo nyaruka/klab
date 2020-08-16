@@ -6,4 +6,4 @@ activation = MemberCRUDL().view_for_action('activate').as_view()
 
 urlpatterns = ApplicationCRUDL().as_urlpatterns()
 urlpatterns += MemberCRUDL().as_urlpatterns()
-urlpatterns += [url(r'/^members/activate/(?P<token>\w+)/$', activation, name='url_activation')]
+urlpatterns += [url(r'^members/activate/(?P<token>\w+)/$', activation, name='url_activation')]

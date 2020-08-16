@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='member',
             name='membership_type',
-            field=models.CharField(help_text=b'The type of membership', max_length=1, choices=[(b'G', b'Green - kLab Tenant'), (b'B', b'Blue - kLab Mentor'), (b'R', b'Red - kLab Core Team')]),
+            field=models.CharField(help_text='The type of membership', max_length=1, choices=[(b'G', b'Green - kLab Tenant'), (b'B', b'Blue - kLab Mentor'), (b'R', b'Red - kLab Core Team')]),
             preserve_default=True,
         ),
     ]

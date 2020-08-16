@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='post',
             name='post_type',
-            field=models.CharField(default=b'B', help_text=b'Whether this post is a blog post or a startup', max_length=1, choices=[(b'B', b'Blog'), (b'S', b'Startup')]),
+            field=models.CharField(default='B', help_text='Whether this post is a blog post or a startup', max_length=1, choices=[(b'B', b'Blog'), (b'S', b'Startup')]),
             preserve_default=True,
         ),
     ]

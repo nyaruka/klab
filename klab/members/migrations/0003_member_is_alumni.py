@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='member',
             name='is_alumni',
-            field=models.BooleanField(default=False, help_text=b'Member has became an Alumni'),
+            field=models.BooleanField(default=False, help_text='Member has became an Alumni'),
             preserve_default=True,
         ),
     ]

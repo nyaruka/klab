@@ -1,5 +1,5 @@
-Django<2.0
-smartmin==2.0.2
+Django<2.1
+smartmin==2.1.2
 -e git+https://github.com/nyaruka/django-quickblocks.git@to_django_1_11#egg=django-quickblocks
 Pillow
 django-compressor==2.2
