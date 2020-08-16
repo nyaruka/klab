@@ -74,9 +74,9 @@ class Member(SmartModel):
         ('R', "Red - kLab Core Team")
     )
 
-    application = models.ForeignKey(Application, help_text="The initial Application of the member")
+    application = models.ForeignKey(Application, on_delete=models.PROTECT, help_text="The initial Application of the member")
 
-    user = models.ForeignKey(User, help_text="The user account associated with this member")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, help_text="The user account associated with this member")
 
     first_name = models.CharField(max_length=64, help_text="Your first (given) name")
     last_name = models.CharField(max_length=64, help_text="Your last (family) name")
@@ -120,7 +120,7 @@ class Member(SmartModel):
 
     @classmethod
     def member_for_user(cls, user):
-        if user.is_anonymous():
+        if user.is_anonymous:
             return None
         return cls.objects.filter(user=user).first()
 

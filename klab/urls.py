@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^projects/', include('klab.projects.urls')),
     url(r'^content/', include('django_quickblocks.urls')),
     url(r'^users/', include('smartmin.users.urls')),
-    url(r'^admin/', include(admin.site.urls)),
 ]
 
 # does this environment for development

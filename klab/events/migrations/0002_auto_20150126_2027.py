@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='event',
             name='description',
-            field=models.TextField(help_text=b'More descriptively say about this event', max_length=1024),
+            field=models.TextField(help_text='More descriptively say about this event', max_length=1024),
             preserve_default=True,
         ),
     ]

@@ -1,6 +1,6 @@
 from django.test import TestCase
 from ..tests import KLabTest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 class PostTest(KLabTest):
 

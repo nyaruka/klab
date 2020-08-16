@@ -15,7 +15,7 @@ from django import forms
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render_to_response, get_object_or_404, render
@@ -77,7 +77,7 @@ def home(request):
                 j += 1
     except Exception as e:
         import traceback
-        traceback.print_exc(e)
+        traceback.print_exc()
         images = []
 
     # get recent blog posts

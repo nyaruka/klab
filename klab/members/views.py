@@ -235,7 +235,7 @@ class MemberCRUDL(SmartCRUDL):
                   'education','experience')
 
         def pre_process(self, request, *args, **kwargs):
-            if request.user.is_anonymous() or not self.get_object():
+            if request.user.is_anonymous or not self.get_object():
                 messages.info(request, "No user logged in or no profile.")
                 return HttpResponseRedirect(reverse('public_home'))
             return None
