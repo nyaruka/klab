@@ -107,7 +107,7 @@ class Member(SmartModel):
             try:
                 tmp_name = mktemp()
                 tmp_file = open(tmp_name, 'wb')
-                tmp_file.write(str(pic.file.read()))
+                tmp_file.write(pic.file.read())
                 tmp_file.close()
 
                 tmp_file = open(tmp_name, 'r')
