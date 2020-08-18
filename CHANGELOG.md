@@ -1,3 +1,8 @@
+v0.0.158
+----------
+ * Fix image copy
+ * Fix import
+
 v0.0.157
 ----------
  * Merge pull request #36 from nyaruka/update-py3
