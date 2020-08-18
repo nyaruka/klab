@@ -1,3 +1,7 @@
+v0.0.159
+----------
+ * Remove unicode function
+
 v0.0.158
 ----------
  * Fix image copy
