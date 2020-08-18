@@ -22,7 +22,13 @@
           </div>
         </div>
         <div style="clear: both;"></div>
-        <div id="klab-map" style="height:300px;">
+        <div id="klab-map">
+          <div style="margin-bottom:10px;"><b>Click the image below for direction</b></div>
+          <div>
+              <a href="https://www.google.com/maps/dir//K-Lab/@-1.9446867,30.0887605,18z/data=!4m9!4m8!1m0!1m5!1m1!1s0x19dca6eb4b136305:0xfa7ecaf4c40f3383!2m2!1d30.0897449!2d-1.944676!3e0">
+                  <img src="{{ STATIC_URL }}images/klab-maps.png" width="60%">
+              </a>
+          </div>
 
         </div>
         <div class="post_header">
@@ -65,11 +71,3 @@
 </div>
 {% endblock main-contents %}
 
-{% block extra-script %}
-  <script>
-    var kLabImageMapLogo = '{{ STATIC_URL }}images/maplogo.png';
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-  <script src="{{STATIC_URL}}js/map.js">
-  </script>
-{% endblock %}

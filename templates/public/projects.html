@@ -12,8 +12,11 @@
   <div class="pull-left">
     <div class="event_small">
       <a href="{% url 'public_members' "all" %}">All Members</a>
+      <a href="{% url 'public_members' "core" %}">Core Team</a>
       <a href="{% url 'public_members' "mentors" %}">Mentors</a>
       <a href="{% url 'public_members' "tenants" %}">Tenants</a>
+      <a href="{% url 'public_members' "alumni" %}">Alumni</a>
+
       <a href="{% url 'public_projects' "all" %}">All Projects</a>
       <form class="search_form" method="get">
       <input type="text" name="search" value="projects search..." onfocus="if

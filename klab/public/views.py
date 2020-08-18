@@ -125,7 +125,7 @@ def blog(request):
     except EmptyPage:
         objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(posts=objects_page, paginator=paginator)
+    context = dict(posts=objects_page, paginator=paginator, page_obj=objects_page)
     return render(request, 'public/blog.html', context)
 
 
@@ -158,7 +158,7 @@ def projects(request, project_type):
         objects_page = paginator.page(page)
     except EmptyPage:
         objects_page = paginator.page(paginator.num_pages)
-    context = dict(projects=objects_page, paginator=paginator)
+    context = dict(projects=objects_page, paginator=paginator, page_obj=objects_page)
     return render(request, 'public/projects.html', context)
 
 
@@ -198,7 +198,7 @@ def members(request, member_type):
     except EmptyPage:
         objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(members=objects_page,member_type=member_type, paginator=paginator)
+    context = dict(members=objects_page,member_type=member_type, paginator=paginator, page_obj=objects_page)
     return render(request, 'public/members.html', context)
 
 
@@ -226,7 +226,7 @@ def events(request, period):
     except EmptyPage:
         objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(events=objects_page, paginator=paginator)
+    context = dict(events=objects_page, paginator=paginator, page_obj=objects_page)
     return render(request, 'public/events.html', context)
 
 
@@ -265,7 +265,7 @@ def opportunities(request, status):
     except EmptyPage:
         objects_page = paginator.page(paginator.num_pages)
 
-    context = dict(opportunities=objects_page, group=group, paginator=paginator)
+    context = dict(opportunities=objects_page, group=group, paginator=paginator, page_obj=objects_page)
     return render(request, 'public/opportunities.html', context)
 
 

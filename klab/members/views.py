@@ -86,9 +86,12 @@ class ApplicationCRUDL(SmartCRUDL):
         fields = ('professional_status', 'applying_for', 'frequency', 'goals', 'education', 'experience', 'approve')
 
         def get_approve(self, obj):
-            member = Member.objects.filter(application=obj)
+            member = Member.objects.filter(application=obj).first()
             if member:
-                approve_btn = '<a class="btn btn-large btn-success disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
+                if member.is_active:
+                    approve_btn = '<a class="btn btn-large btn-success disabled" href="#"> Approved & Activated <i class="icon-ok icon-white"></i></a>'
+                else:
+                    approve_btn = '<a class="btn btn-large btn-warning disabled" href="#"> Approved <i class="icon-ok icon-white"></i></a>'
             else:
                 approve_btn = '<a class="btn btn-default btn-large posterize" href="%s?application=%d">Approve</a>' % (reverse('members.member_new'), obj.id)
 
@@ -142,6 +145,13 @@ class ApplicationCRUDL(SmartCRUDL):
 
         def get_location(self, obj):
             return obj.get_location_display()
+
+        def get_context_data(self, **kwargs):
+            context = super(ApplicationCRUDL.List, self).get_context_data(**kwargs)
+
+            context['approved_ids'] = list(Member.objects.all().values_list('application_id', flat=True))
+            context['activated_ids'] = list(Member.objects.filter(is_active=True).values_list('application_id', flat=True))
+            return context            
 
     class Create(SmartCreateView):
         permission = None
