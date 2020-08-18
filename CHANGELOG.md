@@ -1,3 +1,8 @@
+v0.0.160
+----------
+ * Fix member activation and maps for direction image
+ * fix paginations and improve application list page
+
 v0.0.159
 ----------
  * Remove unicode function
