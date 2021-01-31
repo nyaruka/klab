@@ -35,8 +35,8 @@ def handler500(request):
     from django.http import HttpResponseServerError
 
     t = loader.get_template('500.html') # You need to create a 500.html template.
-    return HttpResponseServerError(t.render(Context({
+    return HttpResponseServerError(t.render({
         'request': request,
-    })))
+    }))
 
 
