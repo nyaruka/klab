@@ -30,10 +30,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '${db}',
-        'USER': '${db_user}',
-        'PASSWORD': '${db_password}',
-        'HOST': '${db_host}',
+        'NAME': os.environ.get('DB_NAME', 'MISSING_DB_NAME'),
+        'USER': os.environ.get('DB_USER', 'MISSING_DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'MISSING_DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'MISSING_DB_HOST'),
         'PORT': '',                      
         'OPTIONS': {   "init_command": "SET storage_engine=INNODB",
                        "charset": "utf8", 
