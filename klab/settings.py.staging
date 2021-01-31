@@ -18,6 +18,8 @@ EMAIL_USE_TLS = True
 
 MANAGERS = ADMINS
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
