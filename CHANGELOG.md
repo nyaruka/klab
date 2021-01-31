@@ -1,3 +1,7 @@
+v0.0.161
+----------
+ * Commit to rev
+
 v0.0.160
 ----------
  * Fix member activation and maps for direction image
