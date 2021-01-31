@@ -1,3 +1,7 @@
+v0.0.163
+----------
+ * Update settings
+
 v0.0.162
 ----------
  * upgrade pillow
