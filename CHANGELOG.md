@@ -1,3 +1,7 @@
+v0.0.162
+----------
+ * upgrade pillow
+
 v0.0.161
 ----------
  * Commit to rev
