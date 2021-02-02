@@ -35,7 +35,7 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD', 'MISSING_DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST', 'MISSING_DB_HOST'),
         'PORT': '',                      
-        'OPTIONS': {   "init_command": "SET storage_engine=INNODB",
+        'OPTIONS': {   #"init_command": "SET storage_engine=INNODB",
                        "charset": "utf8", 
         }
     }
