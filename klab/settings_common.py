@@ -116,8 +116,8 @@ PERMISSIONS = {
         'update', # can update an object
         'delete', # can delete an object,
         'list'),  # can view a list of the objects
-  'members.application': ('csv', ),
-  'members.member' : ('myprofile', 'new', 'alumni'),
+  'members.application': ('export', ),
+  'members.member' : ('myprofile', 'new', 'alumni', 'export'),
   'projects.project' : ('shortlist',),
 }
 
@@ -137,13 +137,14 @@ GROUP_PERMISSIONS = {
                       'members.member_list',
                       'members.member_new',
                       'members.member_alumni',
+                      'members.member_export',
                       'opportunities.opportunity.*',
                       ),
     "Editors": ('events.event.*', 
                 'events.video.*',
                 'blog.post.*', 
                 'django_quickblocks.quickblock.*', 
-                'members.application_list', 'members.application_read', 'members.application_csv',
+                'members.application_list', 'members.application_read', 'members.application_export',
                 'projects.project.*',
                 'members.member_create',
                 'members.member_read',
@@ -152,6 +153,7 @@ GROUP_PERMISSIONS = {
                 'members.member_list',
                 'members.member_new',
                 'members.member_alumni',
+                'members.member_export',
                 'opportunities.opportunity.*',
                 ),
 

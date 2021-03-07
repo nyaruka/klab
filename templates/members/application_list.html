@@ -6,19 +6,25 @@
   <div class="col-md-6">
     {% if view.search_fields %}
     <form class="form-search form-inline">
-      <input type="text" class="form- control input-medium search-query" name="search" value="{{ search }}">
+      <a class="btn btn-default" href="{% url 'members.application_list' %}">All</a>
+      <a class="btn btn-default" href="{% url 'members.application_list' %}?status=activated">Activated</a>
+      <a class="btn btn-default" href="{% url 'members.application_list' %}?status=approved">Approved</a>
+
+      <input type="text" class="form-control input-medium search-query" name="search" value="{{ search }}">
       <button type="submit" class="btn btn-default">Search</button>
     </form>
     {% else %}
     &nbsp;
     {% endif %}
+
   </div>
 
   <div class="col-md-6 buttons">
     {% block table-buttons %}
     <div class="pull-right">
-    {% if perms.members.application_csv %}
-    <a class="btn btn-default" href="{% url 'members.application_csv' %}">Export</a>
+
+    {% if perms.members.application_export %}
+    <a class="btn btn-default" href="{% url 'members.application_export' %}">Export</a>
     {% endif %}
 
     {% if view.add_button %}

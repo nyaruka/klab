@@ -1,0 +1,14 @@
+{% extends "smartmin/list.html" %}
+{% load smartmin i18n %}
+
+{% block table-buttons %}
+<div class="pull-right">
+{% if perms.members.member_export %}
+<a class="btn btn-default" href="{% url 'members.member_export' %}">Export</a>
+{% endif %}
+
+{% if view.add_button %}
+<a class="btn btn-primary" href="./create/">Add</a>
+{% endif %}
+</div>
+{% endblock table-buttons %}

@@ -79,7 +79,7 @@ class MemberForm(forms.ModelForm):
 
 class ApplicationCRUDL(SmartCRUDL):
     model = Application
-    actions = ('create', 'read', 'update', 'list', 'thanks', 'csv')
+    actions = ('create', 'read', 'update', 'list', 'thanks', 'export')
     permissions = True
 
     class Read(SmartReadView):
@@ -109,11 +109,11 @@ class ApplicationCRUDL(SmartCRUDL):
         def get_frequency(self, obj):
             return obj.get_frequency_display()
 
-    class Csv(SmartCsvView):
+    class Export(SmartXlsView):
         fields = ('created_on', 'name', 'email', 'phone', 'professional_status', 'applying_for', 'frequency', 'city', 'country', 'goals', 'education', 'experience')
 
         def derive_queryset(self, **kwargs):
-            queryset = super(ApplicationCRUDL.Csv, self).derive_queryset(**kwargs)
+            queryset = super(ApplicationCRUDL.Export, self).derive_queryset(**kwargs)
             return queryset.filter(is_active=True)
 
         def get_professional_status(self, obj):
@@ -126,8 +126,8 @@ class ApplicationCRUDL(SmartCRUDL):
             return obj.get_frequency_display()
 
         def get_name(self, obj):
-            return "%s %s" % (obj.first_name, obj.last_name)
-        
+            return f"{obj.first_name} {obj.last_name}"
+
     class List(SmartListView):
         fields = ('name', 'email', 'applying_for', 'location', 'city', 'country', 'created_on')
         search_fields = ('first_name__icontains', 'last_name__icontains')
@@ -135,7 +135,18 @@ class ApplicationCRUDL(SmartCRUDL):
 
         def derive_queryset(self, **kwargs):
             queryset = super(ApplicationCRUDL.List, self).derive_queryset(**kwargs)
-            return queryset.filter(is_active=True).order_by('-created_on')
+            queryset = queryset.filter(is_active=True)
+
+            status_query = self.request.GET.get('status', "").lower()
+            if status_query == "approved":
+                waiting_ids = list(Member.objects.filter(is_active=False).values_list('application_id', flat=True))
+                queryset = queryset.filter(id__in=waiting_ids)
+
+            elif status_query == "activated":
+                activated_ids = list(Member.objects.filter(is_active=True).values_list('application_id', flat=True))
+                queryset = queryset.filter(id__in=activated_ids)
+
+            return queryset.order_by('-created_on')
 
         def get_name(self, obj):
             return "%s %s" % (obj.first_name, obj.last_name)
@@ -199,8 +210,24 @@ class ApplicationCRUDL(SmartCRUDL):
 
 class MemberCRUDL(SmartCRUDL):
     model = Member
-    actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate', 'alumni')
+    actions = ('create','read', 'update', 'list','new', 'myprofile', 'activate', 'alumni', 'export')
     permissions = True
+
+    class Export(SmartXlsView):
+        fields = ('created_on', 'is_alumni', 'name', 'email', 'phone', 'membership_type', 'city', 'country', 'education', 'experience')
+
+        def derive_queryset(self, **kwargs):
+            queryset = super(MemberCRUDL.Export, self).derive_queryset(**kwargs)
+            return queryset.filter(is_active=True)
+
+        def get_membership_type(self, obj):
+            return obj.get_membership_type_display()
+
+        def get_name(self, obj):
+            return f"{obj.first_name} {obj.last_name}"
+
+        def get_is_alumni(self, obj):
+            return "Yes" if obj.is_alumni else "No"
 
     class Alumni(SmartUpdateView):
         fields = ('id',)
