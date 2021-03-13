@@ -289,7 +289,7 @@
     <div class="about_details">
         {% for logo in friends_of_klab %}
         <a href="{{logo.link}}">
-            {% thumbnail logo.image "x100" crop="center" as im %}
+            {% thumbnail logo.image "x50" crop="center" as im %}
                 <img src="{{im.url}}" alt="{{logo.title}}" vspace="10">
             {% endthumbnail %}
         </a><br/>
