@@ -1,3 +1,8 @@
+v0.0.167
+----------
+ * Merge pull request #37 from nyaruka/use-s3
+ * Use s3 for media images
+
 v0.0.166
 ----------
  * Export to applications and members
