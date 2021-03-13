@@ -1,3 +1,7 @@
+v0.0.169
+----------
+ * Fix height
+
 v0.0.168
 ----------
  * Fix image for friends of kLab
