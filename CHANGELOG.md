@@ -1,3 +1,7 @@
+v0.0.170
+----------
+ * Adjust thumbnail settings
+
 v0.0.169
 ----------
  * Fix height
