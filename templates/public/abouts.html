@@ -288,7 +288,11 @@
     </div>
     <div class="about_details">
         {% for logo in friends_of_klab %}
-        <a href="{{logo.link}}"><img vspace="10" src="{{MEDIA_URL}}{{logo.image}}" /></a><br/>
+        <a href="{{logo.link}}">
+            {% thumbnail logo.image "x100" crop="center" as im %}
+                <img src="{{im.url}}" alt="{{logo.title}}" vspace="10">
+            {% endthumbnail %}
+        </a><br/>
         {% endfor %}
     </div>
 </div>
