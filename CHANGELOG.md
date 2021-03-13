@@ -1,3 +1,7 @@
+v0.0.168
+----------
+ * Fix image for friends of kLab
+
 v0.0.167
 ----------
  * Merge pull request #37 from nyaruka/use-s3
