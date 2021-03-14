@@ -1,3 +1,7 @@
+v0.0.171
+----------
+ * Add disk cache for s3 images
+
 v0.0.170
 ----------
  * Adjust thumbnail settings
