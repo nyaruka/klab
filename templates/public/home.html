@@ -62,7 +62,7 @@
   <div id="favorites" class="radius shadow">
     {% for url, geo, title in images|slice:":5" %}
     {% thumbnail url geo crop="center" as im %}
-    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" loading="lazy" class="fav_{{forloop.counter}}" /></a>
     {% endthumbnail %}
     {% endfor %}
   </div>
@@ -71,7 +71,7 @@
   <div style="display:none">
     {% for url, geo, title in images|slice:"5:" %}
     {% thumbnail url geo crop="center" as im %}
-    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" class="fav_{{forloop.counter}}" /></a>
+    <a class="gallery" href="{{url}}" title="{{title}}"><img src="{{im.url}}" loading="lazy" class="fav_{{forloop.counter}}" /></a>
     {% endthumbnail %}
     {% endfor %}
   </div>
