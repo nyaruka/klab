@@ -1,3 +1,7 @@
+v0.0.172
+----------
+ * Reduce number of image requests until image is shown, more security headers
+
 v0.0.171
 ----------
  * Add disk cache for s3 images
