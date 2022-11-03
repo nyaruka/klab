@@ -19,17 +19,17 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
   % cd klab
 ```
 
-#### 2. Create a virtual environment and active it:
+#### 2. Install poetry and activate the virtual environment and active it:
 
 ```  
-  % virtualenv env
-  % source env/bin/activate
+  % curl -sSL https://install.python-poetry.org | python3 -
+  % poetry shell
 ```
 
 #### 3. Initialize it with all the required libraries:
 
 ```   
-  % pip install -r pip-freeze.txt
+  % poetry install --no-root
 ```
 
 #### 4. Symlink your dev settings file:
@@ -43,7 +43,6 @@ These instructions are for Unix/OS X, you will have to modify these a bit to get
 #### 5. Initialize our database:
 
 ```
-  % python manage.py syncdb
   % python manage.py migrate
 ```
 
